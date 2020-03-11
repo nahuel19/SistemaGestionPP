@@ -41,7 +41,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategoriaBLL.cs" />
+    <Compile Include="ClienteBLL.cs" />
+    <Compile Include="Doc_cabecera_egresoBLL.cs" />
+    <Compile Include="Doc_cabecera_ingresoBLL.cs" />
+    <Compile Include="Doc_detalle_egresoBLL.cs" />
+    <Compile Include="Doc_detalle_ingresoBLL.cs" />
+    <Compile Include="Movimiento_productoBLL.cs" />
+    <Compile Include="PrecioBLL.cs" />
+    <Compile Include="ProductoBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProveedorBLL.cs" />
+    <Compile Include="StockBLL.cs" />
+    <Compile Include="TipoDoc_identidadBLL.cs" />
+    <Compile Include="Tipo_documentoBLL.cs" />
+    <Compile Include="Tipo_movimiento_prodBLL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">

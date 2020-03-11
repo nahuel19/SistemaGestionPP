@@ -13,7 +13,7 @@ namespace DAL
     {
         dbGestionPP context = new dbGestionPP();
 
-        public Categoria GetById(int id)
+        public Categoria GetById(int? id)
         {
             return context.Categoria.Find(id);
         }
@@ -35,7 +35,7 @@ namespace DAL
             context.SaveChanges();
         }
 
-        public void Delete(int id)
+        public void Delete(int? id)
         {
             Categoria categoria = context.Categoria.Find(id);
             context.Categoria.Remove(categoria);

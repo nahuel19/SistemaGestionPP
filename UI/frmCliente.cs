@@ -10,13 +10,11 @@ using System.Windows.Forms;
 
 namespace UI
 {
-    public partial class Principal : Form
+    public partial class frmCliente : Form
     {
-        public Principal()
+        public frmCliente()
         {
             InitializeComponent();
         }
-
-        
     }
 }
