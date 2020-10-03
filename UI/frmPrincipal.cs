@@ -85,6 +85,11 @@ namespace UI
             OpenChildForm(new frmCategoria());
             
         }
+
+        private void BtnTipoDocIdentidad_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new TipoDoc_Indentidad.frmTipoDocIdentidad());
+        }
         #endregion
 
         #region metodo abrir un solo form a la vez
@@ -136,5 +141,6 @@ namespace UI
         //}
         #endregion
 
+        
     }
 }

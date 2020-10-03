@@ -1,6 +1,6 @@
-﻿namespace UI.Categoria
+﻿namespace UI.TipoDoc_Indentidad
 {
-    partial class frmCategoriaFormulario
+    partial class frmTipoDocIdentidadFormulario
     {
         /// <summary>
         /// Required designer variable.
@@ -28,53 +28,53 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelCatNueva = new System.Windows.Forms.Label();
-            this.TxtCatNueva = new System.Windows.Forms.TextBox();
+            this.TxtTipoDoc = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.BtnGuardar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // labelCatNueva
+            // TxtTipoDoc
             // 
-            this.labelCatNueva.AutoSize = true;
-            this.labelCatNueva.Location = new System.Drawing.Point(47, 76);
-            this.labelCatNueva.Name = "labelCatNueva";
-            this.labelCatNueva.Size = new System.Drawing.Size(52, 13);
-            this.labelCatNueva.TabIndex = 0;
-            this.labelCatNueva.Text = "Categoria";
+            this.TxtTipoDoc.Location = new System.Drawing.Point(207, 54);
+            this.TxtTipoDoc.Name = "TxtTipoDoc";
+            this.TxtTipoDoc.Size = new System.Drawing.Size(200, 20);
+            this.TxtTipoDoc.TabIndex = 33;
             // 
-            // TxtCatNueva
+            // label8
             // 
-            this.TxtCatNueva.Location = new System.Drawing.Point(122, 73);
-            this.TxtCatNueva.Name = "TxtCatNueva";
-            this.TxtCatNueva.Size = new System.Drawing.Size(143, 20);
-            this.TxtCatNueva.TabIndex = 1;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(45, 57);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(133, 13);
+            this.label8.TabIndex = 32;
+            this.label8.Text = "Tipo Documento Identidad";
             // 
             // BtnGuardar
             // 
-            this.BtnGuardar.Location = new System.Drawing.Point(122, 129);
+            this.BtnGuardar.Location = new System.Drawing.Point(162, 119);
             this.BtnGuardar.Name = "BtnGuardar";
-            this.BtnGuardar.Size = new System.Drawing.Size(75, 23);
-            this.BtnGuardar.TabIndex = 2;
+            this.BtnGuardar.Size = new System.Drawing.Size(109, 23);
+            this.BtnGuardar.TabIndex = 34;
             this.BtnGuardar.Text = "Guardar";
             this.BtnGuardar.UseVisualStyleBackColor = true;
             this.BtnGuardar.Click += new System.EventHandler(this.BtnGuardar_Click);
             // 
-            // frmCategoriaFormulario
+            // frmTipoDocIdentidadFormulario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(333, 229);
+            this.ClientSize = new System.Drawing.Size(453, 212);
             this.Controls.Add(this.BtnGuardar);
-            this.Controls.Add(this.TxtCatNueva);
-            this.Controls.Add(this.labelCatNueva);
+            this.Controls.Add(this.TxtTipoDoc);
+            this.Controls.Add(this.label8);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmCategoriaFormulario";
+            this.Name = "frmTipoDocIdentidadFormulario";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Nueva Categoria";
+            this.Text = "frmTipoDocIdentidadFormulario";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -82,8 +82,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Label labelCatNueva;
-        private System.Windows.Forms.TextBox TxtCatNueva;
+        private System.Windows.Forms.TextBox TxtTipoDoc;
+        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button BtnGuardar;
     }
 }

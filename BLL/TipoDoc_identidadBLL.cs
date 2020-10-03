@@ -12,7 +12,7 @@ namespace BLL
     {
         TipoDoc_identidadDAL tipoDoc_identDAL = new TipoDoc_identidadDAL();
 
-        public TipoDoc_identidad GetById(int id)
+        public TipoDoc_identidad GetById(int? id)
         {
             return tipoDoc_identDAL.GetById(id);
         }
@@ -33,7 +33,7 @@ namespace BLL
             tipoDoc_identDAL.Update(entity);
         }
 
-        public void Delete(int id)
+        public void Delete(int? id)
         {
             tipoDoc_identDAL.Delete(id);
         }

@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             this.panelMenu = new System.Windows.Forms.Panel();
             this.panelAjustes = new System.Windows.Forms.Panel();
-            this.button6 = new System.Windows.Forms.Button();
+            this.BtnTipoDocIdentidad = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -73,7 +73,7 @@
             // panelAjustes
             // 
             this.panelAjustes.BackColor = System.Drawing.Color.CadetBlue;
-            this.panelAjustes.Controls.Add(this.button6);
+            this.panelAjustes.Controls.Add(this.BtnTipoDocIdentidad);
             this.panelAjustes.Controls.Add(this.button5);
             this.panelAjustes.Controls.Add(this.button3);
             this.panelAjustes.Controls.Add(this.button2);
@@ -86,21 +86,22 @@
             this.panelAjustes.TabIndex = 8;
             this.panelAjustes.Visible = false;
             // 
-            // button6
+            // BtnTipoDocIdentidad
             // 
-            this.button6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button6.FlatAppearance.BorderSize = 0;
-            this.button6.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button6.Location = new System.Drawing.Point(0, 200);
-            this.button6.Name = "button6";
-            this.button6.Padding = new System.Windows.Forms.Padding(80, 0, 0, 0);
-            this.button6.Size = new System.Drawing.Size(250, 40);
-            this.button6.TabIndex = 5;
-            this.button6.Text = "button6";
-            this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button6.UseVisualStyleBackColor = true;
+            this.BtnTipoDocIdentidad.Dock = System.Windows.Forms.DockStyle.Top;
+            this.BtnTipoDocIdentidad.FlatAppearance.BorderSize = 0;
+            this.BtnTipoDocIdentidad.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
+            this.BtnTipoDocIdentidad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnTipoDocIdentidad.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BtnTipoDocIdentidad.Location = new System.Drawing.Point(0, 200);
+            this.BtnTipoDocIdentidad.Name = "BtnTipoDocIdentidad";
+            this.BtnTipoDocIdentidad.Padding = new System.Windows.Forms.Padding(80, 0, 0, 0);
+            this.BtnTipoDocIdentidad.Size = new System.Drawing.Size(250, 40);
+            this.BtnTipoDocIdentidad.TabIndex = 5;
+            this.BtnTipoDocIdentidad.Text = "Tipo Doc Identidad";
+            this.BtnTipoDocIdentidad.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnTipoDocIdentidad.UseVisualStyleBackColor = true;
+            this.BtnTipoDocIdentidad.Click += new System.EventHandler(this.BtnTipoDocIdentidad_Click);
             // 
             // button5
             // 
@@ -317,7 +318,9 @@
             this.Controls.Add(this.panelMenu);
             this.MinimumSize = new System.Drawing.Size(400, 600);
             this.Name = "frmPrincipal";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Gestión NTB";
             this.panelMenu.ResumeLayout(false);
             this.panelAjustes.ResumeLayout(false);
             this.panelFormularios.ResumeLayout(false);
@@ -331,7 +334,7 @@
 
         private System.Windows.Forms.Panel panelMenu;
         private System.Windows.Forms.Panel panelAjustes;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button BtnTipoDocIdentidad;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;

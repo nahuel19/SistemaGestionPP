@@ -8,13 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace UI
+namespace UI.Cliente
 {
-    public partial class frmProducto : Form
+    public partial class frmClienteFormulario : Form
     {
-        public frmProducto()
+        public frmClienteFormulario()
         {
             InitializeComponent();
         }
+
+        
     }
 }

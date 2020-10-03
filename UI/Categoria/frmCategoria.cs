@@ -28,14 +28,14 @@ namespace UI
         private void RefrescarTabla()
         {
             var cat = new CategoriaBLL();
-            DataGridViewCategoria.DataSource = cat.List().ToList();
+            DataGridViewDatos.DataSource = cat.List().ToList();
         }
 
         private int? GetId()
         {
             try
             {
-                return int.Parse(DataGridViewCategoria.Rows[DataGridViewCategoria.CurrentRow.Index].Cells[0].Value.ToString());
+                return int.Parse(DataGridViewDatos.Rows[DataGridViewDatos.CurrentRow.Index].Cells[0].Value.ToString());
             }
             catch
             {
@@ -45,7 +45,7 @@ namespace UI
 
         #endregion
 
-        private void BtnCatNueva_Click(object sender, EventArgs e)
+        private void BtnNuevo_Click(object sender, EventArgs e)
         {
             Categoria.frmCategoriaFormulario frmCatNueva = new Categoria.frmCategoriaFormulario();
             frmCatNueva.ShowDialog();
@@ -53,7 +53,7 @@ namespace UI
             RefrescarTabla();
         }
 
-        private void BtnEditarCat_Click(object sender, EventArgs e)
+        private void BtnEditar_Click(object sender, EventArgs e)
         {
             int? id = GetId();
             if (id != null)
@@ -81,6 +81,15 @@ namespace UI
                 RefrescarTabla();
 
             }
+        }
+
+        private void DataGridViewDatos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Producto.frmProductoFormulario frmProducto = Owner as Producto.frmProductoFormulario;
+            frmProducto.TxtCatId.Text = DataGridViewDatos.CurrentRow.Cells[0].Value.ToString();
+            frmProducto.TxtCatNomb.Text = DataGridViewDatos.CurrentRow.Cells[1].Value.ToString();
+            this.Close();
+           
         }
     }
 }

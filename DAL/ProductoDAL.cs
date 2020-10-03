@@ -12,7 +12,7 @@ namespace DAL
     {
         dbGestionPP context = new dbGestionPP();
 
-        public Producto GetById(int id)
+        public Producto GetById(int? id)
         {
             return context.Producto.Find(id);
         }
@@ -34,7 +34,7 @@ namespace DAL
             context.SaveChanges();
         }
 
-        public void Delete(int id)
+        public void Delete(int? id)
         {
             Producto producto = context.Producto.Find(id);
             context.Producto.Remove(producto);
