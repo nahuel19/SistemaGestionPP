@@ -85,6 +85,18 @@
     <Compile Include="frmPrincipal.Designer.cs">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Precio\frmPrecioFormulario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Precio\frmPrecioFormulario.Designer.cs">
+      <DependentUpon>frmPrecioFormulario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Precio\frmPrecio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Precio\frmPrecio.Designer.cs">
+      <DependentUpon>frmPrecio.cs</DependentUpon>
+    </Compile>
     <Compile Include="Producto\frmProducto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,6 +149,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmPrincipal.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Precio\frmPrecioFormulario.resx">
+      <DependentUpon>frmPrecioFormulario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Precio\frmPrecio.resx">
+      <DependentUpon>frmPrecio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Producto\frmProducto.resx">
       <DependentUpon>frmProducto.cs</DependentUpon>
