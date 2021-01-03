@@ -12,7 +12,7 @@ namespace ModeloEntidades
     using System;
     using System.Collections.Generic;
     
-    public partial class Cliente
+    public partial class Cliente : IEntityBase
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Cliente()

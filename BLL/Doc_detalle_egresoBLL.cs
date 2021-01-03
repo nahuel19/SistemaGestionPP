@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace BLL
 {
     public class Doc_detalle_egresoBLL
-    {
+    {        
         Doc_detalle_egresoDAL doc_det_egrDAL = new Doc_detalle_egresoDAL();
 
         public Doc_detalle_egreso GetById(int id)
@@ -37,5 +37,6 @@ namespace BLL
         {
             doc_det_egrDAL.Delete(id);
         }
+
     }
 }

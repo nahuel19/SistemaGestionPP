@@ -12,7 +12,7 @@ namespace BLL
     {
         CategoriaDAL catDAL = new CategoriaDAL();
 
-        public Categoria GetById(int? id)
+        public Categoria GetById(int id)
         {
             return catDAL.GetById(id);
         }
@@ -33,10 +33,11 @@ namespace BLL
             catDAL.Update(entity);
         }
 
-        public void Delete(int? id)
+        public void Delete(int id)
         {
             catDAL.Delete(id);   
         }
+ 
 
     }
 }

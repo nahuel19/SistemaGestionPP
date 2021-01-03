@@ -10,6 +10,7 @@ namespace BLL
 {
     public class Movimiento_productoBLL
     {
+        
         Movimiento_productoDAL movimiento_productoDAL = new Movimiento_productoDAL();
 
         public Movimiento_producto GetById(int id)
@@ -37,5 +38,6 @@ namespace BLL
         {
             movimiento_productoDAL.Delete(id);
         }
+
     }
 }

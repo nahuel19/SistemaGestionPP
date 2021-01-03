@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace BLL
 {
     public class Doc_cabecera_egresoBLL
-    {
+    {      
         Doc_cabecera_egresoDAL doc_cab_egrDAL = new Doc_cabecera_egresoDAL();
 
         public Doc_cabecera_egreso GetById(int id)

@@ -9,11 +9,11 @@ using ModeloEntidades;
 
 namespace DAL
 {
-    public class CategoriaDAL
+    public class CategoriaDAL : IDAL<Categoria>
     {
-        dbGestionPP context = new dbGestionPP();
+        dbGestionPP context = dbGestionPP.Instance();
 
-        public Categoria GetById(int? id)
+        public Categoria GetById(int id)
         {
             return context.Categoria.Find(id);
         }
@@ -35,7 +35,7 @@ namespace DAL
             context.SaveChanges();
         }
 
-        public void Delete(int? id)
+        public void Delete(int id)
         {
             Categoria categoria = context.Categoria.Find(id);
             context.Categoria.Remove(categoria);

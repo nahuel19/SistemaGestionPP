@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class TipoDoc_identidadDAL
+    public class TipoDoc_identidadDAL : IDAL<TipoDoc_identidad>
     {
-        dbGestionPP context = new dbGestionPP();
+        dbGestionPP context = dbGestionPP.Instance();
 
-        public TipoDoc_identidad GetById(int? id)
+        public TipoDoc_identidad GetById(int id)
         {
             return context.TipoDoc_identidad.Find(id);
         }
@@ -34,7 +34,7 @@ namespace DAL
             context.SaveChanges();
         }
 
-        public void Delete(int? id)
+        public void Delete(int id)
         {
             TipoDoc_identidad tipoDoc_identidad = context.TipoDoc_identidad.Find(id);
             context.TipoDoc_identidad.Remove(tipoDoc_identidad);

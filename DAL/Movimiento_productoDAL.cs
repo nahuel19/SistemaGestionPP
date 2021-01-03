@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class Movimiento_productoDAL
+    public class Movimiento_productoDAL : IDAL<Movimiento_producto>
     {
-        dbGestionPP context = new dbGestionPP();
+        dbGestionPP context = dbGestionPP.Instance();
 
         public Movimiento_producto GetById(int id)
         {

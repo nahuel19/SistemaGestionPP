@@ -12,7 +12,7 @@ namespace ModeloEntidades
     using System;
     using System.Collections.Generic;
     
-    public partial class Movimiento_producto
+    public partial class Movimiento_producto : IEntityBase
     {
         public int id { get; set; }
         public int fk_id_producto { get; set; }

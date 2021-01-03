@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace BLL
 {
     public class ClienteBLL
-    {
+    {      
         ClienteDAL cliDAL = new ClienteDAL();
 
         public Cliente GetById(int id)
@@ -37,5 +37,6 @@ namespace BLL
         {
             cliDAL.Delete(id);
         }
+
     }
 }

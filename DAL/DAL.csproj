@@ -41,6 +41,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -54,10 +55,12 @@
   <ItemGroup>
     <Compile Include="CategoriaDAL.cs" />
     <Compile Include="ClienteDAL.cs" />
+    <Compile Include="Connection.cs" />
     <Compile Include="Doc_cabecera_egresoDAL.cs" />
     <Compile Include="Doc_cabecera_ingresoDAL.cs" />
     <Compile Include="Doc_detalle_egresoDAL.cs" />
     <Compile Include="Doc_detalle_ingresoDAL.cs" />
+    <Compile Include="IDAL.cs" />
     <Compile Include="Movimiento_productoDAL.cs" />
     <Compile Include="PrecioDAL.cs" />
     <Compile Include="ProductoDAL.cs" />

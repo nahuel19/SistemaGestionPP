@@ -12,7 +12,7 @@ namespace ModeloEntidades
     using System;
     using System.Collections.Generic;
     
-    public partial class TipoDoc_identidad
+    public partial class TipoDoc_identidad : IEntityBase
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TipoDoc_identidad()

@@ -10,7 +10,9 @@ namespace BLL
 {
     public class PrecioBLL
     {
+        
         PrecioDAL precioDAL = new PrecioDAL();
+        
 
         public Precio GetById(int id)
         {
@@ -37,5 +39,6 @@ namespace BLL
         {
             precioDAL.Delete(id);
         }
+
     }
 }

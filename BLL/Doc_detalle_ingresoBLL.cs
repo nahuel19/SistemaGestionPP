@@ -10,6 +10,7 @@ namespace BLL
 {
     public class Doc_detalle_ingresoBLL
     {
+        
         Doc_detalle_ingresoDAL doc_det_ingrDAL = new Doc_detalle_ingresoDAL();
 
         public Doc_detalle_ingreso GetById(int id)
@@ -37,5 +38,6 @@ namespace BLL
         {
             doc_det_ingrDAL.Delete(id);
         }
+
     }
 }

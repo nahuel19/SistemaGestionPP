@@ -12,7 +12,7 @@ namespace ModeloEntidades
     using System;
     using System.Collections.Generic;
     
-    public partial class Doc_cabecera_egreso
+    public partial class Doc_cabecera_egreso : IEntityBase
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Doc_cabecera_egreso()

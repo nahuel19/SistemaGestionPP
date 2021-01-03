@@ -12,7 +12,7 @@ namespace ModeloEntidades
     using System;
     using System.Collections.Generic;
     
-    public partial class Doc_detalle_ingreso
+    public partial class Doc_detalle_ingreso : IEntityBase
     {
         public int id { get; set; }
         public int fk_id_doc_cabecera_ingreso { get; set; }

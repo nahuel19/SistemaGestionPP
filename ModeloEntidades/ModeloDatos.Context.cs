@@ -14,14 +14,18 @@ namespace ModeloEntidades
     using System.Data.Entity.Infrastructure;
     using System.Data.Entity.Core.Objects;
     using System.Linq;
-    
+
     public partial class dbGestionPP : DbContext
     {
-        public dbGestionPP()
+        private dbGestionPP()
             : base("name=dbGestionPP")
         {
         }
-    
+
+        private static dbGestionPP _instance;
+
+        public static dbGestionPP Instance() => _instance == null ? _instance = new dbGestionPP() : _instance;
+        
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

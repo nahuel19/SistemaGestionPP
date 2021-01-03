@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class ProveedorDAL
+    public class ProveedorDAL : IDAL<Proveedor>
     {
-        dbGestionPP context = new dbGestionPP();
+        dbGestionPP context = dbGestionPP.Instance();
 
         public Proveedor GetById(int id)
         {

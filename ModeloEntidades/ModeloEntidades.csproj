@@ -67,6 +67,7 @@
     <Compile Include="Doc_detalle_ingreso.cs">
       <DependentUpon>ModeloDatos.tt</DependentUpon>
     </Compile>
+    <Compile Include="IEntityBase.cs" />
     <Compile Include="ModeloDatos.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

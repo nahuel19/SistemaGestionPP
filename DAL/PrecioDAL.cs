@@ -8,13 +8,16 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class PrecioDAL
+    public class PrecioDAL : IDAL<Precio>
     {
-        dbGestionPP context = new dbGestionPP();
+        
+        #region db access methods
+        dbGestionPP context = dbGestionPP.Instance();
 
         public Precio GetById(int id)
         {
             return context.Precio.Find(id);
+            
         }
 
         public IEnumerable<Precio> List()
@@ -40,5 +43,6 @@ namespace DAL
             context.Precio.Remove(precio);
             context.SaveChanges();
         }
+        #endregion
     }
 }

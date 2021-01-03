@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace BLL
 {
     public class Doc_cabecera_ingresoBLL
-    {
+    {       
         Doc_cabecera_ingresoDAL doc_cab_ingrDAL = new Doc_cabecera_ingresoDAL();
 
         public Doc_cabecera_ingreso GetById(int id)
@@ -37,5 +37,6 @@ namespace BLL
         {
             doc_cab_ingrDAL.Delete(id);
         }
+
     }
 }

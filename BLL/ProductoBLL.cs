@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 namespace BLL
 {
     public class ProductoBLL
-    {
+    {       
+
         ProductoDAL prodDAL = new ProductoDAL();
 
-        public Producto GetById(int? id)
+        public Producto GetById(int id)
         {
             return prodDAL.GetById(id);
         }
@@ -33,9 +34,11 @@ namespace BLL
             prodDAL.Update(entity);
         }
 
-        public void Delete(int? id)
+        public void Delete(int id)
         {
             prodDAL.Delete(id);
         }
+
+
     }
 }

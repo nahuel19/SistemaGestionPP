@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class Doc_detalle_ingresoDAL
+    public class Doc_detalle_ingresoDAL : IDAL<Doc_detalle_ingreso>
     {
-        dbGestionPP context = new dbGestionPP();
+        dbGestionPP context = dbGestionPP.Instance();
 
         public Doc_detalle_ingreso GetById(int id)
         {
