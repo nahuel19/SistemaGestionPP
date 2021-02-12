@@ -41,9 +41,22 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Design, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Fonts, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Fonts.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,23 +68,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Categoria\frmCategoria.cs">
+    <Compile Include="Categoria\FrmCategoria.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Categoria\frmCategoria.Designer.cs">
-      <DependentUpon>frmCategoria.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Categoria\frmCategoriaFormulario.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Categoria\frmCategoriaFormulario.Designer.cs">
-      <DependentUpon>frmCategoriaFormulario.cs</DependentUpon>
+    <Compile Include="Categoria\FrmCategoria.Designer.cs">
+      <DependentUpon>FrmCategoria.cs</DependentUpon>
     </Compile>
     <Compile Include="Cliente\frmCliente.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Cliente\frmCliente.Designer.cs">
       <DependentUpon>frmCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cliente\frmClienteDetalle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cliente\frmClienteDetalle.Designer.cs">
+      <DependentUpon>frmClienteDetalle.cs</DependentUpon>
     </Compile>
     <Compile Include="Cliente\frmClienteFormulario.cs">
       <SubType>Form</SubType>
@@ -85,6 +98,45 @@
     <Compile Include="frmPrincipal.Designer.cs">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helps\DataValidations.cs" />
+    <Compile Include="Helps\IContractForm.cs" />
+    <Compile Include="Helps\Language.cs" />
+    <Compile Include="Ingresos\frmIngreso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ingresos\frmIngreso.Designer.cs">
+      <DependentUpon>frmIngreso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ingresos\frmIngresoFormulario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ingresos\frmIngresoFormulario.Designer.cs">
+      <DependentUpon>frmIngresoFormulario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Notifications\FrmError.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Notifications\FrmError.Designer.cs">
+      <DependentUpon>FrmError.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Notifications\FrmInformation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Notifications\FrmInformation.Designer.cs">
+      <DependentUpon>FrmInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Notifications\FrmQuestion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Notifications\FrmQuestion.Designer.cs">
+      <DependentUpon>FrmQuestion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Notifications\FrmSuccess.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Notifications\FrmSuccess.Designer.cs">
+      <DependentUpon>FrmSuccess.cs</DependentUpon>
+    </Compile>
     <Compile Include="Precio\frmPrecioFormulario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +148,30 @@
     </Compile>
     <Compile Include="Precio\frmPrecio.Designer.cs">
       <DependentUpon>frmPrecio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presupuesto\frmPresupuesto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presupuesto\frmPresupuesto.Designer.cs">
+      <DependentUpon>frmPresupuesto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Producto\frmAddStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Producto\frmAddStock.Designer.cs">
+      <DependentUpon>frmAddStock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Producto\frmPrecio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Producto\frmPrecio.Designer.cs">
+      <DependentUpon>frmPrecio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Producto\frmProductoDetalle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Producto\frmProductoDetalle.Designer.cs">
+      <DependentUpon>frmProductoDetalle.cs</DependentUpon>
     </Compile>
     <Compile Include="Producto\frmProducto.cs">
       <SubType>Form</SubType>
@@ -109,8 +185,18 @@
     <Compile Include="Producto\frmProductoFormulario.Designer.cs">
       <DependentUpon>frmProductoFormulario.cs</DependentUpon>
     </Compile>
+    <Compile Include="Producto\frmSeleccionarProducto.cs" />
+    <Compile Include="Producto\frmSeleccionarProducto.Designer.cs">
+      <DependentUpon>frmSeleccionarProducto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Proveedor\frmProveedorDetalle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Proveedor\frmProveedorDetalle.Designer.cs">
+      <DependentUpon>frmProveedorDetalle.cs</DependentUpon>
+    </Compile>
     <Compile Include="Proveedor\frmProveedorFormulario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +208,12 @@
     </Compile>
     <Compile Include="Proveedor\frmProveedor.Designer.cs">
       <DependentUpon>frmProveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Proveedor\frmSeleccionarProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Proveedor\frmSeleccionarProveedor.Designer.cs">
+      <DependentUpon>frmSeleccionarProveedor.cs</DependentUpon>
     </Compile>
     <Compile Include="TipoDocIndentidad\frmTipoDocIdentidadFormulario.cs">
       <SubType>Form</SubType>
@@ -135,20 +227,47 @@
     <Compile Include="TipoDocIndentidad\frmTipoDocIdentidad.Designer.cs">
       <DependentUpon>frmTipoDocIdentidad.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Categoria\frmCategoria.resx">
-      <DependentUpon>frmCategoria.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Categoria\frmCategoriaFormulario.resx">
-      <DependentUpon>frmCategoriaFormulario.cs</DependentUpon>
+    <Compile Include="Tipo_Movimiento_prod\frmTipoMovvimientoProd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tipo_Movimiento_prod\frmTipoMovvimientoProd.Designer.cs">
+      <DependentUpon>frmTipoMovvimientoProd.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Categoria\FrmCategoria.resx">
+      <DependentUpon>FrmCategoria.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Cliente\frmCliente.resx">
       <DependentUpon>frmCliente.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Cliente\frmClienteDetalle.resx">
+      <DependentUpon>frmClienteDetalle.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Cliente\frmClienteFormulario.resx">
       <DependentUpon>frmClienteFormulario.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmPrincipal.es-AR.resx">
+      <DependentUpon>frmPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmPrincipal.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ingresos\frmIngreso.resx">
+      <DependentUpon>frmIngreso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ingresos\frmIngresoFormulario.resx">
+      <DependentUpon>frmIngresoFormulario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Notifications\FrmError.resx">
+      <DependentUpon>FrmError.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Notifications\FrmInformation.resx">
+      <DependentUpon>FrmInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Notifications\FrmQuestion.resx">
+      <DependentUpon>FrmQuestion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Notifications\FrmSuccess.resx">
+      <DependentUpon>FrmSuccess.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Precio\frmPrecioFormulario.resx">
       <DependentUpon>frmPrecioFormulario.cs</DependentUpon>
@@ -156,11 +275,26 @@
     <EmbeddedResource Include="Precio\frmPrecio.resx">
       <DependentUpon>frmPrecio.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presupuesto\frmPresupuesto.resx">
+      <DependentUpon>frmPresupuesto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Producto\frmAddStock.resx">
+      <DependentUpon>frmAddStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Producto\frmPrecio.resx">
+      <DependentUpon>frmPrecio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Producto\frmProductoDetalle.resx">
+      <DependentUpon>frmProductoDetalle.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Producto\frmProducto.resx">
       <DependentUpon>frmProducto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Producto\frmProductoFormulario.resx">
       <DependentUpon>frmProductoFormulario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Producto\frmSeleccionarProducto.resx">
+      <DependentUpon>frmSeleccionarProducto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -174,14 +308,23 @@
     <EmbeddedResource Include="Proveedor\frmProveedor.resx">
       <DependentUpon>frmProveedor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Proveedor\frmProveedorDetalle.resx">
+      <DependentUpon>frmProveedorDetalle.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Proveedor\frmProveedorFormulario.resx">
       <DependentUpon>frmProveedorFormulario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Proveedor\frmSeleccionarProveedor.resx">
+      <DependentUpon>frmSeleccionarProveedor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TipoDocIndentidad\frmTipoDocIdentidad.resx">
       <DependentUpon>frmTipoDocIdentidad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TipoDocIndentidad\frmTipoDocIdentidadFormulario.resx">
       <DependentUpon>frmTipoDocIdentidadFormulario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tipo_Movimiento_prod\frmTipoMovvimientoProd.resx">
+      <DependentUpon>frmTipoMovvimientoProd.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -202,9 +345,13 @@
       <Project>{0946648d-4593-42ea-9dda-3d745c5ae4b1}</Project>
       <Name>BLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ModeloEntidades\ModeloEntidades.csproj">
-      <Project>{2d6c83cd-e654-4886-b1aa-2d7640799163}</Project>
-      <Name>ModeloEntidades</Name>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{d69f0f51-e0a7-4ace-889b-6207cc2bebb5}</Project>
+      <Name>Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services\Services.csproj">
+      <Project>{a6be7fab-7c9c-4a1e-9763-16b0a8238895}</Project>
+      <Name>Services</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

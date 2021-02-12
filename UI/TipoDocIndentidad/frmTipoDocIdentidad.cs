@@ -46,7 +46,7 @@ namespace UI.TipoDoc_Indentidad
 
         private void BtnNuevo_Click(object sender, EventArgs e)
         {
-            TipoDoc_Indentidad.frmTipoDocIdentidadFormulario frm = new TipoDoc_Indentidad.frmTipoDocIdentidadFormulario();
+            frmTipoDocIdentidadFormulario frm = new frmTipoDocIdentidadFormulario();
             frm.ShowDialog();
 
             RefrescarTabla();
@@ -57,7 +57,7 @@ namespace UI.TipoDoc_Indentidad
             int? id = GetId();
             if (id != null)
             {
-                TipoDoc_Indentidad.frmTipoDocIdentidadFormulario frm = new TipoDoc_Indentidad.frmTipoDocIdentidadFormulario(id);
+                frmTipoDocIdentidadFormulario frm = new frmTipoDocIdentidadFormulario(id);
                 frm.ShowDialog();
 
                 RefrescarTabla();
@@ -74,7 +74,7 @@ namespace UI.TipoDoc_Indentidad
 
                 TipoDoc_identidadBLL cat = new TipoDoc_identidadBLL();
 
-                cat.Delete(id);
+                cat.Delete(Convert.ToInt32(id));
 
                 RefrescarTabla();
 

@@ -18,5 +18,15 @@ namespace Entities
         public int sucursal { get; set; }
         public int numero { get; set; }
         public System.DateTime fecha { get; set; }
+        public int fk_id_usuario { get; set; }
+
+        public string factura { get; set; }
+        public string nombre_proveedor { get; set; }
+        public string nombre_usuario { get; set; }
+        public string tipo_documento { get; set; }
+
+        public List<Doc_detalle_ingreso> listDetalle { get; set; }
+
+
     }
 }

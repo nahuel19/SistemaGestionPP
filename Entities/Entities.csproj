@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Entities</RootNamespace>
     <AssemblyName>Entities</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -48,6 +50,7 @@
     <Compile Include="Doc_detalle_egreso.cs" />
     <Compile Include="Doc_detalle_ingreso.cs" />
     <Compile Include="IEntityBase.cs" />
+    <Compile Include="Log.cs" />
     <Compile Include="Movimiento_producto.cs" />
     <Compile Include="Precio.cs" />
     <Compile Include="Producto.cs" />
@@ -56,6 +59,7 @@
     <Compile Include="Stock.cs" />
     <Compile Include="TipoDoc_identidad.cs" />
     <Compile Include="Tipo_documento.cs" />
+    <Compile Include="Tipo_log.cs" />
     <Compile Include="Tipo_movimiento_prod.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

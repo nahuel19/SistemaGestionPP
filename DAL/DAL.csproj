@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\DAL.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -55,12 +56,13 @@
   <ItemGroup>
     <Compile Include="CategoriaDAL.cs" />
     <Compile Include="ClienteDAL.cs" />
-    <Compile Include="Connection.cs" />
+    <Compile Include="ConnectionBD.cs" />
     <Compile Include="Doc_cabecera_egresoDAL.cs" />
     <Compile Include="Doc_cabecera_ingresoDAL.cs" />
     <Compile Include="Doc_detalle_egresoDAL.cs" />
     <Compile Include="Doc_detalle_ingresoDAL.cs" />
     <Compile Include="IDAL.cs" />
+    <Compile Include="LogDAL.cs" />
     <Compile Include="Movimiento_productoDAL.cs" />
     <Compile Include="PrecioDAL.cs" />
     <Compile Include="ProductoDAL.cs" />
@@ -69,6 +71,7 @@
     <Compile Include="StockDAL.cs" />
     <Compile Include="TipoDoc_identidadDAL.cs" />
     <Compile Include="Tipo_documentoDAL.cs" />
+    <Compile Include="Tipo_logDAL.cs" />
     <Compile Include="Tipo_movimiento_prodDAL.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -79,9 +82,13 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ModeloEntidades\ModeloEntidades.csproj">
-      <Project>{2d6c83cd-e654-4886-b1aa-2d7640799163}</Project>
-      <Name>ModeloEntidades</Name>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{d69f0f51-e0a7-4ace-889b-6207cc2bebb5}</Project>
+      <Name>Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services\Services.csproj">
+      <Project>{a6be7fab-7c9c-4a1e-9763-16b0a8238895}</Project>
+      <Name>Services</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

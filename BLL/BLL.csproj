@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,6 +47,10 @@
     <Compile Include="Doc_cabecera_ingresoBLL.cs" />
     <Compile Include="Doc_detalle_egresoBLL.cs" />
     <Compile Include="Doc_detalle_ingresoBLL.cs" />
+    <Compile Include="LogBitacora\CreateLog.cs" />
+    <Compile Include="LogBitacora\GetLogsCommand.cs" />
+    <Compile Include="LogBitacora\InvokeCommand.cs" />
+    <Compile Include="LogBitacora\InsertLogCommand.cs" />
     <Compile Include="Movimiento_productoBLL.cs" />
     <Compile Include="PrecioBLL.cs" />
     <Compile Include="ProductoBLL.cs" />
@@ -61,10 +66,15 @@
       <Project>{f545b658-9adb-460e-a2ed-91d10cb5a9c3}</Project>
       <Name>DAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ModeloEntidades\ModeloEntidades.csproj">
-      <Project>{2d6c83cd-e654-4886-b1aa-2d7640799163}</Project>
-      <Name>ModeloEntidades</Name>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{d69f0f51-e0a7-4ace-889b-6207cc2bebb5}</Project>
+      <Name>Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services\Services.csproj">
+      <Project>{a6be7fab-7c9c-4a1e-9763-16b0a8238895}</Project>
+      <Name>Services</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,38 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
+using UI.Proveedor;
 
 namespace UI
 {
     public partial class frmPrincipal : Form
     {
         public frmPrincipal()
-        {
+        {           
             InitializeComponent();
+            //UpdateLanguage();
+            
         }
 
         #region metodos cerrar y abrir submenu ajustes
         //----Cerrar y abrir submenu ajustes-----
-        private void cerrarSubmenu()
+        private void AbrirCerrarSubmenu()
         {
+
+            if (panelAjustes.Visible == false)
+            {
+                panelAjustes.Visible = true;
+            }
+
             if (panelAjustes.Visible == true)
             {
                 panelAjustes.Visible = false;
             }
         }
-        private void abrirSubmenu()
-        {
-            if (panelAjustes.Visible == false)
-            {
-                panelAjustes.Visible = true;
-            }
-        }
+        //private void abrirSubmenu()
+        //{
+        //    if (panelAjustes.Visible == false)
+        //    {
+        //        panelAjustes.Visible = true;
+        //    }
+        //}
         //---------------------------------------
         #endregion
 
@@ -40,51 +50,47 @@ namespace UI
         //-----Botones principales---------------
         private void btnProductos_Click(object sender, EventArgs e)
         {
-            cerrarSubmenu();
+            AbrirCerrarSubmenu();
             
             OpenChildForm(new frmProducto());
         }
 
         private void btnClientes_Click(object sender, EventArgs e)
         {
-            cerrarSubmenu();
+            AbrirCerrarSubmenu();
+
+            OpenChildForm(new frmCliente());
         }
 
         private void btnProveedores_Click(object sender, EventArgs e)
         {
-            cerrarSubmenu();
+            AbrirCerrarSubmenu();
+
+            OpenChildForm(new frmProveedor());
         }
 
         private void btnCompras_Click(object sender, EventArgs e)
         {
-            cerrarSubmenu();
+            AbrirCerrarSubmenu();
+
+            OpenChildForm(new Ingresos.frmIngreso());
         }
 
         private void btnVentas_Click(object sender, EventArgs e)
         {
-            cerrarSubmenu();
+            AbrirCerrarSubmenu();
         }
         #endregion
 
         #region boton ajustes y submenu de ajustes
         //---------Ajustes-----------
-        private void btnAjustes_Click(object sender, EventArgs e)
-        {
-            if (panelAjustes.Visible == false)
-            {
-                panelAjustes.Visible = true;
-            }
-            else
-            {
-                panelAjustes.Visible = false;
-            }
-        }
+        
         //-----Sub menu de ajustes------
-        private void btnCategoriaProd_Click(object sender, EventArgs e)
-        {
-            OpenChildForm(new frmCategoria());
+        //private void btnCategoriaProd_Click(object sender, EventArgs e)
+        //{
+        //    OpenChildForm(new frmCategoria());
             
-        }
+        //}
 
         private void BtnTipoDocIdentidad_Click(object sender, EventArgs e)
         {
@@ -114,6 +120,7 @@ namespace UI
             childForm.BringToFront();
             childForm.Show();
         }
+
         #endregion
 
         #region metodo abrir mas de un formulario diferente (no mas de uno igual)
@@ -141,6 +148,69 @@ namespace UI
         //}
         #endregion
 
-        
+        private void panelFormularios_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void metroComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cbIdioma.SelectedIndex == 0)
+            {
+                Helps.Language.ChangeFileLanguage(ConfigurationManager.AppSettings["fileEs"]);
+                UpdateLanguage();
+            }
+
+            if (cbIdioma.SelectedIndex == 1)
+            {
+                Helps.Language.ChangeFileLanguage(ConfigurationManager.AppSettings["fileEn"]);
+                UpdateLanguage();
+            }
+        }
+
+        void UpdateLanguage()
+        {
+            //this.btnProductos.Text = Helps.Language.info["btnProductos"];
+            //Helps.Language.controles(this);
+        }
+
+        private void frmPrincipal_Load(object sender, EventArgs e)
+        {
+            LanguageSelected();
+        }
+
+        private void LanguageSelected()
+        {
+            string lang = new Properties.Settings().lang;
+
+            if (lang == ConfigurationManager.AppSettings["fileEs"])
+                cbIdioma.SelectedIndex = 0;
+            if (lang == ConfigurationManager.AppSettings["fileEn"])
+                cbIdioma.SelectedIndex = 1;
+        }
+
+        private void btnAjustes_Click_1(object sender, EventArgs e)
+        {
+            if (panelAjustes.Visible == false)
+            {
+                panelAjustes.Visible = true;
+            }
+            else
+            {
+                panelAjustes.Visible = false;
+            }
+        }
+
+        private void btnPresupuesto_Click(object sender, EventArgs e)
+        {
+            AbrirCerrarSubmenu();
+
+            OpenChildForm(Presupuesto.frmPresupuesto.Instance());
+        }
     }
 }

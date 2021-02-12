@@ -11,11 +11,11 @@ using BLL;
 
 namespace UI.TipoDoc_Indentidad
 {
-    public partial class frmTipoDocIdentidadFormulario : Form
+    public partial class frmTipoDocIdentidadFormulario : MetroFramework.Forms.MetroForm
     {
 
         public int? id;
-        ModeloEntidades.TipoDoc_identidad entidad = null;
+        Entities.TipoDoc_identidad entidad = null;
         TipoDoc_identidadBLL bll = new TipoDoc_identidadBLL();
 
         public frmTipoDocIdentidadFormulario(int? id = null)
@@ -32,17 +32,17 @@ namespace UI.TipoDoc_Indentidad
         private void CargaDatos()
         {
 
-            entidad = bll.GetById(id);
-            TxtTipoDoc.Text = entidad.doc_identidad;
+            entidad = bll.GetById(Convert.ToInt32(id));
+            //TxtTipoDoc.Text = entidad.doc_identidad;
         }
 
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
             if (id == null)
             {
-                entidad = new ModeloEntidades.TipoDoc_identidad();
+                entidad = new Entities.TipoDoc_identidad();
             }
-            entidad.doc_identidad = TxtTipoDoc.Text;
+            //entidad.doc_identidad = TxtTipoDoc.Text;
 
             if (id == null)
             {
@@ -57,6 +57,9 @@ namespace UI.TipoDoc_Indentidad
             this.Close();
         }
 
-        
+        private void lblTitulo_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
