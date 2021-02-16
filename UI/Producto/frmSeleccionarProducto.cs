@@ -75,20 +75,7 @@ namespace UI.Producto
         {
             Entities.Producto prod = bll.GetById(GetId());
             contrato.Ejecutar(prod);
-            this.Close();
-            //Ingresos.frmIngresoFormulario frmIngreso = Owner as Ingresos.frmIngresoFormulario;
-            //frmIngreso.TxtProducto.Text = "hola";/* metroGrid1.CurrentRow.Cells["nombre"].Value.ToString();*/
-            //frmIngreso.producto.id= (int)metroGrid1.CurrentRow.Cells["id"].Value;
-            //this.Close();
-
-            //Ingresos.frmIngresoFormulario frmIngreso = new Ingresos.frmIngresoFormulario();
-
-            //string nombreProd = metroGrid1.CurrentRow.Cells["nombre"].Value.ToString();
-            //int idProd = (int)metroGrid1.CurrentRow.Cells["id"].Value; ;
-
-            //frmIngreso.SetProducto(idProd, nombreProd);
-
-            //this.Close();
+            this.Close();            
         }
     }
 }

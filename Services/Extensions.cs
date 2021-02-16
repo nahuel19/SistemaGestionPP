@@ -57,6 +57,29 @@ namespace Services
         }
 
         /// <summary>
+        /// Método extension de IDataReader para obtener un valor si es bool, se le pasa el nombre de columna y devuelve el valor
+        /// </summary>
+        /// <param name="column">string</param>
+        /// <returns>bool</returns>
+        public static bool GetByNameBool(this IDataReader dr, string column)
+        {
+            int i = dr.GetOrdinal(column);
+            return Convert.ToBoolean(dr.GetValue(i));
+        }
+
+        /// <summary>
+        /// Método extension de IDataReader para obtener un valor si es byte[], se le pasa el nombre de columna y devuelve el valor
+        /// </summary>
+        /// <param name="column">string</param>
+        /// <returns>byte[]</returns>
+        //public static bool GetByNameByteArray(this IDataReader dr, string column)
+        //{
+        //    int i = dr.GetOrdinal(column);
+        //    return (byte[])Convert.toby(dr.GetValue(i));
+        //}
+
+
+        /// <summary>
         /// Método extension de String. Modificación del StartWith pero que ignora si la cadena contiene mayúsculas o minúsculas
         /// </summary>
         /// <param name="column">string</param>

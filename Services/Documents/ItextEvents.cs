@@ -10,6 +10,9 @@ using System.Web;
 
 namespace Services.Documents
 {
+    /// <summary>
+    /// Clase para generar pie de página y cabecera de los pdf
+    /// </summary>
     public class ITextEvents : PdfPageEventHelper
     {        
         PdfContentByte cb, cbl;
@@ -19,19 +22,19 @@ namespace Services.Documents
         BaseFont bf = null;
                 
         DateTime PrintTime = DateTime.Now;
-
-        #region Fields
+        
         private string _header;
-        #endregion
-
-        #region Properties
         public string Header
         {
             get { return _header; }
             set { _header = value; }
         }
-        #endregion
-
+        
+        /// <summary>
+        /// Setea propiedades al abrir un documento pdf
+        /// </summary>
+        /// <param name="writer">PdfWriter</param>
+        /// <param name="document">Document</param>
         public override void OnOpenDocument(PdfWriter writer, Document document)
         {
             try
@@ -53,6 +56,11 @@ namespace Services.Documents
             }
         }
 
+        /// <summary>
+        /// Setea propiedades al final de la pagina de un documento
+        /// </summary>
+        /// <param name="writer">PdfWriter</param>
+        /// <param name="document">Document</param>
         public override void OnEndPage(iTextSharp.text.pdf.PdfWriter writer, iTextSharp.text.Document document)
         {
             
@@ -82,6 +90,12 @@ namespace Services.Documents
 
             
         }
+        
+        /// <summary>
+        /// Setea propiedades al cerrar un documento pdf
+        /// </summary>
+        /// <param name="writer">PdfWriter</param>
+        /// <param name="document">Document</param>
         public override void OnCloseDocument(PdfWriter writer, Document document)
         {
             base.OnCloseDocument(writer, document);
@@ -94,6 +108,11 @@ namespace Services.Documents
 
         }
 
+        /// <summary>
+        /// Arma el header de los pdf en una tabla, con titulo y foto
+        /// </summary>
+        /// <param name="titulo">string</param>
+        /// <returns>PdfTable</returns>
         public PdfPTable getHeader(string titulo)
         {
             iTextSharp.text.Font font1 = iTextSharp.text.FontFactory.GetFont(FontFactory.HELVETICA, 15);

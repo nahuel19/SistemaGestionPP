@@ -3,7 +3,7 @@ using Services;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
+
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -34,15 +34,7 @@ namespace DAL
                         cmd.Parameters.AddWithValue("@costo", entity.costo);
                         cmd.Parameters.AddWithValue("@precio", entity.precio);
                         conn.Open();
-
-                        cmd.ExecuteNonQuery();
-                        //using (IDataReader dr = cmd.ExecuteReader())
-                        //{
-                        //    if (dr.Read())
-                        //    {
-                        //        entity.id = (int)dr.GetValue(0);
-                        //    }
-                        //}
+                        entity.id= Convert.ToInt32(cmd.ExecuteScalar());
                     }
 
                 }

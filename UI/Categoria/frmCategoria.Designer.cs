@@ -36,7 +36,7 @@
             this.pictureLupa = new System.Windows.Forms.PictureBox();
             this.TxtBuscar = new System.Windows.Forms.TextBox();
             this.pictureBoxBuscar = new System.Windows.Forms.PictureBox();
-            this.BtnLimpiar = new System.Windows.Forms.Button();
+            this.BtnLimapiar = new System.Windows.Forms.Button();
             this.lblTxtNombre = new System.Windows.Forms.Label();
             this.panelTitulo = new System.Windows.Forms.Panel();
             this.lblTituloCat = new System.Windows.Forms.Label();
@@ -89,21 +89,21 @@
             this.pictureBoxBuscar.TabIndex = 77;
             this.pictureBoxBuscar.TabStop = false;
             // 
-            // BtnLimpiar
+            // BtnLimapiar
             // 
-            this.BtnLimpiar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnLimpiar.BackColor = System.Drawing.Color.Peru;
-            this.BtnLimpiar.FlatAppearance.BorderSize = 0;
-            this.BtnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnLimpiar.ForeColor = System.Drawing.Color.White;
-            this.BtnLimpiar.Location = new System.Drawing.Point(631, 347);
-            this.BtnLimpiar.Name = "BtnLimpiar";
-            this.BtnLimpiar.Size = new System.Drawing.Size(118, 41);
-            this.BtnLimpiar.TabIndex = 75;
-            this.BtnLimpiar.Text = "LIMPIAR";
-            this.BtnLimpiar.UseVisualStyleBackColor = false;
-            this.BtnLimpiar.Click += new System.EventHandler(this.BtnLimpiar_Click);
+            this.BtnLimapiar.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.BtnLimapiar.BackColor = System.Drawing.Color.Peru;
+            this.BtnLimapiar.FlatAppearance.BorderSize = 0;
+            this.BtnLimapiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnLimapiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnLimapiar.ForeColor = System.Drawing.Color.White;
+            this.BtnLimapiar.Location = new System.Drawing.Point(631, 347);
+            this.BtnLimapiar.Name = "BtnLimapiar";
+            this.BtnLimapiar.Size = new System.Drawing.Size(118, 41);
+            this.BtnLimapiar.TabIndex = 75;
+            this.BtnLimapiar.Text = "LIMPIAR";
+            this.BtnLimapiar.UseVisualStyleBackColor = false;
+            this.BtnLimapiar.Click += new System.EventHandler(this.BtnLimpiar_Click);
             // 
             // lblTxtNombre
             // 
@@ -296,7 +296,7 @@
             this.Controls.Add(this.pictureLupa);
             this.Controls.Add(this.TxtBuscar);
             this.Controls.Add(this.pictureBoxBuscar);
-            this.Controls.Add(this.BtnLimpiar);
+            this.Controls.Add(this.BtnLimapiar);
             this.Controls.Add(this.lblTxtNombre);
             this.Controls.Add(this.panelTitulo);
             this.Controls.Add(this.lblDGnombre);
@@ -329,7 +329,7 @@
         private System.Windows.Forms.PictureBox pictureLupa;
         private System.Windows.Forms.TextBox TxtBuscar;
         private System.Windows.Forms.PictureBox pictureBoxBuscar;
-        private System.Windows.Forms.Button BtnLimpiar;
+        private System.Windows.Forms.Button BtnLimapiar;
         private System.Windows.Forms.Label lblTxtNombre;
         private System.Windows.Forms.Panel panelTitulo;
         private System.Windows.Forms.Label lblTituloCat;

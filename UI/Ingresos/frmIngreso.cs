@@ -16,6 +16,7 @@ namespace UI.Ingresos
     public partial class frmIngreso : Form
     {
         BLL.Doc_cabecera_ingresoBLL bllCabecera = new BLL.Doc_cabecera_ingresoBLL();
+        BLL.Doc_detalle_ingresoBLL bllDetalle = new BLL.Doc_detalle_ingresoBLL();
         public frmIngreso()
         {
             InitializeComponent();
@@ -23,7 +24,7 @@ namespace UI.Ingresos
 
         private void BtnNuevo_Click(object sender, EventArgs e)
         {
-            Ingresos.frmIngresoFormulario frmIngreso = new Ingresos.frmIngresoFormulario()/*.Instance*/;
+            Ingresos.frmIngresoFormulario frmIngreso = Ingresos.frmIngresoFormulario.Instance();
             frmIngreso.ShowDialog();
 
             RefrescarTabla();
@@ -36,37 +37,51 @@ namespace UI.Ingresos
         {
             metroGrid1.DataSource = bllCabecera.List();
 
-            //CaracteristicasGrid();
+            CaracteristicasGrid();
 
             metroGrid1.ClearSelection();
             TxtBuscar.Focus();
         }
 
-        //private void CaracteristicasGrid()
-        //{
+        private void CaracteristicasGrid()
+        {
 
-        //    metroGrid1.Columns["id"].Visible = false;
-        //    metroGrid1.Columns["fk_id_categoria"].Visible = false;
-        //    metroGrid1.Columns["peso"].Visible = false;
-        //    metroGrid1.Columns["alto"].Visible = false;
-        //    metroGrid1.Columns["ancho"].Visible = false;
-        //    metroGrid1.Columns["profundidad"].Visible = false;
-        //    metroGrid1.Columns["descripcion"].Visible = false;
-
-        //    metroGrid1.Columns["codigo"].DisplayIndex = 1;
-        //    metroGrid1.Columns["nombre"].DisplayIndex = 2;
-        //    metroGrid1.Columns["categoria"].DisplayIndex = 3;
-        //    metroGrid1.Columns["precio"].DisplayIndex = 4;
-        //    metroGrid1.Columns["cantidad"].DisplayIndex = 5;
-
-        //    metroGrid1.Columns["codigo"].Width = 80;
-        //    metroGrid1.Columns["nombre"].Width = 280;
-        //    metroGrid1.Columns["categoria"].Width = 190;
-        //    metroGrid1.Columns["precio"].Width = 150;
-        //    metroGrid1.Columns["cantidad"].Width = 80;
+            metroGrid1.Columns["id"].Visible = false;
+            metroGrid1.Columns["fk_id_tipo_doc"].Visible = false;
+            metroGrid1.Columns["fk_id_proveedor"].Visible = false;
+            metroGrid1.Columns["letra"].Visible = false;
+            metroGrid1.Columns["sucursal"].Visible = false;
+            metroGrid1.Columns["numero"].Visible = false;
+            metroGrid1.Columns["fk_id_usuario"].Visible = false;
+            metroGrid1.Columns["nombre_usuario"].Visible = false;
+            
 
 
-        //}
+            metroGrid1.Columns["tipo_documento"].DisplayIndex = 1;
+            metroGrid1.Columns["factura"].DisplayIndex = 2;
+            metroGrid1.Columns["nombre_proveedor"].DisplayIndex = 3;
+            metroGrid1.Columns["fecha"].DisplayIndex = 4;
+            //metroGrid1.Columns["cancelada"].DisplayIndex = 5;
+
+
+            metroGrid1.Columns["tipo_documento"].Width = 80;
+            metroGrid1.Columns["factura"].Width = 80;
+            metroGrid1.Columns["nombre_proveedor"].Width = 190;
+            metroGrid1.Columns["fecha"].Width = 150;
+            //metroGrid1.Columns["cancelada"].Width = 150;
+
+
+            foreach (DataGridViewRow row in metroGrid1.Rows)
+            {
+                if (Convert.ToBoolean(row.Cells["cancelada"].Value) ==true) 
+                {
+                    row.DefaultCellStyle.BackColor = Color.DarkOrange;
+                    row.DefaultCellStyle.ForeColor = Color.White;
+                }
+            }
+            
+
+        }
 
         private int? GetId()
         {
@@ -95,6 +110,7 @@ namespace UI.Ingresos
                 int? idEntity = GetId();
 
                 Entities.Doc_cabecera_ingreso entity = bllCabecera.GetById(Convert.ToInt32(idEntity));
+                entity.listDetalle = bllDetalle.ListDetallesByCabecera(entity.id);
 
                 try
                 {
@@ -102,7 +118,7 @@ namespace UI.Ingresos
 
                     if (confirmation == DialogResult.OK)
                     {
-                        bllCabecera.Delete(Convert.ToInt32(idEntity));
+                        bllCabecera.Anular(entity);
                         InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Delete, 1, this.GetType().FullName, MethodInfo.GetCurrentMethod().Name, "Ingreso anulado: " + entity.factura, "", ""));
 
                         RefrescarTabla();
@@ -127,5 +143,28 @@ namespace UI.Ingresos
         {
 
         }
+
+        private void metroGrid1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (this.metroGrid1.Columns[e.ColumnIndex].Name == "cancelada")
+            {
+                try
+                {
+                    if (e.Value.GetType() != typeof(System.DBNull))
+                    {
+                        if (Convert.ToBoolean(e.Value) == true)
+                        {
+                            e.CellStyle.BackColor = Color.Red;
+                        }
+                    }
+                }
+                catch (NullReferenceException ex)
+                {
+
+                }
+            }
+        }
+
+       
     }
 }

@@ -92,6 +92,12 @@
     <Compile Include="Cliente\frmClienteFormulario.Designer.cs">
       <DependentUpon>frmClienteFormulario.cs</DependentUpon>
     </Compile>
+    <Compile Include="Cliente\frmSeleccionarCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cliente\frmSeleccionarCliente.Designer.cs">
+      <DependentUpon>frmSeleccionarCliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +118,12 @@
     </Compile>
     <Compile Include="Ingresos\frmIngresoFormulario.Designer.cs">
       <DependentUpon>frmIngresoFormulario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login\frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Notifications\FrmError.cs">
       <SubType>Form</SubType>
@@ -233,6 +245,30 @@
     <Compile Include="Tipo_Movimiento_prod\frmTipoMovvimientoProd.Designer.cs">
       <DependentUpon>frmTipoMovvimientoProd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Usuario\frmUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Usuario\frmUsuario.Designer.cs">
+      <DependentUpon>frmUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario\frmUsuarioFormulario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Usuario\frmUsuarioFormulario.Designer.cs">
+      <DependentUpon>frmUsuarioFormulario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ventas\frmFormularioVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ventas\frmFormularioVenta.Designer.cs">
+      <DependentUpon>frmFormularioVenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ventas\frmVentas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ventas\frmVentas.Designer.cs">
+      <DependentUpon>frmVentas.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Categoria\FrmCategoria.resx">
       <DependentUpon>FrmCategoria.cs</DependentUpon>
     </EmbeddedResource>
@@ -245,6 +281,9 @@
     <EmbeddedResource Include="Cliente\frmClienteFormulario.resx">
       <DependentUpon>frmClienteFormulario.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Cliente\frmSeleccionarCliente.resx">
+      <DependentUpon>frmSeleccionarCliente.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmPrincipal.es-AR.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </EmbeddedResource>
@@ -256,6 +295,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Ingresos\frmIngresoFormulario.resx">
       <DependentUpon>frmIngresoFormulario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Notifications\FrmError.resx">
       <DependentUpon>FrmError.cs</DependentUpon>
@@ -325,6 +367,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Tipo_Movimiento_prod\frmTipoMovvimientoProd.resx">
       <DependentUpon>frmTipoMovvimientoProd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Usuario\frmUsuario.resx">
+      <DependentUpon>frmUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Usuario\frmUsuarioFormulario.resx">
+      <DependentUpon>frmUsuarioFormulario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ventas\frmFormularioVenta.resx">
+      <DependentUpon>frmFormularioVenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ventas\frmVentas.resx">
+      <DependentUpon>frmVentas.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

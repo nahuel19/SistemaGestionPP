@@ -12,8 +12,18 @@ using System.Web;
 
 namespace Services.Documents
 {
+    /// <summary>
+    /// Hereda de DoccmentAbstract para hacer override del metodo template
+    /// </summary>
     public class PdfDocument : DocumentAbstract
     {
+        /// <summary>
+        /// Override de Create, recibe dataTable y lo exporta a PDF
+        /// </summary>
+        /// <param name="dt">DataTable</param>
+        /// <param name="path">String</param>
+        /// <param name="file">String</param>
+        /// <param name="text">String</param>
         protected override void Create(System.Data.DataTable dt, string path, string file, string text)
         {
             if (!Directory.Exists(path))
@@ -87,95 +97,7 @@ namespace Services.Documents
             document.Add(Chunk.NEWLINE);
             document.Close();
 
-        }
-
-
-        public void pdf(DataTable dt, string txt)
-        {       
-                Document document = new Document();
-
-
-                // Path.Combine(ruta, zipNombre);
-                string nombreArchivo = "pruab.pdf";
-                string ruta = HttpContext.Current.Server.MapPath(ConfigurationManager.AppSettings["rutaPdfs"].ToString());
-
-                string path = Path.Combine(ruta, nombreArchivo);
-
-                PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(path, FileMode.Create));
-                writer.PageEvent = new ITextEvents();
-
-                document.Open();
-
-                iTextSharp.text.Font font5 = iTextSharp.text.FontFactory.GetFont(FontFactory.HELVETICA, 10);
-                iTextSharp.text.Font font6 = iTextSharp.text.FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 11);
-                iTextSharp.text.Font fontG = iTextSharp.text.FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 15);
-                document.Add(new ITextEvents().getHeader("titulo"));
-                document.Add(Chunk.NEWLINE);               
-
-                PdfPTable table = new PdfPTable(dt.Columns.Count);
-                table.HeaderRows = 1;
-                //float[] widths = new float[] { 1f/*, 1f, 1f */};
-                //table.SetWidths(widths);
-                table.WidthPercentage = 20;
-                table.DefaultCell.Border = 0;
-
-                PdfPCell cell = new PdfPCell(new Phrase("items"));
-
-                cell.Colspan = dt.Columns.Count;
-
-            foreach (DataColumn c in dt.Columns)
-            {
-                PdfPCell _cell = new PdfPCell(new Phrase(c.ColumnName, font6));
-
-                _cell.HorizontalAlignment = Element.ALIGN_CENTER;
-                //_cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-                _cell.BorderWidthRight = 0;
-                _cell.BorderWidthTop = 0;
-                _cell.BorderWidthLeft = 0;
-                table.AddCell(_cell);
-            }
-
-
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                table.WidthPercentage = 100; 
-                for (int k = 0; k < dt.Columns.Count; k++)
-                {
-                    if (!String.IsNullOrEmpty(dt.Rows[k][i].ToString()))
-                        table.AddCell(new Phrase(dt.Rows[k][i].ToString()));
-                }
-            }
-
-
-            //foreach (DataRow r in dt.Rows)
-            //{
-
-            //    if (dt.Rows.Count > 0)
-            //    {
-            //        PdfPCell _cell = new PdfPCell(new Phrase(r[], font6));
-
-            //        _cell.HorizontalAlignment = Element.ALIGN_CENTER;
-            //        //_cell.VerticalAlignment = Element.ALIGN_MIDDLE;
-            //        _cell.BorderWidthRight = 0;
-            //        _cell.BorderWidthTop = 0;
-            //        _cell.BorderWidthLeft = 0;
-            //        table.AddCell(_cell);
-
-            //    }
-            //}
-
-            //agrego tabla al pdf y cierro doc
-            document.Add(table);
-
-            document.Add(Chunk.NEWLINE);
-            document.Close();
-
-          
-            
-           
-
-        }
-
+        }      
 
 
     }

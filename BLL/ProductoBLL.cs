@@ -118,7 +118,7 @@ namespace BLL
 
         
         /// <summary>
-        /// Exporta el listado de Proveedores a un excel
+        /// Exporta el listado de Productos a un excel
         /// </summary>
         public void ExportPresupuestoExcel(List<Producto> list)
         {
@@ -146,7 +146,7 @@ namespace BLL
         }
 
         /// <summary>
-        /// Exporta el listado de Proveedores a un PDF
+        /// Exporta el listado de Productos a un PDF
         /// </summary>
         public void ExportPresupuestoPDF(List<Producto> list)
         {

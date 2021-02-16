@@ -1,10 +1,12 @@
-﻿using Services;
+﻿using BLL.LogBitacora;
+using Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,42 +16,38 @@ namespace UI.Ingresos
 {
     public partial class frmIngresoFormulario : MetroFramework.Forms.MetroForm, IContractForm<Entities.Producto>, IContractForm<Entities.Proveedor>
     {
-        //private static frmIngresoFormulario _instance;
-        //public static frmIngresoFormulario Instance() => _instance == null ? _instance = new frmIngresoFormulario() : _instance;
+        private static frmIngresoFormulario _instance;
+        public static frmIngresoFormulario Instance() => _instance == null ? _instance = new frmIngresoFormulario() : _instance;
 
         Entities.Doc_cabecera_ingreso _Cabecera_Ingreso = new Entities.Doc_cabecera_ingreso();
         
         List<Entities.Doc_detalle_ingreso> listDetalle = new List<Entities.Doc_detalle_ingreso>();
         BindingList<Entities.Doc_detalle_ingreso> bingindList = new BindingList<Entities.Doc_detalle_ingreso>();
-        Entities.Proveedor proveedor = new Entities.Proveedor();
+
+        public Entities.Proveedor proveedor;
         public Entities.Producto producto;
+
+        BLL.Doc_cabecera_ingresoBLL bllCab = new BLL.Doc_cabecera_ingresoBLL();
+
+        BLL.Tipo_documentoBLL bllTipoDoc = new BLL.Tipo_documentoBLL(); 
 
         public frmIngresoFormulario()
         {
             InitializeComponent();
+            ListDocumento();
             producto = new Entities.Producto();
-            
+            proveedor = new Entities.Proveedor();
         }
-
-        public void SetProveedor(int idProv, string prov)
-        {
-            proveedor.id = idProv;
-            TxtProv.Text = prov;
-        }
-        public void SetProducto(int idProd, string prod)
-        {
-            producto.id = idProd;
-            TxtProducto.Text = prod;
-        }
-
+             
         private void frmIngresoFormulario_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //_instance = null;
+            _instance = null;
         }
 
         private void btnBuscarProv_Click(object sender, EventArgs e)
         {
             Proveedor.frmSeleccionarProveedor seleccionarProveedor = new Proveedor.frmSeleccionarProveedor();
+            seleccionarProveedor.contrato = this;
             seleccionarProveedor.ShowDialog();
         }
 
@@ -57,12 +55,7 @@ namespace UI.Ingresos
         {
             Producto.frmSeleccionarProducto seleccionarProducto = new Producto.frmSeleccionarProducto();
             seleccionarProducto.contrato = this;
-            seleccionarProducto.ShowDialog();
-
-            //Producto.frmSeleccionarProducto seleccionarProducto = new Producto.frmSeleccionarProducto();
-            //AddOwnedForm(seleccionarProducto);
-            //seleccionarProducto.ShowDialog();
-            //TxtProducto.Text = "";
+            seleccionarProducto.ShowDialog();          
         }
 
        
@@ -70,8 +63,6 @@ namespace UI.Ingresos
         {
             if (String.IsNullOrEmpty(TxtProducto.Text))
                 Notifications.FrmInformation.InformationForm(Helps.Language.info["ingresarAllRegistros"]);
-
-            
 
             try
             {
@@ -81,7 +72,9 @@ namespace UI.Ingresos
                 _Detalle_Ingreso.costo = Convert.ToDouble(txtPrecioCompra.Text.ReplaceDot());
                 _Detalle_Ingreso.precio = Convert.ToDouble(txtPrecioVenta.Text.ReplaceDot());                
                 _Detalle_Ingreso.nombre_producto = TxtProducto.Text;
+                
 
+                //verifico si ya está ingresado
                 foreach (var d in listDetalle)
                 {
                     if (d.fk_id_producto == _Detalle_Ingreso.fk_id_producto)
@@ -94,8 +87,6 @@ namespace UI.Ingresos
                 bingindList.Add(_Detalle_Ingreso);
                 listDetalle.Add(_Detalle_Ingreso);
                 CaracteristicasGrid();
-                //metroGrid1.Refresh();
-
             }
             catch
             {
@@ -115,39 +106,15 @@ namespace UI.Ingresos
                 {
                     bingindList.Remove(d);
                     listDetalle.Remove(d);
-                }
-
-
-                //Entities.Doc_detalle_ingreso _Detalle_Ingreso = new Entities.Doc_detalle_ingreso();
-                //_Detalle_Ingreso.fk_id_producto = GetIdProdEnGridDetalle();
-                //_Detalle_Ingreso.cantidad = Convert.ToInt32(metroGrid1.CurrentRow.Cells["cantidad"].Value);
-                //_Detalle_Ingreso.costo = Convert.ToDouble(metroGrid1.CurrentRow.Cells["costo"].Value);
-                //_Detalle_Ingreso.precio = Convert.ToDouble(metroGrid1.CurrentRow.Cells["precio"].Value);
-                //_Detalle_Ingreso.nombre_producto = metroGrid1.CurrentRow.Cells["nombre_producto"].Value.ToString(); 
-
-                //int index = bingindList.IndexOf(_Detalle_Ingreso);
-
-                //bingindList.RemoveAt(index);
-
-
-
-                //listDetalle.RemoveAll(x => x.fk_id_producto == _id);
-                //bingindList = (BindingList<Entities.Doc_detalle_ingreso>)bingindList.Except(bingindList.Where(a => a.fk_id_producto == _id));
-                //bingindList = (BindingList<Entities.Doc_detalle_ingreso>)bingindList.Where(x=>x.fk_id_producto != _id);
+                }               
             }
-            else
-            {
-                Notifications.FrmInformation.InformationForm(Helps.Language.info["infoSelecEliminar"]);
-            } 
-
-
+            else{ Notifications.FrmInformation.InformationForm(Helps.Language.info["infoSelecEliminar"]); } 
         }
 
         private int GetIdProdEnGridDetalle()
         {
             return (int)metroGrid1.CurrentRow.Cells["fk_id_producto"].Value;
         }
-
 
 
         private void LimpiarCabecera()
@@ -209,7 +176,12 @@ namespace UI.Ingresos
             metroGrid1.ClearSelection();
         }
 
-        
+        private void ListDocumento()
+        {
+            ddlTipoDoc.DataSource = bllTipoDoc.FindIngresos();
+            ddlTipoDoc.ValueMember = "id";
+            ddlTipoDoc.DisplayMember = "tipo_documento";
+        }
 
         public void Ejecutar(Entities.Producto entity)
         {
@@ -222,5 +194,60 @@ namespace UI.Ingresos
             TxtProv.Text = entity.nombre;
             proveedor.id = entity.id;
         }
+
+        private void BtnGuardar_Click(object sender, EventArgs e)
+        {   
+
+            CargarEntity();
+
+            var validation = new Helps.DataValidations(_Cabecera_Ingreso).Validate();
+            bool valid = validation.Item1;
+
+            if (valid == true)
+            {
+                try
+                {
+                    _Cabecera_Ingreso = bllCab.Insert(_Cabecera_Ingreso);
+
+                    InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Insert, 1, this.GetType().FullName, MethodInfo.GetCurrentMethod().Name, "Ingreso: " + _Cabecera_Ingreso.letra+ _Cabecera_Ingreso.sucursal.ToString()+ _Cabecera_Ingreso.numero.ToString(), "", ""));
+
+                    Notifications.FrmSuccess.SuccessForm(Helps.Language.info["guardadoOK"]);
+
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    if (ex.Message == EValidaciones.existe)
+                        Notifications.FrmInformation.InformationForm(Helps.Language.info["errorExiste"]);
+                    else
+                    {
+                        InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.InsertError, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Ingreso: " + _Cabecera_Ingreso.letra + _Cabecera_Ingreso.sucursal.ToString() + _Cabecera_Ingreso.numero.ToString(), ex.StackTrace, ex.Message));
+                        Notifications.FrmError.ErrorForm(Helps.Language.info["guardadoError"] + "\n" + ex.Message);
+                    }
+                }
+
+            }
+            else
+            {
+                string messageValid = validation.Item2;
+                Notifications.FrmInformation.InformationForm(messageValid);
+            }
+        }
+
+
+        private void CargarEntity()
+        {
+            _Cabecera_Ingreso.fk_id_usuario = 0;
+
+            _Cabecera_Ingreso.fk_id_proveedor = proveedor.id;
+            _Cabecera_Ingreso.fk_id_tipo_doc = (int)ddlTipoDoc.SelectedValue;
+            _Cabecera_Ingreso.fecha = dtpFecha.Value;
+            _Cabecera_Ingreso.letra = TxtLetra.Text;
+            _Cabecera_Ingreso.sucursal = Convert.ToInt32(txtSuc.Text);
+            _Cabecera_Ingreso.numero = Convert.ToInt32(txtNumero.Text);
+            _Cabecera_Ingreso.listDetalle = listDetalle;
+        }
+
+        
     }
 }

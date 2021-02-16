@@ -3,7 +3,6 @@ using Services;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -101,7 +100,6 @@ namespace DAL
             }
         }
 
-
         /// <summary>
         /// Actualiza la columna fk_id_precio en la tabla Doc_detalle_ingreso
         /// </summary>
@@ -135,7 +133,6 @@ namespace DAL
                 throw ex;
             }
         }
-
 
         /// <summary>
         /// Elimina registros de la tabla Doc_detalle_ingreso
@@ -260,6 +257,43 @@ namespace DAL
             return entity;
         }
 
+        /// <summary>
+        /// Selecciona los detalles de ingreso de una cabera en específico
+        /// </summary>
+        /// <param name="id_cab">int</param>
+        /// <returns>List Doc_detalle_ingreso</returns>
+        public List<Doc_detalle_ingreso> ListDetallesByCabecera(int id_cab)
+        {
+            List<Doc_detalle_ingreso> result = new List<Doc_detalle_ingreso>();
+
+            try
+            {
+                using (SqlConnection conn = ConnectionBD.Instance().Conect())
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand("sp_get_detalles_by_id_cabecera @id_cab", conn))
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        cmd.Parameters.AddWithValue("@id_cab", id_cab);
+                        using (IDataReader dr = cmd.ExecuteReader())
+                        {
+                            while (dr.Read())
+                            {
+                                Doc_detalle_ingreso entity = LoadEntity(dr);
+                                result.Add(entity);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return result;
+        }
+
 
         /// <summary>
         /// Carga una entidad de Doc_detalle_ingreso a partir de un DataReader
@@ -276,7 +310,7 @@ namespace DAL
                 cantidad = dr.GetByNameInt("cantidad"),
                 costo = dr.GetByNameDouble("costo"),
                 fk_id_precio = dr.GetByNameInt("fk_id_precio"),
-                precio = dr.GetByNameDouble("precio"),
+                precio = dr.GetByNameDouble("precio_venta"),
                 nombre_producto = dr.GetByNameString("nombre_producto")
             };
 

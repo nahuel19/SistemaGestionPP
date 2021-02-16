@@ -39,9 +39,16 @@ namespace BLL
         /// </summary>
         /// <param name="entity">Doc_cabecera_egreso</param>
         /// <returns>Doc_cabecera_egreso</returns>
-        public void Insert(Doc_cabecera_egreso entity)
-        {
-            doc_cab_egrDAL.Insert(entity);
+        public Doc_cabecera_egreso Insert(Doc_cabecera_egreso entity)
+        {            
+            try
+            {
+                return doc_cab_egrDAL.Insert(entity);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
         }
 

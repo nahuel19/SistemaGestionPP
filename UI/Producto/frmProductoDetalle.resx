@@ -146,34 +146,34 @@
   <data name="&gt;&gt;lblCodValue.ZOrder" xml:space="preserve">
     <value>13</value>
   </data>
-  <data name="lblCodigo.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lblCod.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="lblCodigo.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="lblCod.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
-  <data name="lblCodigo.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="lblCod.Location" type="System.Drawing.Point, System.Drawing">
     <value>486, 75</value>
   </data>
-  <data name="lblCodigo.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="lblCod.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 20</value>
   </data>
-  <data name="lblCodigo.TabIndex" type="System.Int32, mscorlib">
+  <data name="lblCod.TabIndex" type="System.Int32, mscorlib">
     <value>154</value>
   </data>
-  <data name="lblCodigo.Text" xml:space="preserve">
+  <data name="lblCod.Text" xml:space="preserve">
     <value>Código</value>
   </data>
-  <data name="&gt;&gt;lblCodigo.Name" xml:space="preserve">
-    <value>lblCodigo</value>
+  <data name="&gt;&gt;lblCod.Name" xml:space="preserve">
+    <value>lblCod</value>
   </data>
-  <data name="&gt;&gt;lblCodigo.Type" xml:space="preserve">
+  <data name="&gt;&gt;lblCod.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblCodigo.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lblCod.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;lblCodigo.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lblCod.ZOrder" xml:space="preserve">
     <value>14</value>
   </data>
   <data name="lblCantValue.AutoSize" type="System.Boolean, mscorlib">
@@ -374,34 +374,34 @@
   <data name="&gt;&gt;lblDescripcion.ZOrder" xml:space="preserve">
     <value>19</value>
   </data>
-  <data name="lblNombre.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lblTxtNombre.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="lblNombre.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="lblTxtNombre.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
-  <data name="lblNombre.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="lblTxtNombre.Location" type="System.Drawing.Point, System.Drawing">
     <value>93, 75</value>
   </data>
-  <data name="lblNombre.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="lblTxtNombre.Size" type="System.Drawing.Size, System.Drawing">
     <value>65, 20</value>
   </data>
-  <data name="lblNombre.TabIndex" type="System.Int32, mscorlib">
+  <data name="lblTxtNombre.TabIndex" type="System.Int32, mscorlib">
     <value>138</value>
   </data>
-  <data name="lblNombre.Text" xml:space="preserve">
+  <data name="lblTxtNombre.Text" xml:space="preserve">
     <value>Nombre</value>
   </data>
-  <data name="&gt;&gt;lblNombre.Name" xml:space="preserve">
-    <value>lblNombre</value>
+  <data name="&gt;&gt;lblTxtNombre.Name" xml:space="preserve">
+    <value>lblTxtNombre</value>
   </data>
-  <data name="&gt;&gt;lblNombre.Type" xml:space="preserve">
+  <data name="&gt;&gt;lblTxtNombre.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblNombre.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lblTxtNombre.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;lblNombre.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lblTxtNombre.ZOrder" xml:space="preserve">
     <value>20</value>
   </data>
   <data name="lblPesoValue.AutoSize" type="System.Boolean, mscorlib">
@@ -774,40 +774,40 @@
   <data name="&gt;&gt;lblProfValue.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="btnPrecio.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="btnNuevoPrecio.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>None</value>
   </data>
-  <data name="btnPrecio.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+  <data name="btnNuevoPrecio.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
-  <data name="btnPrecio.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="btnNuevoPrecio.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt</value>
   </data>
-  <data name="btnPrecio.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="btnNuevoPrecio.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="btnPrecio.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="btnNuevoPrecio.Location" type="System.Drawing.Point, System.Drawing">
     <value>20, 62</value>
   </data>
-  <data name="btnPrecio.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="btnNuevoPrecio.Size" type="System.Drawing.Size, System.Drawing">
     <value>151, 41</value>
   </data>
-  <data name="btnPrecio.TabIndex" type="System.Int32, mscorlib">
+  <data name="btnNuevoPrecio.TabIndex" type="System.Int32, mscorlib">
     <value>167</value>
   </data>
-  <data name="btnPrecio.Text" xml:space="preserve">
+  <data name="btnNuevoPrecio.Text" xml:space="preserve">
     <value>Nuevo Precio</value>
   </data>
-  <data name="&gt;&gt;btnPrecio.Name" xml:space="preserve">
-    <value>btnPrecio</value>
+  <data name="&gt;&gt;btnNuevoPrecio.Name" xml:space="preserve">
+    <value>btnNuevoPrecio</value>
   </data>
-  <data name="&gt;&gt;btnPrecio.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnNuevoPrecio.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnPrecio.Parent" xml:space="preserve">
+  <data name="&gt;&gt;btnNuevoPrecio.Parent" xml:space="preserve">
     <value>panel2</value>
   </data>
-  <data name="&gt;&gt;btnPrecio.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;btnNuevoPrecio.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">

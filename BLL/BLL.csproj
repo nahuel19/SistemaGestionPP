@@ -43,6 +43,10 @@
   <ItemGroup>
     <Compile Include="CategoriaBLL.cs" />
     <Compile Include="ClienteBLL.cs" />
+    <Compile Include="DigitosVerificadores\DigitosVerificadoresHGenericos.cs" />
+    <Compile Include="DigitosVerificadores\DigitosVerificadoresHFacade.cs" />
+    <Compile Include="DigitosVerificadores\DigitosVerificadoresVFacade.cs" />
+    <Compile Include="DigitosVerificadores\DigitosVerificadoresVGenericos.cs" />
     <Compile Include="Doc_cabecera_egresoBLL.cs" />
     <Compile Include="Doc_cabecera_ingresoBLL.cs" />
     <Compile Include="Doc_detalle_egresoBLL.cs" />
@@ -60,6 +64,7 @@
     <Compile Include="TipoDoc_identidadBLL.cs" />
     <Compile Include="Tipo_documentoBLL.cs" />
     <Compile Include="Tipo_movimiento_prodBLL.cs" />
+    <Compile Include="UsuarioBLL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">

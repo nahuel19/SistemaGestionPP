@@ -103,6 +103,7 @@
             this.BtnGuardar.TabIndex = 131;
             this.BtnGuardar.Text = "GUARDAR";
             this.BtnGuardar.UseVisualStyleBackColor = false;
+            this.BtnGuardar.Click += new System.EventHandler(this.BtnGuardar_Click);
             // 
             // dtpFecha
             // 
@@ -168,6 +169,7 @@
             this.ddlTipoDoc.Name = "ddlTipoDoc";
             this.ddlTipoDoc.Size = new System.Drawing.Size(139, 26);
             this.ddlTipoDoc.TabIndex = 115;
+            
             // 
             // pictureBox2
             // 
@@ -558,6 +560,8 @@
             // 
             // metroGrid1
             // 
+            this.metroGrid1.AllowUserToAddRows = false;
+            this.metroGrid1.AllowUserToDeleteRows = false;
             this.metroGrid1.AllowUserToResizeRows = false;
             this.metroGrid1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.metroGrid1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;

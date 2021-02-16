@@ -35,11 +35,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmIngreso));
             this.panel1 = new System.Windows.Forms.Panel();
             this.BtnNuevo = new System.Windows.Forms.Button();
-            this.btnImprimir = new System.Windows.Forms.Button();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.lblNumFactura = new System.Windows.Forms.Label();
-            this.lblStock = new System.Windows.Forms.Label();
-            this.lblTotal = new System.Windows.Forms.Label();
+            this.lblDoc = new System.Windows.Forms.Label();
             this.lblFecha = new System.Windows.Forms.Label();
             this.lblProveedor = new System.Windows.Forms.Label();
             this.metroGrid1 = new MetroFramework.Controls.MetroGrid();
@@ -58,7 +56,6 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel1.Controls.Add(this.BtnNuevo);
-            this.panel1.Controls.Add(this.btnImprimir);
             this.panel1.Controls.Add(this.lblTitulo);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -74,28 +71,13 @@
             this.BtnNuevo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnNuevo.ForeColor = System.Drawing.Color.White;
-            this.BtnNuevo.Location = new System.Drawing.Point(562, 38);
+            this.BtnNuevo.Location = new System.Drawing.Point(777, 31);
             this.BtnNuevo.Name = "BtnNuevo";
             this.BtnNuevo.Size = new System.Drawing.Size(163, 41);
             this.BtnNuevo.TabIndex = 112;
             this.BtnNuevo.Text = "NUEVO";
             this.BtnNuevo.UseVisualStyleBackColor = false;
             this.BtnNuevo.Click += new System.EventHandler(this.BtnNuevo_Click);
-            // 
-            // btnImprimir
-            // 
-            this.btnImprimir.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.btnImprimir.FlatAppearance.BorderColor = System.Drawing.Color.DarkSlateGray;
-            this.btnImprimir.FlatAppearance.BorderSize = 0;
-            this.btnImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnImprimir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImprimir.ForeColor = System.Drawing.Color.White;
-            this.btnImprimir.Location = new System.Drawing.Point(847, 38);
-            this.btnImprimir.Name = "btnImprimir";
-            this.btnImprimir.Size = new System.Drawing.Size(137, 41);
-            this.btnImprimir.TabIndex = 77;
-            this.btnImprimir.Text = "IMPRIMIR";
-            this.btnImprimir.UseVisualStyleBackColor = false;
             // 
             // lblTitulo
             // 
@@ -113,40 +95,29 @@
             this.lblNumFactura.AutoSize = true;
             this.lblNumFactura.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNumFactura.ForeColor = System.Drawing.Color.DimGray;
-            this.lblNumFactura.Location = new System.Drawing.Point(25, 216);
+            this.lblNumFactura.Location = new System.Drawing.Point(175, 215);
             this.lblNumFactura.Name = "lblNumFactura";
             this.lblNumFactura.Size = new System.Drawing.Size(65, 20);
             this.lblNumFactura.TabIndex = 134;
             this.lblNumFactura.Text = "Número";
             // 
-            // lblStock
+            // lblDoc
             // 
-            this.lblStock.AutoSize = true;
-            this.lblStock.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStock.ForeColor = System.Drawing.Color.DimGray;
-            this.lblStock.Location = new System.Drawing.Point(668, 215);
-            this.lblStock.Name = "lblStock";
-            this.lblStock.Size = new System.Drawing.Size(73, 20);
-            this.lblStock.TabIndex = 133;
-            this.lblStock.Text = "Cantidad";
-            // 
-            // lblTotal
-            // 
-            this.lblTotal.AutoSize = true;
-            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.ForeColor = System.Drawing.Color.DimGray;
-            this.lblTotal.Location = new System.Drawing.Point(546, 216);
-            this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(44, 20);
-            this.lblTotal.TabIndex = 132;
-            this.lblTotal.Text = "Total";
+            this.lblDoc.AutoSize = true;
+            this.lblDoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDoc.ForeColor = System.Drawing.Color.DimGray;
+            this.lblDoc.Location = new System.Drawing.Point(33, 215);
+            this.lblDoc.Name = "lblDoc";
+            this.lblDoc.Size = new System.Drawing.Size(92, 20);
+            this.lblDoc.TabIndex = 132;
+            this.lblDoc.Text = "Documento";
             // 
             // lblFecha
             // 
             this.lblFecha.AutoSize = true;
             this.lblFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFecha.ForeColor = System.Drawing.Color.DimGray;
-            this.lblFecha.Location = new System.Drawing.Point(368, 215);
+            this.lblFecha.Location = new System.Drawing.Point(608, 215);
             this.lblFecha.Name = "lblFecha";
             this.lblFecha.Size = new System.Drawing.Size(54, 20);
             this.lblFecha.TabIndex = 131;
@@ -157,7 +128,7 @@
             this.lblProveedor.AutoSize = true;
             this.lblProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblProveedor.ForeColor = System.Drawing.Color.DimGray;
-            this.lblProveedor.Location = new System.Drawing.Point(173, 215);
+            this.lblProveedor.Location = new System.Drawing.Point(290, 215);
             this.lblProveedor.Name = "lblProveedor";
             this.lblProveedor.Size = new System.Drawing.Size(81, 20);
             this.lblProveedor.TabIndex = 130;
@@ -217,6 +188,7 @@
             this.metroGrid1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.metroGrid1.Size = new System.Drawing.Size(750, 385);
             this.metroGrid1.TabIndex = 129;
+            this.metroGrid1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.metroGrid1_CellFormatting);
             // 
             // btnDetalle
             // 
@@ -291,8 +263,7 @@
             this.ClientSize = new System.Drawing.Size(1034, 661);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblNumFactura);
-            this.Controls.Add(this.lblStock);
-            this.Controls.Add(this.lblTotal);
+            this.Controls.Add(this.lblDoc);
             this.Controls.Add(this.lblFecha);
             this.Controls.Add(this.lblProveedor);
             this.Controls.Add(this.metroGrid1);
@@ -321,11 +292,9 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button BtnNuevo;
-        private System.Windows.Forms.Button btnImprimir;
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Label lblNumFactura;
-        private System.Windows.Forms.Label lblStock;
-        private System.Windows.Forms.Label lblTotal;
+        private System.Windows.Forms.Label lblDoc;
         private System.Windows.Forms.Label lblFecha;
         private System.Windows.Forms.Label lblProveedor;
         private MetroFramework.Controls.MetroGrid metroGrid1;

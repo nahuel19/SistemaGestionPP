@@ -1,4 +1,8 @@
-﻿using System;
+﻿using BLL.DigitosVerificadores;
+using Services;
+using Services.Cache;
+using Services.Excepciones;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -18,7 +22,27 @@ namespace UI
         {           
             InitializeComponent();
             //UpdateLanguage();
-            
+
+            try
+            {
+                new DigitosVerificadoresVFacade().VerificarDVV();                
+            }            
+            catch (SistemaCorruptoDVVException ex)
+            {
+                string entidades = ex.CargarEntidadesParaMostrar(ex, Helps.Language.info["sysCorruptoID"]);
+                Notifications.FrmError.ErrorForm(ex.Error + "\n" + entidades);
+            }
+
+            try
+            {
+                new DigitosVerificadoresHFacade().VerificarDVH();
+            }
+            catch (SistemaCorruptoDVHException ex)
+            {
+                string entidades = ex.CargarEntidadesParaMostrar(ex, Helps.Language.info["sysCorruptoU"]);
+                Notifications.FrmError.ErrorForm(ex.Error + "\n" + entidades);
+            }
+
         }
 
         #region metodos cerrar y abrir submenu ajustes
@@ -79,6 +103,8 @@ namespace UI
         private void btnVentas_Click(object sender, EventArgs e)
         {
             AbrirCerrarSubmenu();
+
+            OpenChildForm(new Ventas.frmVentas());
         }
         #endregion
 
@@ -148,10 +174,7 @@ namespace UI
         //}
         #endregion
 
-        private void panelFormularios_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+       
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
@@ -175,14 +198,21 @@ namespace UI
 
         void UpdateLanguage()
         {
-            //this.btnProductos.Text = Helps.Language.info["btnProductos"];
-            //Helps.Language.controles(this);
+            this.btnProductos.Text = Helps.Language.info["btnProductos"];
+            Helps.Language.controles(this);
+
+            if(activeForm !=null)
+                Helps.Language.controles(activeForm);
         }
 
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
             LanguageSelected();
+            HelpUser();
+            loadUserData();
+
         }
+
 
         private void LanguageSelected()
         {
@@ -211,6 +241,59 @@ namespace UI
             AbrirCerrarSubmenu();
 
             OpenChildForm(Presupuesto.frmPresupuesto.Instance());
+        }
+
+        private void HelpUser()
+        {
+            helpProvider1.HelpNamespace = Application.StartupPath + "/pruebaHelp.chm";
+            //Help.ShowHelp(this, "pruebaHelp.chm");
+            helpProvider1.SetHelpString(this, "Producto");
+            helpProvider1.SetHelpKeyword(this, "Producto");
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.KeywordIndex);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            HelpUser();
+        }
+
+        private void frmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                new DigitosVerificadoresHFacade().CargarDVHalCerrar();
+                new DigitosVerificadoresVFacade().CargarDVV();
+            }
+            catch(Exception ex)
+            {
+                Notifications.FrmError.ErrorForm(ex.Message);
+            }
+            
+        }
+
+        private void btnUsuarios_Click(object sender, EventArgs e)
+        {
+            
+                AbrirCerrarSubmenu();
+
+                OpenChildForm(new Usuario.frmUsuario());
+           
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void loadUserData()
+        {
+            lblNombreUser.Text = LoginCache.nombreUser;
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            Usuario.frmUsuarioFormulario frmEditar = new Usuario.frmUsuarioFormulario(LoginCache.idUser,1);
+            frmEditar.ShowDialog();
         }
     }
 }

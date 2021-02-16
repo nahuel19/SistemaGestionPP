@@ -17,7 +17,9 @@ namespace Entities
         public string letra { get; set; }
         public int sucursal { get; set; }
         public int numero { get; set; }
-        public System.DateTime fecha { get; set; }
+        public DateTime fecha { get; set; }
         public int fk_id_usuario { get; set; }
+
+        public List<Doc_detalle_egreso> listDetalle { get; set; }
     }
 }

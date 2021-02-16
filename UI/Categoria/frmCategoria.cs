@@ -13,9 +13,13 @@ using Entities;
 using UI.Helps;
 using System.Reflection;
 using Services;
+using Services.Encriptación;
 
 namespace UI.Categoria
 {
+    /// <summary>
+    /// Clase form Categoría
+    /// </summary>
     public partial class FrmCategoria : MetroFramework.Forms.MetroForm
     {
         private int id;
@@ -165,6 +169,10 @@ namespace UI.Categoria
         
 
         #region helpers
+
+        /// <summary>
+        /// Refresta grid
+        /// </summary>
         private void RefrescarTabla()
         {
             metroGrid1.DataSource = bll.List();
@@ -192,19 +200,8 @@ namespace UI.Categoria
 
         private void ChangeLanguage()
         {
-            //this.lblTitulo.Text = Language.info["tituloCat"];
-            //this.BtnGuardar.Text = Language.info["BtnGuardar"];
-            //this.BtnEditar.Text = Language.info["BtnEditar"];
-            //this.BtnEliminar.Text = Language.info["BtnEliminar"];
-            //this.BtnLimpiar.Text = Language.info["BtnLimapiar"];
-            //this.lblMantenimiento.Text = Language.info["lblMantenimiento"];
-            //this.lblDGnombre.Text = Language.info["lblDGnombre"];
-            //this.lblTxtNombre.Text = Language.info["lblTxtNombre"];
-
-            //this.btnProductos.Text = Helps.Language.info["btnProductos"];
             this.lblTituloCat.Text = Helps.Language.info["lblTituloCat"];
-            Helps.Language.controles(this);
-            
+            Helps.Language.controles(this);            
         }
 
         #endregion

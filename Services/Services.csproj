@@ -67,11 +67,17 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cache\LoginCache.cs" />
+    <Compile Include="ConstantesTexto.cs" />
     <Compile Include="Documents\DocumentAbstract.cs" />
     <Compile Include="Documents\ExcelDocument.cs" />
     <Compile Include="Documents\ItextEvents.cs" />
     <Compile Include="Documents\PdfDocument.cs" />
+    <Compile Include="Encriptacion\CryptoSeguridad.cs" />
+    <Compile Include="Encriptacion\ICryptoSeguridad.cs" />
     <Compile Include="ETipoLog.cs" />
+    <Compile Include="Excepciones\SistemaCorruptoDVHException.cs" />
+    <Compile Include="Excepciones\SistemaCorruptoDVVException.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Methods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

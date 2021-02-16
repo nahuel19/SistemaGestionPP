@@ -39,11 +39,11 @@ namespace BLL
         /// </summary>
         /// <param name="entity">Doc_cabecera_ingreso</param>
         /// <returns>Doc_cabecera_ingreso</returns>
-        public void Insert(Doc_cabecera_ingreso entity)
+        public Doc_cabecera_ingreso Insert(Doc_cabecera_ingreso entity)
         {
             try
             {
-                doc_cab_ingrDAL.Insert(entity);
+                return doc_cab_ingrDAL.Insert(entity);
             }
             catch (Exception ex)
             {
@@ -68,6 +68,25 @@ namespace BLL
         public void Delete(int id)
         {
             doc_cab_ingrDAL.Delete(id);
+        }
+
+        public void Anular(Doc_cabecera_ingreso entity)
+        {
+            Delete(entity.id);
+
+            PrecioDAL precioDAL = new PrecioDAL();
+            StockDAL stockDAL = new StockDAL();
+            Stock stock;            
+
+            foreach (var d in entity.listDetalle)
+            {
+                stock = stockDAL.GetByIdProd(d.fk_id_producto);
+                stock.cantidad -= d.cantidad;
+                stockDAL.Update(stock);
+
+                precioDAL.Delete(d.fk_id_precio);
+            }
+
         }
 
 

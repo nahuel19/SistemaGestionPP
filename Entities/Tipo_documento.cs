@@ -16,5 +16,6 @@ namespace Entities
         public string letra { get; set; }
         public int sucursal { get; set; }
         public int numero { get; set; }
+        public bool venta { get; set; }
     }
 }

@@ -8,12 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.Helps;
 
 namespace UI.Proveedor
 {
     public partial class frmSeleccionarProveedor : MetroFramework.Forms.MetroForm
     {
         ProveedorBLL bll = new ProveedorBLL();
+        public IContractForm<Entities.Proveedor> contrato { get; set; }
         public frmSeleccionarProveedor()
         {
             InitializeComponent();
@@ -50,6 +52,10 @@ namespace UI.Proveedor
             metroGrid1.Columns["mail"].Width = 200;
         }
 
+        private int GetId()
+        {
+            return (int)metroGrid1.CurrentRow.Cells["id"].Value;
+        }
 
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {
@@ -63,13 +69,8 @@ namespace UI.Proveedor
 
         private void metroGrid1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            Ingresos.frmIngresoFormulario frmIngreso = new Ingresos.frmIngresoFormulario();
-            
-            string nombreProv = metroGrid1.CurrentRow.Cells["nombre"].Value.ToString();
-            int idProv = (int)metroGrid1.CurrentRow.Cells["id"].Value; ;
-
-            frmIngreso.SetProveedor(idProv, nombreProv);
-
+            Entities.Proveedor prov = bll.GetById(GetId());
+            contrato.Ejecutar(prov);
             this.Close();
         }
     }

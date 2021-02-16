@@ -2,8 +2,9 @@
 using Services;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
-using System.Data.Entity;
+
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -23,51 +24,80 @@ namespace DAL
         /// <returns>Entidad Doc_cabecera_egreso</returns>
         public Doc_cabecera_egreso Insert(Doc_cabecera_egreso entity)
         {
-
-            string SqlString = "INSERT INTO [dbo].[Doc_cabecera_egreso] " +
-                               "([fk_id_tipo_doc] " +
-                               ",[fk_id_cliente] " +
-                               ",[letra] " +
-                               ",[sucursal] " +
-                               ",[numero] " +
-                               ",[fecha] " +
-                               ",[fk_id_usuario]) " +
+            string queryDetalle = "INSERT INTO [dbo].[Doc_detalle_egreso] " +
+                               "([fk_id_doc_cabecera_egreso] " +
+                               ",[fk_id_producto] " +
+                               ",[cantidad] " +
+                               ",[precio]) " +
                          "VALUES " +
-                               "(@fk_id_tipo_doc " +
-                               ", @fk_id_cliente " +
-                               ", @letra " +
-                               ", @sucursal " +
-                               ", @numero " +
-                               ", @fecha "+
-                               ", @fk_id_usuario) ;SELECT SCOPE_IDENTITY()";
+                               "(@fk_id_doc_cabecera_egreso " +
+                               ",@fk_id_producto " +
+                               ",@cantidad " +
+                               ",@precio) ;SELECT SCOPE_IDENTITY()";
 
-            try
+            using (SqlConnection conn = ConnectionBD.Instance().Conect())
             {
-                using (SqlConnection conn = ConnectionBD.Instance().Conect())
+                conn.Open();
+                SqlTransaction transaction;
+                transaction = conn.BeginTransaction();
+
+                try
                 {
-                    using (SqlCommand cmd = new SqlCommand(SqlString, conn))
+                    using (SqlCommand cmd = new SqlCommand("sp_sig_documento_venta @id_tipo_doc, @id_cliente, @id_usuario", conn, transaction))
                     {
                         cmd.CommandType = CommandType.Text;
-                        cmd.Parameters.AddWithValue("@fk_id_tipo_doc", entity.fk_id_tipo_doc);
-                        cmd.Parameters.AddWithValue("@fk_id_cliente", entity.fk_id_cliente);
-                        cmd.Parameters.AddWithValue("@letra", entity.letra);
-                        cmd.Parameters.AddWithValue("@sucursal", entity.sucursal);
-                        cmd.Parameters.AddWithValue("@numero", entity.numero);
-                        cmd.Parameters.AddWithValue("@fk_id_usuario", entity.fk_id_usuario);
-                        cmd.Parameters.AddWithValue("@fecha", entity.fecha);
+                        cmd.Parameters.AddWithValue("@id_tipo_doc", entity.fk_id_tipo_doc);
+                        cmd.Parameters.AddWithValue("@id_cliente", entity.fk_id_cliente);
+                        cmd.Parameters.AddWithValue("@id_usuario", entity.fk_id_usuario);
                         conn.Open();
-
-                        //cmd.ExecuteNonQuery();
                         entity.id = Convert.ToInt32(cmd.ExecuteScalar());
                     }
 
+                    foreach(var d in entity.listDetalle)
+                    {
+                        using (SqlCommand cmd = new SqlCommand(queryDetalle, conn, transaction))
+                        {
+                            cmd.CommandType = CommandType.Text;
+                            cmd.Parameters.AddWithValue("@fk_id_doc_cabecera_egreso", d.fk_id_doc_cabecera_egreso);
+                            cmd.Parameters.AddWithValue("@fk_id_producto", d.fk_id_producto);
+                            cmd.Parameters.AddWithValue("@cantidad", d.cantidad);
+                            cmd.Parameters.AddWithValue("@precio", d.precio);
+                            conn.Open();
+
+                            entity.id = Convert.ToInt32(cmd.ExecuteScalar());
+                        }
+
+                        using (SqlCommand cmd = new SqlCommand("sp_update_stock_mov_prod_ingresos_egresos @id_prod, @cant, @tipo_mov, @extra ;SELECT SCOPE_IDENTITY()", conn, transaction))
+                        {
+                            cmd.CommandType = CommandType.Text;
+                            cmd.Parameters.AddWithValue("@id_prod", d.fk_id_producto);
+                            cmd.Parameters.AddWithValue("@cant", d.cantidad);
+                            cmd.Parameters.AddWithValue("@tipo_mov", ConfigurationManager.AppSettings["egresoStock"]);
+                            cmd.Parameters.AddWithValue("@extra", entity.letra + entity.sucursal.ToString() + entity.numero.ToString());
+
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    transaction.Commit();
                 }
-              
+                catch (SqlException sqlError)
+                {
+                    transaction.Rollback();
+                    throw sqlError;
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    throw ex;
+                }
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+
+
+
+
+
+
 
             return entity;
         }

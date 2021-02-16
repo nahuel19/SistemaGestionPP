@@ -37,7 +37,7 @@
             this.lblDescripcion = new System.Windows.Forms.Label();
             this.TxtNombre = new System.Windows.Forms.TextBox();
             this.pictureBoxNombre = new System.Windows.Forms.PictureBox();
-            this.lblNombre = new System.Windows.Forms.Label();
+            this.lblTxtNombre = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.lblPeso = new System.Windows.Forms.Label();
             this.txtPeso = new System.Windows.Forms.TextBox();
@@ -146,16 +146,16 @@
             this.pictureBoxNombre.TabIndex = 80;
             this.pictureBoxNombre.TabStop = false;
             // 
-            // lblNombre
+            // lblTxtNombre
             // 
-            this.lblNombre.AutoSize = true;
-            this.lblNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombre.ForeColor = System.Drawing.Color.DimGray;
-            this.lblNombre.Location = new System.Drawing.Point(84, 68);
-            this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(65, 20);
-            this.lblNombre.TabIndex = 78;
-            this.lblNombre.Text = "Nombre";
+            this.lblTxtNombre.AutoSize = true;
+            this.lblTxtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTxtNombre.ForeColor = System.Drawing.Color.DimGray;
+            this.lblTxtNombre.Location = new System.Drawing.Point(84, 68);
+            this.lblTxtNombre.Name = "lblTxtNombre";
+            this.lblTxtNombre.Size = new System.Drawing.Size(65, 20);
+            this.lblTxtNombre.TabIndex = 78;
+            this.lblTxtNombre.Text = "Nombre";
             // 
             // pictureBox3
             // 
@@ -327,7 +327,7 @@
             this.Controls.Add(this.lblDescripcion);
             this.Controls.Add(this.TxtNombre);
             this.Controls.Add(this.pictureBoxNombre);
-            this.Controls.Add(this.lblNombre);
+            this.Controls.Add(this.lblTxtNombre);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmProductoFormulario";
@@ -355,7 +355,7 @@
         private System.Windows.Forms.Label lblDescripcion;
         private System.Windows.Forms.TextBox TxtNombre;
         private System.Windows.Forms.PictureBox pictureBoxNombre;
-        private System.Windows.Forms.Label lblNombre;
+        private System.Windows.Forms.Label lblTxtNombre;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label lblPeso;
         private System.Windows.Forms.TextBox txtPeso;

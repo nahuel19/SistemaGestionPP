@@ -29,6 +29,7 @@ namespace UI.Producto
         public frmAddStock(int _id)
         {
             InitializeComponent();
+            ChangeLanguage();
             CargaDatosEnForm(_id);
             id = _id;
         }
@@ -126,6 +127,10 @@ namespace UI.Producto
         }
 
 
-
+        private void ChangeLanguage()
+        {
+            Helps.Language.controles(this);
+            this.Text = Helps.Language.info["lblPrecio"];
+        }
     }
 }

@@ -24,7 +24,7 @@ namespace Entities
         public string nombre_proveedor { get; set; }
         public string nombre_usuario { get; set; }
         public string tipo_documento { get; set; }
-
+        public bool cancelada { get; set; }
         public List<Doc_detalle_ingreso> listDetalle { get; set; }
 
 

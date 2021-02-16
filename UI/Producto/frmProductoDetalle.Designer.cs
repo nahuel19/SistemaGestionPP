@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProductoDetalle));
             this.lblCodValue = new System.Windows.Forms.Label();
-            this.lblCodigo = new System.Windows.Forms.Label();
+            this.lblCod = new System.Windows.Forms.Label();
             this.lblCantValue = new System.Windows.Forms.Label();
             this.lblCategoriaValue = new System.Windows.Forms.Label();
             this.lblDescripcionValue = new System.Windows.Forms.Label();
@@ -38,7 +38,7 @@
             this.lblStock = new System.Windows.Forms.Label();
             this.lblCategoria = new System.Windows.Forms.Label();
             this.lblDescripcion = new System.Windows.Forms.Label();
-            this.lblNombre = new System.Windows.Forms.Label();
+            this.lblTxtNombre = new System.Windows.Forms.Label();
             this.lblPesoValue = new System.Windows.Forms.Label();
             this.lblPeso = new System.Windows.Forms.Label();
             this.lblAltoValue = new System.Windows.Forms.Label();
@@ -52,7 +52,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblProfValue = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btnPrecio = new System.Windows.Forms.Button();
+            this.btnNuevoPrecio = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -62,11 +62,11 @@
             resources.ApplyResources(this.lblCodValue, "lblCodValue");
             this.lblCodValue.Name = "lblCodValue";
             // 
-            // lblCodigo
+            // lblCod
             // 
-            resources.ApplyResources(this.lblCodigo, "lblCodigo");
-            this.lblCodigo.ForeColor = System.Drawing.Color.DimGray;
-            this.lblCodigo.Name = "lblCodigo";
+            resources.ApplyResources(this.lblCod, "lblCod");
+            this.lblCod.ForeColor = System.Drawing.Color.DimGray;
+            this.lblCod.Name = "lblCod";
             // 
             // lblCantValue
             // 
@@ -106,11 +106,11 @@
             this.lblDescripcion.ForeColor = System.Drawing.Color.DimGray;
             this.lblDescripcion.Name = "lblDescripcion";
             // 
-            // lblNombre
+            // lblTxtNombre
             // 
-            resources.ApplyResources(this.lblNombre, "lblNombre");
-            this.lblNombre.ForeColor = System.Drawing.Color.DimGray;
-            this.lblNombre.Name = "lblNombre";
+            resources.ApplyResources(this.lblTxtNombre, "lblTxtNombre");
+            this.lblTxtNombre.ForeColor = System.Drawing.Color.DimGray;
+            this.lblTxtNombre.Name = "lblTxtNombre";
             // 
             // lblPesoValue
             // 
@@ -188,19 +188,19 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.btnPrecio);
+            this.panel2.Controls.Add(this.btnNuevoPrecio);
             resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
             // 
-            // btnPrecio
+            // btnNuevoPrecio
             // 
-            resources.ApplyResources(this.btnPrecio, "btnPrecio");
-            this.btnPrecio.BackColor = System.Drawing.Color.DarkCyan;
-            this.btnPrecio.FlatAppearance.BorderSize = 0;
-            this.btnPrecio.ForeColor = System.Drawing.Color.White;
-            this.btnPrecio.Name = "btnPrecio";
-            this.btnPrecio.UseVisualStyleBackColor = false;
-            this.btnPrecio.Click += new System.EventHandler(this.btnPrecio_Click);
+            resources.ApplyResources(this.btnNuevoPrecio, "btnNuevoPrecio");
+            this.btnNuevoPrecio.BackColor = System.Drawing.Color.DarkCyan;
+            this.btnNuevoPrecio.FlatAppearance.BorderSize = 0;
+            this.btnNuevoPrecio.ForeColor = System.Drawing.Color.White;
+            this.btnNuevoPrecio.Name = "btnNuevoPrecio";
+            this.btnNuevoPrecio.UseVisualStyleBackColor = false;
+            this.btnNuevoPrecio.Click += new System.EventHandler(this.btnPrecio_Click);
             // 
             // frmProductoDetalle
             // 
@@ -220,14 +220,15 @@
             this.Controls.Add(this.lblPesoValue);
             this.Controls.Add(this.lblPeso);
             this.Controls.Add(this.lblCodValue);
-            this.Controls.Add(this.lblCodigo);
+            this.Controls.Add(this.lblCod);
             this.Controls.Add(this.lblCategoriaValue);
             this.Controls.Add(this.lblDescripcionValue);
             this.Controls.Add(this.lblNombreValue);
             this.Controls.Add(this.lblCategoria);
             this.Controls.Add(this.lblDescripcion);
-            this.Controls.Add(this.lblNombre);
+            this.Controls.Add(this.lblTxtNombre);
             this.Controls.Add(this.panel2);
+  
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmProductoDetalle";
@@ -242,7 +243,7 @@
         #endregion
 
         private System.Windows.Forms.Label lblCodValue;
-        private System.Windows.Forms.Label lblCodigo;
+        private System.Windows.Forms.Label lblCod;
         private System.Windows.Forms.Label lblCantValue;
         private System.Windows.Forms.Label lblCategoriaValue;
         private System.Windows.Forms.Label lblDescripcionValue;
@@ -250,7 +251,7 @@
         private System.Windows.Forms.Label lblStock;
         private System.Windows.Forms.Label lblCategoria;
         private System.Windows.Forms.Label lblDescripcion;
-        private System.Windows.Forms.Label lblNombre;
+        private System.Windows.Forms.Label lblTxtNombre;
         private System.Windows.Forms.Label lblPesoValue;
         private System.Windows.Forms.Label lblPeso;
         private System.Windows.Forms.Label lblAltoValue;
@@ -264,6 +265,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblProfValue;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button btnPrecio;
+        private System.Windows.Forms.Button btnNuevoPrecio;
     }
 }

@@ -24,14 +24,13 @@ namespace UI.Producto
         public frmProductoFormulario(int? id = null)
         {
             InitializeComponent();
+            ChangeLanguage();
             ListCategoria();
 
             this.id = id;
             if (id != null)
                 CargaDatosEnForm();
         }
-
-
 
         private void CargaDatosEnForm()
         {
@@ -153,6 +152,12 @@ namespace UI.Producto
                 string messageValid = validation.Item2;
                 Notifications.FrmInformation.InformationForm(messageValid);
             }
+        }
+
+        private void ChangeLanguage()
+        {
+            Helps.Language.controles(this);
+            this.Text = Helps.Language.info["producto"];
         }
     }
 }

@@ -21,6 +21,7 @@ namespace UI
         public frmProducto()
         {
             InitializeComponent();
+            ChangeLanguage();
         }
 
 
@@ -71,6 +72,11 @@ namespace UI
             {
                 return null;
             }
+        }
+
+        private void ChangeLanguage()
+        {            
+            Helps.Language.controles(this);
         }
 
         #endregion

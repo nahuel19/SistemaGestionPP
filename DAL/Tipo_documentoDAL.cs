@@ -3,7 +3,6 @@ using Services;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -146,6 +145,7 @@ namespace DAL
                                       ",[letra] " +
                                       ",[sucursal] " +
                                       ",[numero] " +
+                                      ",[venta] " +
                                  "FROM [dbo].[Tipo_documento] ";
 
             List <Tipo_documento> result = new List<Tipo_documento>();
@@ -192,7 +192,8 @@ namespace DAL
                                       ",[letra] "+
                                       ",[sucursal] "+
                                       ",[numero] "+
-                                 "FROM [dbo].[Tipo_documento] "+
+                                      ",[venta] " +
+                                 "FROM [dbo].[Tipo_documento] " +
                                 "WHERE id = @id";
 
             Tipo_documento entity = null;
@@ -241,7 +242,8 @@ namespace DAL
                 tipo_documento = dr.GetByNameString("tipo_documento"),
                 letra = dr.GetByNameString("letra"),
                 sucursal = dr.GetByNameInt("sucursal"),
-                numero = dr.GetByNameInt("numero")
+                numero = dr.GetByNameInt("numero"),
+                venta = dr.GetByNameBool("venta")
             };
 
             return entity;

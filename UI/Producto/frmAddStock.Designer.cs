@@ -30,9 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddStock));
             this.lblCodValue = new System.Windows.Forms.Label();
-            this.lblCodigo = new System.Windows.Forms.Label();
+            this.lblCod = new System.Windows.Forms.Label();
             this.lblNombreValue = new System.Windows.Forms.Label();
-            this.lblNombre = new System.Windows.Forms.Label();
+            this.lblTxtNombre = new System.Windows.Forms.Label();
             this.lblStock = new System.Windows.Forms.Label();
             this.txtStock = new System.Windows.Forms.TextBox();
             this.pictureBoxNombre = new System.Windows.Forms.PictureBox();
@@ -54,17 +54,17 @@
             this.lblCodValue.Size = new System.Drawing.Size(0, 20);
             this.lblCodValue.TabIndex = 159;
             // 
-            // lblCodigo
+            // lblCod
             // 
-            this.lblCodigo.AutoSize = true;
-            this.lblCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.lblCodigo.ForeColor = System.Drawing.Color.DimGray;
-            this.lblCodigo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblCodigo.Location = new System.Drawing.Point(367, 29);
-            this.lblCodigo.Name = "lblCodigo";
-            this.lblCodigo.Size = new System.Drawing.Size(59, 20);
-            this.lblCodigo.TabIndex = 158;
-            this.lblCodigo.Text = "Código";
+            this.lblCod.AutoSize = true;
+            this.lblCod.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lblCod.ForeColor = System.Drawing.Color.DimGray;
+            this.lblCod.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblCod.Location = new System.Drawing.Point(367, 29);
+            this.lblCod.Name = "lblCod";
+            this.lblCod.Size = new System.Drawing.Size(59, 20);
+            this.lblCod.TabIndex = 158;
+            this.lblCod.Text = "Código";
             // 
             // lblNombreValue
             // 
@@ -76,17 +76,17 @@
             this.lblNombreValue.Size = new System.Drawing.Size(0, 20);
             this.lblNombreValue.TabIndex = 157;
             // 
-            // lblNombre
+            // lblTxtNombre
             // 
-            this.lblNombre.AutoSize = true;
-            this.lblNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.lblNombre.ForeColor = System.Drawing.Color.DimGray;
-            this.lblNombre.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblNombre.Location = new System.Drawing.Point(84, 79);
-            this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(65, 20);
-            this.lblNombre.TabIndex = 156;
-            this.lblNombre.Text = "Nombre";
+            this.lblTxtNombre.AutoSize = true;
+            this.lblTxtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lblTxtNombre.ForeColor = System.Drawing.Color.DimGray;
+            this.lblTxtNombre.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblTxtNombre.Location = new System.Drawing.Point(84, 79);
+            this.lblTxtNombre.Name = "lblTxtNombre";
+            this.lblTxtNombre.Size = new System.Drawing.Size(65, 20);
+            this.lblTxtNombre.TabIndex = 156;
+            this.lblTxtNombre.Text = "Nombre";
             // 
             // lblStock
             // 
@@ -183,9 +183,9 @@
             this.Controls.Add(this.pictureBoxNombre);
             this.Controls.Add(this.lblStock);
             this.Controls.Add(this.lblCodValue);
-            this.Controls.Add(this.lblCodigo);
+            this.Controls.Add(this.lblCod);
             this.Controls.Add(this.lblNombreValue);
-            this.Controls.Add(this.lblNombre);
+            this.Controls.Add(this.lblTxtNombre);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmAddStock";
@@ -201,9 +201,9 @@
         #endregion
 
         private System.Windows.Forms.Label lblCodValue;
-        private System.Windows.Forms.Label lblCodigo;
+        private System.Windows.Forms.Label lblCod;
         private System.Windows.Forms.Label lblNombreValue;
-        private System.Windows.Forms.Label lblNombre;
+        private System.Windows.Forms.Label lblTxtNombre;
         private System.Windows.Forms.Label lblStock;
         private System.Windows.Forms.TextBox txtStock;
         private System.Windows.Forms.PictureBox pictureBoxNombre;

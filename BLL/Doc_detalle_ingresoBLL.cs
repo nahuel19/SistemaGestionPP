@@ -72,5 +72,16 @@ namespace BLL
             doc_det_ingrDAL.Delete(id);
         }
 
+
+        /// <summary>
+        /// Llama a método ListDetallesByCabecera de DAL para listar los detalles ingreso de una cabecera en específico
+        /// </summary>
+        /// <param name="id">inta</param>
+        /// <returns>Lit Doc_detalle_ingreso</returns>
+        public List<Doc_detalle_ingreso> ListDetallesByCabecera(int id_cab)
+        {
+            return doc_det_ingrDAL.ListDetallesByCabecera(id_cab);
+        }
+
     }
 }

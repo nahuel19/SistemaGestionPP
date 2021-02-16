@@ -3,7 +3,6 @@ using Services;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -23,24 +22,14 @@ namespace DAL
         /// <returns>Entidad Stock</returns>
         public Stock Insert(Stock entity)
         {
-
-            string SqlString = "INSERT INTO [dbo].[Stock] " +
-                                           "([fk_id_producto] " +
-                                           ",[cantidad]) " +
-                                     "VALUES " +
-                                           "(@fk_id_producto " +
-                                           ",@cantidad) ;SELECT SCOPE_IDENTITY()";
-
-
             try
             {
                 using (SqlConnection conn = ConnectionBD.Instance().Conect())
                 {
-                    using (SqlCommand cmd = new SqlCommand(SqlString, conn))
+                    using (SqlCommand cmd = new SqlCommand("sp_create_stock_0 @fk_id_producto", conn))
                     {
                         cmd.CommandType = CommandType.Text;
-                        cmd.Parameters.AddWithValue("@fk_id_producto", entity.fk_id_producto);
-                        cmd.Parameters.AddWithValue("@cantidad", entity.cantidad);
+                        cmd.Parameters.AddWithValue("@fk_id_producto", entity.fk_id_producto);                        
                         conn.Open();
 
                         //cmd.ExecuteNonQuery();
@@ -54,7 +43,6 @@ namespace DAL
                 throw ex;
             }
 
-
             return entity;
         }
 
@@ -67,7 +55,6 @@ namespace DAL
             string SqlString = "UPDATE [dbo].[Stock] " +
                                "SET [cantidad] = @cantidad " +
                               "WHERE [fk_id_producto] = @fk_id_producto ";
-
 
             try
             {
@@ -181,6 +168,52 @@ namespace DAL
                                      ",[cantidad] " +
                                  "FROM [dbo].[Stock] " +
                                 "WHERE id = @id";
+
+            Stock entity = null;
+
+            try
+            {
+                using (SqlConnection conn = ConnectionBD.Instance().Conect())
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(SqlString, conn))
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        cmd.Parameters.AddWithValue("@id", id);
+                        using (IDataReader dr = cmd.ExecuteReader())
+                        {
+                            if (dr.Read())
+                            {
+                                entity = LoadEntity(dr);
+                            }
+                        }
+
+
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+            return entity;
+        }
+
+        /// <summary>
+        /// Selecciona un registro de la tabla Stock buscandolo por id de producto
+        /// </summary>
+        /// <param name="id">int del registro a seleccionar</param>
+        /// <returns>Stock</returns>
+        public Stock GetByIdProd(int id)
+        {
+            string SqlString = "SELECT [id] " +
+                                     ",[fk_id_producto] " +
+                                     ",[cantidad] " +
+                                 "FROM [dbo].[Stock] " +
+                                "WHERE fk_id_producto = @id";
 
             Stock entity = null;
 

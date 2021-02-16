@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Services
 {
+    /// <summary>
+    /// Clase con propiedades de los tipo de log disponibles
+    /// </summary>
     public static class ETipoLog
     {
         public static int Insert { get => Convert.ToInt32(ConfigurationManager.AppSettings["Insert"]); }
@@ -19,6 +22,8 @@ namespace Services
         public static int UpdateError { get => Convert.ToInt32(ConfigurationManager.AppSettings["UpdateError"]); }
 
         public static int Error { get => Convert.ToInt32(ConfigurationManager.AppSettings["Error"]); }
-      
+        public static int Login { get => Convert.ToInt32(ConfigurationManager.AppSettings["Login"]); }
+        public static int LoginError { get => Convert.ToInt32(ConfigurationManager.AppSettings["LoginError"]); }
+
     }
 }

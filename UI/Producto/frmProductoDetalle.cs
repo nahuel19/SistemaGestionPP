@@ -20,6 +20,7 @@ namespace UI.Producto
         {
             id = _id;
             InitializeComponent();
+            ChangeLanguage();
             CargaDatosEnForm(_id);
         }
 
@@ -50,6 +51,13 @@ namespace UI.Producto
             Producto.frmPrecio frm = new Producto.frmPrecio(entity.id);
             frm.ShowDialog();
             CargaDatosEnForm(id);
+        }
+
+        private void ChangeLanguage()
+        {
+            Helps.Language.controles(this);
+            this.Text = Helps.Language.info["producto"];
+            this.btnNuevoPrecio.Text = Helps.Language.info["btnNuevoPrecio"];
         }
     }
 }

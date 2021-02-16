@@ -9,10 +9,17 @@ using System.Windows.Forms;
 
 namespace UI.Helps
 {
+    /// <summary>
+    /// Clase para manejar el cambio de idioma
+    /// </summary>
     public static class Language
     {
         public static Dictionary<string, string> info = new Dictionary<string, string>();
 
+        /// <summary>
+        /// Carga un diccionario con los valores de los txt de idioma
+        /// </summary>
+        /// <param name="file">string</param>
         private static void LoadDictionary(string file)
         {
             string folder = ConfigurationManager.AppSettings["folderLang"];
@@ -27,7 +34,10 @@ namespace UI.Helps
             }
         }
 
-
+        /// <summary>
+        /// Cambia el valor del archivo de idioma en la cofiguración del sistema y manda a cargar el diccionario con el archivo especificado
+        /// </summary>
+        /// <param name="file">string</param>
         public static void ChangeFileLanguage(string file)
         {
             Properties.Settings config = new Properties.Settings();
@@ -36,34 +46,26 @@ namespace UI.Helps
             LoadDictionary(file);
         }
 
+        /// <summary>
+        /// Recorre los controles de un form y les va asignando los valores que correspondan del archivo de idioma
+        /// </summary>
+        /// <param name="form">Form</param>
         static public void controles(Form form)
         {            
             foreach (Control e in form.Controls)
             {
-                
                 try
                 {
-                    //form.Controls[control].Text = info[control];
+                    form.Controls[e.Name].Text = info[e.Name];
 
-                    foreach (var control in info.Keys)
-                    {
-                        if (e.Name == control)
-                        {
-                            form.Controls[control].Text = info[control];
-                            break;
-                        }
-                    }
-
-
-                    //if (form.Controls[control.ToString()].Controls != null)
+                    //foreach (var control in info.Keys)
                     //{
-                    //    foreach(var subControl in form.Controls[control.ToString()].Controls)
+                    //    if (e.Name == control)
                     //    {
-                    //        form.Controls[control.ToString()].Controls[subControl.ToString()].Text = info[control.ToString()];
+                    //        form.Controls[control].Text = info[control];
+                    //        break;
                     //    }
-
                     //}
-
                 }
                 catch{}
             }

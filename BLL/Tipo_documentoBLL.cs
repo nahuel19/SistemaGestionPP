@@ -62,5 +62,25 @@ namespace BLL
         {
             tipo_docDAL.Delete(id);
         }
+
+        /// <summary>
+        /// Llama al método Lista y los filtra por el campo venta para devolver los que son ingresos
+        /// </summary>
+        /// <param name="filter">string</param>
+        /// <returns>List Tipo_documento</returns>
+        public List<Tipo_documento> FindIngresos()
+        {
+            return List().FindAll(x => x.venta == false);
+        }
+
+        /// <summary>
+        /// Llama al método Lista y los filtra por el campo venta para devolver los que son egresos
+        /// </summary>
+        /// <param name="filter">string</param>
+        /// <returns>List Tipo_documento</returns>
+        public List<Tipo_documento> FindEgresos()
+        {
+            return List().FindAll(x => x.venta == true);
+        }
     }
 }

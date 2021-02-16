@@ -19,7 +19,7 @@ namespace UI
             Application.SetCompatibleTextRenderingDefault(false);
 
             Helps.Language.ChangeFileLanguage(new Settings().lang);
-            Application.Run(new frmPrincipal());
+            Application.Run(new Login.frmLogin());
         }
     }
 }

@@ -49,9 +49,14 @@
     <Compile Include="Doc_cabecera_ingreso.cs" />
     <Compile Include="Doc_detalle_egreso.cs" />
     <Compile Include="Doc_detalle_ingreso.cs" />
+    <Compile Include="EntidadesDigitoVerificador\EntityDVHcorrupto.cs" />
+    <Compile Include="EntidadesDigitoVerificador\EntityDVVcorrupto.cs" />
+    <Compile Include="EntidadesDigitoVerificador\IEntityDV.cs" />
+    <Compile Include="Familia.cs" />
     <Compile Include="IEntityBase.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Movimiento_producto.cs" />
+    <Compile Include="Patente.cs" />
     <Compile Include="Precio.cs" />
     <Compile Include="Producto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -61,6 +66,7 @@
     <Compile Include="Tipo_documento.cs" />
     <Compile Include="Tipo_log.cs" />
     <Compile Include="Tipo_movimiento_prod.cs" />
+    <Compile Include="Usuario.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
