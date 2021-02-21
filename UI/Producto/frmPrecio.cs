@@ -66,7 +66,6 @@ namespace UI.Producto
 
                     InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Insert, 1, this.GetType().FullName, MethodInfo.GetCurrentMethod().Name, "Precio Producto: " + producto.codigo + ' ' + precio.precio, "", ""));
                     InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Insert, 1, this.GetType().FullName, MethodInfo.GetCurrentMethod().Name, "Movimiento Producto: " + producto.codigo + ' ' + movProd.movimiento, "", ""));
-
                     Notifications.FrmSuccess.SuccessForm(Helps.Language.info["guardadoOK"]);
 
                     this.Close();
@@ -105,7 +104,6 @@ namespace UI.Producto
             
             precio.fk_id_producto = producto.id;
             precio.costo = 0;
-            
 
             double porcentaje;
 

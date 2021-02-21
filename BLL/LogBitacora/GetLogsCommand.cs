@@ -28,9 +28,9 @@ namespace DAL.LogBitacora
         /// Ejecuta metodo de la dal para obetener lista de logs
         /// </summary>
         /// <param name="id"></param>
-        public void Execute(int id)
+        public List<Log> Execute()
         {
-            logDAL.GetById(id);
+            return logDAL.List();
         }
     }
 }

@@ -46,6 +46,9 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -98,7 +101,21 @@
     <Compile Include="Tipo_documentoDAL.cs" />
     <Compile Include="Tipo_logDAL.cs" />
     <Compile Include="Tipo_movimiento_prodDAL.cs" />
+    <Compile Include="UFP\Adapters\FamiliaAdapter.cs" />
+    <Compile Include="UFP\Adapters\FamiliaCollectionAdapter.cs" />
+    <Compile Include="UFP\Adapters\PatenteAdapter.cs" />
+    <Compile Include="UFP\Adapters\PatenteCollectionAdapter.cs" />
+    <Compile Include="UFP\Adapters\UsuarioAdapter.cs" />
+    <Compile Include="UFP\Adapters\UsuarioCollectionAdapter.cs" />
+    <Compile Include="UFP\Familia.cs" />
+    <Compile Include="UFP\FamiliaFacade.cs" />
+    <Compile Include="UFP\FamiliaPatenteFacade.cs" />
+    <Compile Include="UFP\Familia_Patente.cs" />
+    <Compile Include="UFP\Patente.cs" />
+    <Compile Include="UFP\PatenteFacade.cs" />
+    <Compile Include="UFP\Usuario.cs" />
     <Compile Include="UFP\UsuarioDAL.cs" />
+    <Compile Include="UFP\UsuarioFacade.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

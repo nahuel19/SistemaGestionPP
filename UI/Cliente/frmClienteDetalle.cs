@@ -18,6 +18,7 @@ namespace UI.Cliente
         public frmClienteDetalle(int id)
         {
             InitializeComponent();
+            ChangeLanguage();
             CargaDatosEnForm(id);
         }
 
@@ -35,6 +36,11 @@ namespace UI.Cliente
             lblEdadValue.Text = entity.edad.ToString();
         }
 
-        
+
+        private void ChangeLanguage()
+        {
+            this.Text = Helps.Language.info["tituloDetalle"];
+            Helps.Language.controles(this);
+        }
     }
 }

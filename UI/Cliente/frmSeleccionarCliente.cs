@@ -19,6 +19,7 @@ namespace UI.Cliente
         public frmSeleccionarCliente()
         {
             InitializeComponent();
+            ChangeLanguage();
         }
 
         private void RefrescarTabla()
@@ -71,6 +72,11 @@ namespace UI.Cliente
             RefrescarTabla();
         }
 
+        private void ChangeLanguage()
+        {
+            this.Text = Helps.Language.info["tituloSelectCliente"];
+            Helps.Language.controles(this);
+        }
         private void metroGrid1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             Entities.Cliente cli = bll.GetById(GetId());

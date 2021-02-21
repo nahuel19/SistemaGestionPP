@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entities.UFP;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,8 @@ namespace Services.Cache
 {
     public static class LoginCache
     {
-        public static int idUser { get; set; }
+        public static string idUser { get; set; }
         public static string nombreUser { get; set; }
+        public static List<FamiliaElement> permisos { get; set; }
     }
 }

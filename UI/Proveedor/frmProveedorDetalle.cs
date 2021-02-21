@@ -19,6 +19,7 @@ namespace UI.Proveedor
         {
             InitializeComponent();
             CargaDatosEnForm(id);
+            ChangeLanguage();
         }
 
         private void CargaDatosEnForm(int id)
@@ -31,6 +32,12 @@ namespace UI.Proveedor
             lblTelValue.Text = entity.telefono;
             lblMailValue.Text = entity.mail;
             lblUrlValue.Text = entity.url;
+        }
+
+        private void ChangeLanguage()
+        {
+            this.Text = Helps.Language.info["tituloDetalle"];
+            Helps.Language.controles(this);
         }
     }
 }

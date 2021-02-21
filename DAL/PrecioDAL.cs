@@ -89,6 +89,29 @@ namespace DAL
             }
         }
 
+        public void UpdateByCategoria(int idCat, double porcentaje, string motivo)
+        {
+            try
+            {
+                using (SqlConnection conn = ConnectionBD.Instance().Conect())
+                {
+                    using (SqlCommand cmd = new SqlCommand("sp_update_precio_by_categoria @idCat, @porcentaje, @motivo", conn))
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        cmd.Parameters.AddWithValue("@idCat", idCat);
+                        cmd.Parameters.AddWithValue("@porcentaje", porcentaje);
+                        cmd.Parameters.AddWithValue("@motivo", motivo);
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         /// <summary>
         /// Elimina registros de la tabla Precio
         /// </summary>

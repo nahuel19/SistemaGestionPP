@@ -1,7 +1,12 @@
 ﻿using DAL;
 using Entities;
+using Services;
+using Services.Documents;
+using Services.Excepciones;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +19,7 @@ namespace BLL
     public class Doc_cabecera_egresoBLL
     {      
         Doc_cabecera_egresoDAL doc_cab_egrDAL = new Doc_cabecera_egresoDAL();
+        Doc_detalle_egresoDAL detalleDAL = new Doc_detalle_egresoDAL();
 
         /// <summary>
         /// Llama a método GetById de Doc_cabecera_egresoDAL para buscar una cabecera egreso por id
@@ -68,6 +74,47 @@ namespace BLL
         public void Delete(int id)
         {
             doc_cab_egrDAL.Delete(id);
+        }
+
+        public void Anular(Doc_cabecera_egreso entity)
+        {
+            Delete(entity.id);
+
+            StockDAL stockDAL = new StockDAL();
+            Stock stock;
+
+            foreach (var d in entity.listDetalle)
+            {
+                stock = stockDAL.GetByIdProd(d.fk_id_producto);
+                stock.cantidad += d.cantidad;
+                stockDAL.Update(stock);                              
+            }
+
+        }
+
+        public void GetFacturaPDF(int idCabecera)
+        {
+            Doc_cabecera_egreso doc = doc_cab_egrDAL.GetById(idCabecera);
+
+            if (doc.cancelada)
+                throw new FacturaAnuladaException(doc.factura);
+
+            doc.listDetalle = detalleDAL.ListDetallesByCabecera(idCabecera);
+
+            DataTable dt = Methods.ConvertToDataTable(doc.listDetalle);
+            dt.Columns.Remove("id"); 
+            dt.Columns.Remove("fk_id_doc_cabecera_egreso");
+            dt.Columns.Remove("fk_id_producto");
+
+            Dictionary<string, string> titulos = new Dictionary<string, string>();
+            titulos.Add("Documento", doc.factura);
+            titulos.Add("Fecha", doc.fecha.ToString());
+            titulos.Add("Cliente", doc.nombre_cliente);
+
+            DocumentAbstract pdfDocument = new PdfDocument();
+            pdfDocument.CreateFileTemplate(dt, ConfigurationManager.AppSettings["FolderFacturas"], doc.factura + ".pdf", titulos);
+
+
         }
 
         /// <summary>

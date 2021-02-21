@@ -151,7 +151,7 @@ namespace BLL
 
 
             DocumentAbstract excelDocument = new ExcelDocument();
-            excelDocument.CreateFileTemplate(dt, ConfigurationManager.AppSettings["FileExcelClientes"],ConfigurationManager.AppSettings["FileExcelClientes"], "");
+            excelDocument.CreateFileTemplate(dt, ConfigurationManager.AppSettings["FileExcelClientes"],ConfigurationManager.AppSettings["FileExcelClientes"], new Dictionary<string, string>());
         }
 
         /// <summary>
@@ -170,7 +170,7 @@ namespace BLL
             dt.Columns[2].ColumnName = "número";
 
             DocumentAbstract pdfDocument = new PdfDocument();
-            pdfDocument.CreateFileTemplate(dt, ConfigurationManager.AppSettings["FolderPDF"], ConfigurationManager.AppSettings["FilePdfClientes"], "Listado Clientes");
+            pdfDocument.CreateFileTemplate(dt, ConfigurationManager.AppSettings["FolderPDF"], ConfigurationManager.AppSettings["FilePdfClientes"], new Dictionary<string, string>());
 
         }
 

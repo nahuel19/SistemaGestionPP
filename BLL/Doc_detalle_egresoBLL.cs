@@ -73,5 +73,16 @@ namespace BLL
         //    return List().FindAll(x => x.nombreCompleto.StartWithIgnoreMM(filter) || x.num_documento.StartWithIgnoreMM(filter));
         //}
 
+
+        /// <summary>
+        /// Llama a método ListDetallesByCabecera de DAL para listar los detalles de ventas de una cabecera en específico
+        /// </summary>
+        /// <param name="id">inta</param>
+        /// <returns>Lit Doc_detalle_egreso</returns>
+        public List<Doc_detalle_egreso> ListDetallesByCabecera(int id_cab)
+        {
+            return doc_det_egrDAL.ListDetallesByCabecera(id_cab);
+        }
+
     }
 }

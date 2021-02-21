@@ -16,7 +16,7 @@ namespace UI.Login
 {
     public partial class frmLogin : Form
     {
-        BLL.UsuarioBLL bll = new BLL.UsuarioBLL();
+        //BLL.UsuarioBLL bll = new BLL.UsuarioBLL();
 
         public frmLogin()
         {
@@ -32,9 +32,9 @@ namespace UI.Login
 
         private void BtnInisiarSesion_Click(object sender, EventArgs e)
         {
-            Entities.Usuario user = new Entities.Usuario();
-            user.nombre = TxtNombre.Text;
-            user.passSinEncriptar = TxtPass.Text;
+            Entities.UFP.Usuario user = new Entities.UFP.Usuario();
+            user.Nombre = TxtNombre.Text;
+            user.Pass = TxtPass.Text;
 
             var validation = new Helps.DataValidations(user).Validate();
             bool valid = validation.Item1;
@@ -43,26 +43,26 @@ namespace UI.Login
             {
                 try
                 {
-                    bool isValid = bll.Login(user);
+                    var isValid = BLL.UFP.Usuario.Login(user);
 
-                    if (isValid)
+                    if (isValid.Item1)
                     {
                         frmPrincipal frmPrincipal = new frmPrincipal();
                         frmPrincipal.Show();
                         frmPrincipal.FormClosed += Logout;
                         this.Hide();
-                        InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Login, 1, this.GetType().FullName, MethodInfo.GetCurrentMethod().Name, "Inicio seción: " + user.nombre, "", ""));
+                        InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Login, 1, this.GetType().FullName, MethodInfo.GetCurrentMethod().Name, "Inicio seción: " + user.Nombre, "", ""));
                     }
                     else
                     {
-                        InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.LoginError, 1, this.GetType().FullName, MethodInfo.GetCurrentMethod().Name, "Inicio seción fallido: " + user.nombre, "",""));
+                        InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.LoginError, 1, this.GetType().FullName, MethodInfo.GetCurrentMethod().Name, "Inicio seción fallido: " + user.Nombre, "",""));
                         Notifications.FrmError.ErrorForm(Language.info["loginError"]);
                     }
 
                 }
                 catch (Exception ex)
                 {
-                    InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.LoginError, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Inicio seción fallido: " + user.nombre, ex.StackTrace, ex.Message));
+                    InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.LoginError, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Inicio seción fallido: " + user.Nombre, ex.StackTrace, ex.Message));
                     Notifications.FrmError.ErrorForm(Language.info["loginError"] + "\n" + ex.Message);
                 }
             }

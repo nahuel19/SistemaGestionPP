@@ -34,9 +34,7 @@
             this.lblIdioma = new System.Windows.Forms.Label();
             this.cbIdioma = new MetroFramework.Controls.MetroComboBox();
             this.panelAjustes = new System.Windows.Forms.Panel();
-            this.BtnTipoDocIdentidad = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.btnPrecio = new System.Windows.Forms.Button();
+            this.btnBitacora = new System.Windows.Forms.Button();
             this.btnUsuarios = new System.Windows.Forms.Button();
             this.btnPresupuesto = new System.Windows.Forms.Button();
             this.btnVentas = new System.Windows.Forms.Button();
@@ -47,18 +45,19 @@
             this.panelLogo = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelFormularios = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.PanelUserData = new System.Windows.Forms.Panel();
+            this.lblEditarUsuario = new System.Windows.Forms.Label();
             this.lblNombreUser = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.btnSalir = new System.Windows.Forms.Button();
+            this.btnCerrarSesion = new System.Windows.Forms.Button();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
-            this.label1 = new System.Windows.Forms.Label();
             this.panelMenu.SuspendLayout();
             this.panelAjustes.SuspendLayout();
             this.panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelFormularios.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.PanelUserData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -109,40 +108,20 @@
             // panelAjustes
             // 
             this.panelAjustes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(109)))), ((int)(((byte)(113)))));
-            this.panelAjustes.Controls.Add(this.BtnTipoDocIdentidad);
-            this.panelAjustes.Controls.Add(this.button5);
-            this.panelAjustes.Controls.Add(this.btnPrecio);
+            this.panelAjustes.Controls.Add(this.btnBitacora);
             this.panelAjustes.Controls.Add(this.btnUsuarios);
             resources.ApplyResources(this.panelAjustes, "panelAjustes");
             this.panelAjustes.Name = "panelAjustes";
             // 
-            // BtnTipoDocIdentidad
+            // btnBitacora
             // 
-            resources.ApplyResources(this.BtnTipoDocIdentidad, "BtnTipoDocIdentidad");
-            this.BtnTipoDocIdentidad.FlatAppearance.BorderSize = 0;
-            this.BtnTipoDocIdentidad.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
-            this.BtnTipoDocIdentidad.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BtnTipoDocIdentidad.Name = "BtnTipoDocIdentidad";
-            this.BtnTipoDocIdentidad.UseVisualStyleBackColor = true;
-            this.BtnTipoDocIdentidad.Click += new System.EventHandler(this.BtnTipoDocIdentidad_Click);
-            // 
-            // button5
-            // 
-            resources.ApplyResources(this.button5, "button5");
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
-            this.button5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button5.Name = "button5";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // btnPrecio
-            // 
-            resources.ApplyResources(this.btnPrecio, "btnPrecio");
-            this.btnPrecio.FlatAppearance.BorderSize = 0;
-            this.btnPrecio.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
-            this.btnPrecio.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnPrecio.Name = "btnPrecio";
-            this.btnPrecio.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.btnBitacora, "btnBitacora");
+            this.btnBitacora.FlatAppearance.BorderSize = 0;
+            this.btnBitacora.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
+            this.btnBitacora.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnBitacora.Name = "btnBitacora";
+            this.btnBitacora.UseVisualStyleBackColor = true;
+            this.btnBitacora.Click += new System.EventHandler(this.btnBitacora_Click);
             // 
             // btnUsuarios
             // 
@@ -225,26 +204,32 @@
             // panelFormularios
             // 
             this.panelFormularios.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panelFormularios.Controls.Add(this.button1);
+            this.panelFormularios.Controls.Add(this.pictureBox3);
             resources.ApplyResources(this.panelFormularios, "panelFormularios");
             this.panelFormularios.Name = "panelFormularios";
             // 
-            // button1
+            // pictureBox3
             // 
-            resources.ApplyResources(this.button1, "button1");
-            this.button1.Name = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            resources.ApplyResources(this.pictureBox3, "pictureBox3");
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.TabStop = false;
             // 
             // PanelUserData
             // 
             this.PanelUserData.BackColor = System.Drawing.Color.DarkSlateBlue;
-            this.PanelUserData.Controls.Add(this.label1);
+            this.PanelUserData.Controls.Add(this.lblEditarUsuario);
             this.PanelUserData.Controls.Add(this.lblNombreUser);
             this.PanelUserData.Controls.Add(this.pictureBox2);
-            this.PanelUserData.Controls.Add(this.btnSalir);
+            this.PanelUserData.Controls.Add(this.btnCerrarSesion);
             resources.ApplyResources(this.PanelUserData, "PanelUserData");
             this.PanelUserData.Name = "PanelUserData";
+            // 
+            // lblEditarUsuario
+            // 
+            resources.ApplyResources(this.lblEditarUsuario, "lblEditarUsuario");
+            this.lblEditarUsuario.ForeColor = System.Drawing.Color.White;
+            this.lblEditarUsuario.Name = "lblEditarUsuario";
+            this.lblEditarUsuario.Click += new System.EventHandler(this.label1_Click);
             // 
             // lblNombreUser
             // 
@@ -258,26 +243,19 @@
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.TabStop = false;
             // 
-            // btnSalir
+            // btnCerrarSesion
             // 
-            resources.ApplyResources(this.btnSalir, "btnSalir");
-            this.btnSalir.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.btnSalir.FlatAppearance.BorderSize = 0;
-            this.btnSalir.ForeColor = System.Drawing.Color.White;
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.UseVisualStyleBackColor = false;
-            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            resources.ApplyResources(this.btnCerrarSesion, "btnCerrarSesion");
+            this.btnCerrarSesion.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.btnCerrarSesion.FlatAppearance.BorderSize = 0;
+            this.btnCerrarSesion.ForeColor = System.Drawing.Color.White;
+            this.btnCerrarSesion.Name = "btnCerrarSesion";
+            this.btnCerrarSesion.UseVisualStyleBackColor = false;
+            this.btnCerrarSesion.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // helpProvider1
             // 
             resources.ApplyResources(this.helpProvider1, "helpProvider1");
-            // 
-            // label1
-            // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Name = "label1";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // frmPrincipal
             // 
@@ -286,7 +264,6 @@
             this.Controls.Add(this.PanelUserData);
             this.Controls.Add(this.panelFormularios);
             this.Controls.Add(this.panelMenu);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.Name = "frmPrincipal";
             this.ShowIcon = false;
@@ -298,6 +275,7 @@
             this.panelLogo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelFormularios.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.PanelUserData.ResumeLayout(false);
             this.PanelUserData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -309,9 +287,7 @@
 
         private System.Windows.Forms.Panel panelMenu;
         private System.Windows.Forms.Panel panelAjustes;
-        private System.Windows.Forms.Button BtnTipoDocIdentidad;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button btnPrecio;
+        private System.Windows.Forms.Button btnBitacora;
         private System.Windows.Forms.Button btnUsuarios;
         private System.Windows.Forms.Button btnPresupuesto;
         private System.Windows.Forms.Button btnVentas;
@@ -327,11 +303,11 @@
         private MetroFramework.Controls.MetroComboBox cbIdioma;
         private System.Windows.Forms.Button btnAjustes;
         private System.Windows.Forms.HelpProvider helpProvider1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Button btnCerrarSesion;
         private System.Windows.Forms.Label lblNombreUser;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblEditarUsuario;
+        private System.Windows.Forms.PictureBox pictureBox3;
     }
 }
 

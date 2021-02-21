@@ -18,6 +18,7 @@ namespace UI.Producto
         public frmSeleccionarProducto()
         {
             InitializeComponent();
+            ChangeLanguage();
         }
 
         private void RefrescarTabla()
@@ -76,6 +77,11 @@ namespace UI.Producto
             Entities.Producto prod = bll.GetById(GetId());
             contrato.Ejecutar(prod);
             this.Close();            
+        }
+        private void ChangeLanguage()
+        {
+            this.Text = Helps.Language.info["tituloSelectProd"];
+            Helps.Language.controles(this);
         }
     }
 }

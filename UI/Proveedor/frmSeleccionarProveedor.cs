@@ -19,6 +19,7 @@ namespace UI.Proveedor
         public frmSeleccionarProveedor()
         {
             InitializeComponent();
+            ChangeLanguage();
         }
 
 
@@ -65,6 +66,12 @@ namespace UI.Proveedor
         private void frmSeleccionarProveedor_Load(object sender, EventArgs e)
         {
             RefrescarTabla();
+        }
+
+        private void ChangeLanguage()
+        {
+            this.Text = Helps.Language.info["tituloSelectProd"];
+            Helps.Language.controles(this);
         }
 
         private void metroGrid1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

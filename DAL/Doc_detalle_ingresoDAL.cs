@@ -258,7 +258,7 @@ namespace DAL
         }
 
         /// <summary>
-        /// Selecciona los detalles de ingreso de una cabera en específico
+        /// Selecciona los detalles de ingreso de una cabecera en específico
         /// </summary>
         /// <param name="id_cab">int</param>
         /// <returns>List Doc_detalle_ingreso</returns>
@@ -271,7 +271,7 @@ namespace DAL
                 using (SqlConnection conn = ConnectionBD.Instance().Conect())
                 {
                     conn.Open();
-                    using (SqlCommand cmd = new SqlCommand("sp_get_detalles_by_id_cabecera @id_cab", conn))
+                    using (SqlCommand cmd = new SqlCommand("sp_get_detalles_compras_by_id_cabecera @id_cab", conn))
                     {
                         cmd.CommandType = CommandType.Text;
                         cmd.Parameters.AddWithValue("@id_cab", id_cab);

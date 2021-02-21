@@ -14,7 +14,10 @@ namespace Entities
         public int id { get; set; }
         public int fk_id_doc_cabecera_egreso { get; set; }
         public int fk_id_producto { get; set; }
-        public int cantidad { get; set; }
+        public string nombre_producto { get; set; }        
         public double precio { get; set; }
+        public int cantidad { get; set; }
+
+
     }
 }

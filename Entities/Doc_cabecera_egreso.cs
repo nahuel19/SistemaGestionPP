@@ -20,6 +20,12 @@ namespace Entities
         public DateTime fecha { get; set; }
         public int fk_id_usuario { get; set; }
 
+        public bool cancelada { get; set; }
+        public string factura { get; set; }
+        public string nombre_cliente { get; set; }
+        public string nombre_usuario { get; set; }
+        public string tipo_documento { get; set; }
+
         public List<Doc_detalle_egreso> listDetalle { get; set; }
     }
 }

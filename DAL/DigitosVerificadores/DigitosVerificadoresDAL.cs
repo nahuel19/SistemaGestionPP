@@ -16,12 +16,20 @@ using System.Threading.Tasks;
 
 namespace DAL.DigitosVerificadores
 {
+    /// <summary>
+    /// Acceso a base para manejar los digitos verificadores
+    /// </summary>
     public class DigitosVerificadoresDAL
     {
         
         DBGestion db = new DBGestion();
 
         #region digitos horizontales
+        /// <summary>
+        /// Update genérico para ejecutar stores de de DVH 
+        /// </summary>
+        /// <param name="entity">IEntityDV</param>
+        /// <param name="tabla">string</param>
         public void Update(IEntityDV entity, string tabla)
         {
             string sp = "sp_updateDVH_" + tabla + " @DVH, @id";
@@ -47,7 +55,11 @@ namespace DAL.DigitosVerificadores
             }
 
         }
-                
+
+        /// <summary>
+        /// Lista los productos, incluyendo el campo de DVH
+        /// </summary>
+        /// <returns>List<Producto></returns>
         public List<Producto> ListProductosDV()
         {
             return db.Producto.ToList() ?? new List<Producto>();
@@ -56,11 +68,19 @@ namespace DAL.DigitosVerificadores
 
 
         #region digitos verticales
+        /// <summary>
+        /// Lista la tabla que contiene la info de los dígitos verificadores verticales
+        /// </summary>
+        /// <returns>List<DVV></returns>
         public List<DVV> ListDVV()
         {
             return db.DVV.ToList() ?? new List<DVV>();
         }
 
+        /// <summary>
+        /// Update de tabla DVV (contiene info de digítos verificadores verticales)
+        /// </summary>
+        /// <param name="entity"></param>
         public void UpdateDVV(DVV entity)
         {
             try

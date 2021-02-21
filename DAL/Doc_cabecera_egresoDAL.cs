@@ -24,6 +24,7 @@ namespace DAL
         /// <returns>Entidad Doc_cabecera_egreso</returns>
         public Doc_cabecera_egreso Insert(Doc_cabecera_egreso entity)
         {
+            #region query detalle
             string queryDetalle = "INSERT INTO [dbo].[Doc_detalle_egreso] " +
                                "([fk_id_doc_cabecera_egreso] " +
                                ",[fk_id_producto] " +
@@ -34,7 +35,7 @@ namespace DAL
                                ",@fk_id_producto " +
                                ",@cantidad " +
                                ",@precio) ;SELECT SCOPE_IDENTITY()";
-
+            #endregion
             using (SqlConnection conn = ConnectionBD.Instance().Conect())
             {
                 conn.Open();
@@ -49,7 +50,7 @@ namespace DAL
                         cmd.Parameters.AddWithValue("@id_tipo_doc", entity.fk_id_tipo_doc);
                         cmd.Parameters.AddWithValue("@id_cliente", entity.fk_id_cliente);
                         cmd.Parameters.AddWithValue("@id_usuario", entity.fk_id_usuario);
-                        conn.Open();
+                      
                         entity.id = Convert.ToInt32(cmd.ExecuteScalar());
                     }
 
@@ -58,16 +59,15 @@ namespace DAL
                         using (SqlCommand cmd = new SqlCommand(queryDetalle, conn, transaction))
                         {
                             cmd.CommandType = CommandType.Text;
-                            cmd.Parameters.AddWithValue("@fk_id_doc_cabecera_egreso", d.fk_id_doc_cabecera_egreso);
+                            cmd.Parameters.AddWithValue("@fk_id_doc_cabecera_egreso", entity.id);
                             cmd.Parameters.AddWithValue("@fk_id_producto", d.fk_id_producto);
                             cmd.Parameters.AddWithValue("@cantidad", d.cantidad);
                             cmd.Parameters.AddWithValue("@precio", d.precio);
-                            conn.Open();
-
+                       
                             entity.id = Convert.ToInt32(cmd.ExecuteScalar());
                         }
 
-                        using (SqlCommand cmd = new SqlCommand("sp_update_stock_mov_prod_ingresos_egresos @id_prod, @cant, @tipo_mov, @extra ;SELECT SCOPE_IDENTITY()", conn, transaction))
+                        using (SqlCommand cmd = new SqlCommand("sp_update_stock_mov_prod_egresos @id_prod, @cant, @tipo_mov, @extra ;SELECT SCOPE_IDENTITY()", conn, transaction))
                         {
                             cmd.CommandType = CommandType.Text;
                             cmd.Parameters.AddWithValue("@id_prod", d.fk_id_producto);
@@ -108,42 +108,46 @@ namespace DAL
         /// <param name="entity">Entidad Doc_cabecera_egreso</param>
         public void Update(Doc_cabecera_egreso entity)
         {
-            string SqlString = "UPDATE [dbo].[Doc_cabecera_egreso] " +
-                               "SET [fk_id_tipo_doc] = @fk_id_tipo_doc " +
-                                  ",[fk_id_cliente] = @fk_id_cliente " +
-                                  ",[letra] = @letra " +
-                                  ",[sucursal] = @sucursal " +
-                                  ",[numero] = @numero " +
-                                  ",[fk_id_usuario] = @fk_id_usuario " +
-                              "WHERE id = @id ";
+            throw new NotImplementedException();
 
-            try
-            {
-                using (SqlConnection conn = ConnectionBD.Instance().Conect())
-                {
-                    using (SqlCommand cmd = new SqlCommand(SqlString, conn))
-                    {
-                        cmd.CommandType = CommandType.Text;
-                        cmd.Parameters.AddWithValue("@id", entity.id);
-                        cmd.Parameters.AddWithValue("@fk_id_tipo_doc", entity.fk_id_tipo_doc);
-                        cmd.Parameters.AddWithValue("@fk_id_cliente", entity.fk_id_cliente);
-                        cmd.Parameters.AddWithValue("@letra", entity.letra);
-                        cmd.Parameters.AddWithValue("@sucursal", entity.sucursal);
-                        cmd.Parameters.AddWithValue("@numero", entity.numero);
-                        cmd.Parameters.AddWithValue("@fk_id_usuario", entity.fecha);
+            #region posible update
+            //string SqlString = "UPDATE [dbo].[Doc_cabecera_egreso] " +
+            //                   "SET [fk_id_tipo_doc] = @fk_id_tipo_doc " +
+            //                      ",[fk_id_cliente] = @fk_id_cliente " +
+            //                      ",[letra] = @letra " +
+            //                      ",[sucursal] = @sucursal " +
+            //                      ",[numero] = @numero " +
+            //                      ",[fk_id_usuario] = @fk_id_usuario " +
+            //                  "WHERE id = @id ";
 
-                        conn.Open();
+            //try
+            //{
+            //    using (SqlConnection conn = ConnectionBD.Instance().Conect())
+            //    {
+            //        using (SqlCommand cmd = new SqlCommand(SqlString, conn))
+            //        {
+            //            cmd.CommandType = CommandType.Text;
+            //            cmd.Parameters.AddWithValue("@id", entity.id);
+            //            cmd.Parameters.AddWithValue("@fk_id_tipo_doc", entity.fk_id_tipo_doc);
+            //            cmd.Parameters.AddWithValue("@fk_id_cliente", entity.fk_id_cliente);
+            //            cmd.Parameters.AddWithValue("@letra", entity.letra);
+            //            cmd.Parameters.AddWithValue("@sucursal", entity.sucursal);
+            //            cmd.Parameters.AddWithValue("@numero", entity.numero);
+            //            cmd.Parameters.AddWithValue("@fk_id_usuario", entity.fecha);
 
-                        cmd.ExecuteNonQuery();
-                    }
+            //            conn.Open();
 
-                }
-               
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            //            cmd.ExecuteNonQuery();
+            //        }
+
+            //    }
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //}
+            #endregion
         }
 
         /// <summary>
@@ -184,16 +188,6 @@ namespace DAL
         /// <returns>Lista Doc_cabecera_egreso</returns>
         public List<Doc_cabecera_egreso> List()
         {
-            string SqlString = "SELECT [id] " +
-                              ",[fk_id_tipo_doc] " +
-                              ",[fk_id_cliente] " +
-                              ",[letra] " +
-                              ",[sucursal] " +
-                              ",[numero] " +
-                              ",[fecha] " +
-                              ",[fk_id_usuario] "+
-                              "FROM[dbo].[Doc_cabecera_egreso]";
-
             List <Doc_cabecera_egreso> result = new List<Doc_cabecera_egreso>();
 
             try
@@ -201,7 +195,7 @@ namespace DAL
                 using (SqlConnection conn = ConnectionBD.Instance().Conect())
                 {
                     conn.Open();
-                    using (SqlCommand cmd = new SqlCommand(SqlString, conn))
+                    using (SqlCommand cmd = new SqlCommand("sp_list_facturas_ventas", conn))
                     {
                         using (IDataReader dr = cmd.ExecuteReader())
                         {
@@ -211,12 +205,8 @@ namespace DAL
                                 result.Add(entity);
                             }
                         }
-
-
                     }
-
-                }
-               
+                }               
             }
             catch (Exception ex)
             {
@@ -233,24 +223,13 @@ namespace DAL
         /// <returns>Doc_cabecera_egreso</returns>
         public Doc_cabecera_egreso GetById(int id)
         {
-            string SqlString = "SELECT [id] " +
-                              ",[fk_id_tipo_doc] " +
-                              ",[fk_id_cliente] " +
-                              ",[letra] " +
-                              ",[sucursal] " +
-                              ",[numero] " +
-                              ",[fecha] " +
-                              ",[fk_id_usuario] " +
-                              "FROM[dbo].[Doc_cabecera_egreso] " +
-                              "WHERE id = @id";
-
             Doc_cabecera_egreso entity = null;
             try
             {
                 using (SqlConnection conn = ConnectionBD.Instance().Conect())
                 {
                     conn.Open();
-                    using (SqlCommand cmd = new SqlCommand(SqlString, conn))
+                    using (SqlCommand cmd = new SqlCommand("sp_factura_venta_by_id @id", conn))
                     {
                         cmd.CommandType = CommandType.Text;
                         cmd.Parameters.AddWithValue("@id", id);
@@ -291,9 +270,13 @@ namespace DAL
                 fk_id_cliente = dr.GetByNameInt("fk_id_cliente"),
                 letra = dr.GetByNameString("letra"),
                 sucursal = dr.GetByNameInt("sucursal"),
-                numero = dr.GetByNameInt("numero"),
-                fecha = dr.GetByNameDT("fecha"),
-                fk_id_usuario = dr.GetByNameInt("fk_id_usuario")
+                numero = dr.GetByNameInt("numero"),    
+                fecha = dr.GetByNameDT("fecha"),   
+                fk_id_usuario = dr.GetByNameInt("fk_id_usuario"),
+                tipo_documento = dr.GetByNameString("tipo_documento"),
+                cancelada = dr.GetByNameBool("cancelada"),
+                factura = dr.GetByNameString("factura"),
+                nombre_cliente = dr.GetByNameString("cliente")
             };
 
             return entity;

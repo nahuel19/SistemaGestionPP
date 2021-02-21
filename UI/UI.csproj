@@ -68,6 +68,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Categoria\frmAjustarPrecioCat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Categoria\frmAjustarPrecioCat.Designer.cs">
+      <DependentUpon>frmAjustarPrecioCat.cs</DependentUpon>
+    </Compile>
     <Compile Include="Categoria\FrmCategoria.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +113,12 @@
     <Compile Include="Helps\DataValidations.cs" />
     <Compile Include="Helps\IContractForm.cs" />
     <Compile Include="Helps\Language.cs" />
+    <Compile Include="Ingresos\frmDetalleIngreso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ingresos\frmDetalleIngreso.Designer.cs">
+      <DependentUpon>frmDetalleIngreso.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ingresos\frmIngreso.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,6 +130,18 @@
     </Compile>
     <Compile Include="Ingresos\frmIngresoFormulario.Designer.cs">
       <DependentUpon>frmIngresoFormulario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LogForm\frmDetalleLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogForm\frmDetalleLog.Designer.cs">
+      <DependentUpon>frmDetalleLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LogForm\frmLogBitacora.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogForm\frmLogBitacora.Designer.cs">
+      <DependentUpon>frmLogBitacora.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\frmLogin.cs">
       <SubType>Form</SubType>
@@ -245,6 +269,24 @@
     <Compile Include="Tipo_Movimiento_prod\frmTipoMovvimientoProd.Designer.cs">
       <DependentUpon>frmTipoMovvimientoProd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Usuario\frmFamilias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Usuario\frmFamilias.Designer.cs">
+      <DependentUpon>frmFamilias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario\frmFormularioFamilias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Usuario\frmFormularioFamilias.Designer.cs">
+      <DependentUpon>frmFormularioFamilias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario\frmPermisos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Usuario\frmPermisos.Designer.cs">
+      <DependentUpon>frmPermisos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Usuario\frmUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -256,6 +298,12 @@
     </Compile>
     <Compile Include="Usuario\frmUsuarioFormulario.Designer.cs">
       <DependentUpon>frmUsuarioFormulario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ventas\frmDetalleVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ventas\frmDetalleVenta.Designer.cs">
+      <DependentUpon>frmDetalleVenta.cs</DependentUpon>
     </Compile>
     <Compile Include="Ventas\frmFormularioVenta.cs">
       <SubType>Form</SubType>
@@ -269,6 +317,9 @@
     <Compile Include="Ventas\frmVentas.Designer.cs">
       <DependentUpon>frmVentas.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Categoria\frmAjustarPrecioCat.resx">
+      <DependentUpon>frmAjustarPrecioCat.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Categoria\FrmCategoria.resx">
       <DependentUpon>FrmCategoria.cs</DependentUpon>
     </EmbeddedResource>
@@ -290,11 +341,20 @@
     <EmbeddedResource Include="frmPrincipal.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Ingresos\frmDetalleIngreso.resx">
+      <DependentUpon>frmDetalleIngreso.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Ingresos\frmIngreso.resx">
       <DependentUpon>frmIngreso.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ingresos\frmIngresoFormulario.resx">
       <DependentUpon>frmIngresoFormulario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogForm\frmDetalleLog.resx">
+      <DependentUpon>frmDetalleLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogForm\frmLogBitacora.resx">
+      <DependentUpon>frmLogBitacora.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
@@ -368,11 +428,23 @@
     <EmbeddedResource Include="Tipo_Movimiento_prod\frmTipoMovvimientoProd.resx">
       <DependentUpon>frmTipoMovvimientoProd.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Usuario\frmFamilias.resx">
+      <DependentUpon>frmFamilias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Usuario\frmFormularioFamilias.resx">
+      <DependentUpon>frmFormularioFamilias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Usuario\frmPermisos.resx">
+      <DependentUpon>frmPermisos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Usuario\frmUsuario.resx">
       <DependentUpon>frmUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Usuario\frmUsuarioFormulario.resx">
       <DependentUpon>frmUsuarioFormulario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ventas\frmDetalleVenta.resx">
+      <DependentUpon>frmDetalleVenta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ventas\frmFormularioVenta.resx">
       <DependentUpon>frmFormularioVenta.cs</DependentUpon>

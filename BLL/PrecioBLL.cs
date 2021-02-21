@@ -43,7 +43,6 @@ namespace BLL
         public void Insert(Precio entity)
         {
             precioDAL.Insert(entity);
-
         }
 
         /// <summary>
@@ -62,6 +61,11 @@ namespace BLL
         public void Delete(int id)
         {
             precioDAL.Delete(id);
+        }
+
+        public void UpdatePrecioCategoria(int idCat, double porcentaje, string motivo)
+        {
+            precioDAL.UpdateByCategoria(idCat, porcentaje, motivo);
         }
 
     }

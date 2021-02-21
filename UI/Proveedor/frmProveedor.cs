@@ -22,6 +22,7 @@ namespace UI.Proveedor
         public frmProveedor()
         {
             InitializeComponent();
+            ChangeLanguage();
         }
 
         #region helpers
@@ -82,6 +83,10 @@ namespace UI.Proveedor
             RefrescarTabla();
         }
 
+        private void ChangeLanguage()
+        {
+            Helps.Language.controles(this);
+        }
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
             if (metroGrid1.SelectedRows.Count > 0)

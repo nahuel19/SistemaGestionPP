@@ -34,6 +34,7 @@ namespace UI.Ingresos
         public frmIngresoFormulario()
         {
             InitializeComponent();
+            ChangeLanguage();
             ListDocumento();
             producto = new Entities.Producto();
             proveedor = new Entities.Proveedor();
@@ -58,7 +59,16 @@ namespace UI.Ingresos
             seleccionarProducto.ShowDialog();          
         }
 
-       
+
+        private void ChangeLanguage()
+        {
+            this.Text = Helps.Language.info["btnCompras"];
+            this.lblCosto.Text = Helps.Language.info["lblCosto"];
+            this.lblPrecioVenta.Text = Helps.Language.info["lblPrecioVenta"];
+            this.lblCant.Text = Helps.Language.info["lblCant"];
+            Helps.Language.controles(this);
+        }
+
         private void AgregarTablaDetalle()
         {
             if (String.IsNullOrEmpty(TxtProducto.Text))
@@ -197,7 +207,6 @@ namespace UI.Ingresos
 
         private void BtnGuardar_Click(object sender, EventArgs e)
         {   
-
             CargarEntity();
 
             var validation = new Helps.DataValidations(_Cabecera_Ingreso).Validate();

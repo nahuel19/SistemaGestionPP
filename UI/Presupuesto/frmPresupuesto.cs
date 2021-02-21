@@ -28,6 +28,7 @@ namespace UI.Presupuesto
         public frmPresupuesto()
         {
             InitializeComponent();
+            ChangeLanguage();
         }
 
         private void frmPresupuesto_FormClosing(object sender, FormClosingEventArgs e)
@@ -163,6 +164,7 @@ namespace UI.Presupuesto
             {
                 bll.ExportPresupuestoExcel(listProd);
                 Notifications.FrmSuccess.SuccessForm(Helps.Language.info["excelOK"] + "\n" + ConfigurationManager.AppSettings["FolderExcel"]);
+                LimpiarDetalle();
             }
             catch (Exception ex)
             {
@@ -180,6 +182,7 @@ namespace UI.Presupuesto
             {
                 bll.ExportPresupuestoPDF(listProd);
                 Notifications.FrmSuccess.SuccessForm(Helps.Language.info["pdfOK"] + "\n" + ConfigurationManager.AppSettings["FolderPDF"]);
+                LimpiarDetalle();
             }
             catch (Exception ex)
             {
@@ -189,6 +192,12 @@ namespace UI.Presupuesto
             bingindList = new BindingList<Entities.Producto>();
             listProd = new List<Entities.Producto>();
 
+        }
+
+        private void ChangeLanguage()
+        {            
+            this.lblTituloPresupuesto.Text = Helps.Language.info["lblTituloPresupuesto"];
+            Helps.Language.controles(this);
         }
     }
 }

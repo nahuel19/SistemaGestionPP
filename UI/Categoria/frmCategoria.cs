@@ -14,6 +14,7 @@ using UI.Helps;
 using System.Reflection;
 using Services;
 using Services.Encriptación;
+using Entities.UFP;
 
 namespace UI.Categoria
 {
@@ -62,6 +63,7 @@ namespace UI.Categoria
         private void BtnLimpiar_Click(object sender, EventArgs e)
         {
             LimpiarTxt();
+            pruebaPermisos();
         }
 
         private void BtnEliminar_Click(object sender, EventArgs e)
@@ -204,9 +206,91 @@ namespace UI.Categoria
             Helps.Language.controles(this);            
         }
 
+
         #endregion
 
-        
-    
+        private void btnAjustaPrecioCat_Click(object sender, EventArgs e)
+        {
+            if (metroGrid1.SelectedRows.Count > 0)
+            {
+                frmAjustarPrecioCat frm = new frmAjustarPrecioCat((int)GetId());
+                frm.ShowDialog();
+                RefrescarTabla();
+            }
+            else
+            {
+                Notifications.FrmInformation.InformationForm(Language.info["infoSelecEditar"]);
+            }
+        }
+
+
+
+
+        private void pruebaPermisos()
+        {
+            //Patente pat1 = new Patente();
+            //pat1.Nombre = "Bitácora";
+            //BLL.UFP.Patente.Insert(pat1);
+
+            //Patente pat2 = new Patente();
+            //pat2.Nombre = "Ventas Insertar";
+            //BLL.UFP.Patente.Insert(pat2);
+
+            //Patente pat3 = new Patente();
+            //pat3.Nombre = "Ventas Ver";
+            //BLL.UFP.Patente.Insert(pat3);
+
+            //Patente pat4 = new Patente();
+            //pat4.Nombre = "Ventas Anular";
+            //BLL.UFP.Patente.Insert(pat4);
+
+
+
+            //Familia familiaConsulta = new Familia();
+            //familiaConsulta.Nombre = "Rol de Consulta de Ventas";
+            //familiaConsulta.Add(patenteConsulta);
+            //BLL.UFP.Familia.Insert(familiaConsulta);
+
+            //Patente patenteVentas = new Patente();
+            //patenteVentas.Nombre = "Pantalla de Ventas";
+            //BLL.UFP.Patente.Insert(patenteVentas);
+
+            //Familia familiaVentas = new Familia();
+            //familiaVentas.Nombre = "Rol Ventas";
+            //familiaVentas.Add(patenteVentas);
+            //familiaVentas.Add(familiaConsulta);
+
+            //BLL.UFP.Familia.Insert(familiaVentas);
+
+            //Patente patentePantallaUsuario = new Patente();
+            //patentePantallaUsuario.Nombre = "Pantalla de Administración de Perfil del Usuario";
+            //BLL.UFP.Patente.Insert(patentePantallaUsuario);
+
+            //Entities.UFP.Usuario user = new Entities.UFP.Usuario();
+            //user.Nombre = "Pedro Rodriguez";
+            //user.Permisos.Add(familiaVentas);
+            //user.Permisos.Add(patentePantallaUsuario);
+
+            //BLL.UFP.Usuario.Insert(user);
+
+            //Familia familia = BLL.Familia.GetAdapted(familiaVentas.IdFamiliaElement);
+            //List<Entities.UFP.Patente> patentes = BLL.UFP.Patente.GetAllAdapted();
+            //===============
+
+            //string contraseña = "abc1234";
+            //Entities.UFP.Usuario usuario = BLL.UFP.Usuario.GetAdapted("ae3fdddb-997b-4f1d-b3d1-049e0ac8ed50");
+            //usuario.Pass = Convert.ToBase64String(new CryptoSeguridad().Encrypt(contraseña));
+
+
+            //BLL.UFP.Usuario.Update(usuario);
+
+
+
+           // Entities.UFP.Usuario user = BLL.UFP.Usuario.GetAdapted("ae3fdddb-997b-4f1d-b3d1-049e0ac8ed50");
+            //string contra = new CryptoSeguridad().Decrypt(Convert.FromBase64String(user.Pass));
+
+
+
+        }
     }
 }

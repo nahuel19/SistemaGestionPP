@@ -15,15 +15,15 @@ namespace Services.Documents
     public abstract class DocumentAbstract
     {
         /// <summary>
-        /// Método que se va a sobreescribir para generar el documento, según el tipo de doc.
+        /// Método abstracto que se va a sobreescribir para generar el documento, según el tipo de doc.
         /// </summary>
         /// <param name="dt">DataTable</param>
         /// <param name="text">string</param>
         /// <returns>string</returns>
-        protected abstract void Create(DataTable dt, string path, string file, string text);
-        
+        protected abstract void Create(DataTable dt, string path, string file, Dictionary<string, string> dataExtra);
+
         /// <summary>
-        /// Abre un archivo a partir de una ruta dada.
+        /// Método abstracto que se va a sobreescribir para abrir un archivo a partir de una ruta dada.
         /// </summary>
         /// <param name="path"></param>
         protected void OpenFile(string path, string file)
@@ -39,9 +39,9 @@ namespace Services.Documents
         /// </summary>
         /// <param name="dt">DataTable</param>
         /// <param name="text">String</param>
-        public void CreateFileTemplate(DataTable dt, string path, string file, string text)
+        public void CreateFileTemplate(DataTable dt, string path, string file, Dictionary<string, string> dataExtra)
         {            
-            Create(dt, path, file, text);
+            Create(dt, path, file, dataExtra);
             OpenFile(path,file);
         }
 

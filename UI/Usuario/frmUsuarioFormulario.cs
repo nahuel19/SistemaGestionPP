@@ -1,6 +1,7 @@
 ﻿using BLL;
 using BLL.LogBitacora;
 using Services;
+using Services.Encriptación;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,15 +18,16 @@ namespace UI.Usuario
 {
     public partial class frmUsuarioFormulario : MetroFramework.Forms.MetroForm
     {
-        private int? id;
+        private string id;
         private int? editaElUsuario;
-        private Entities.Usuario entity = null;
-        private UsuarioBLL bll = new UsuarioBLL();
+        private Entities.UFP.Usuario entity = null;
 
-        public frmUsuarioFormulario(int? id = null, int? _editaElUsuario = null)
+        public frmUsuarioFormulario(string id = null, int? _editaElUsuario = null)
         {
             InitializeComponent();
-    
+            ChangeLanguage();
+
+
             this.id = id;
 
             if (id != null)
@@ -40,16 +42,12 @@ namespace UI.Usuario
                     pictureBoxPassAnterior.Visible = true;
                 }
             }
-                
-
-
-
         }
 
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
             if (id == null)
-                entity = new Entities.Usuario();
+                entity = new Entities.UFP.Usuario();
 
             CargarEntity(entity);
 
@@ -62,9 +60,9 @@ namespace UI.Usuario
                 {
                     try
                     {
-                        entity = bll.Insert(entity);
+                        BLL.UFP.Usuario.Insert(entity);
 
-                        InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Insert, 1, this.GetType().FullName, MethodInfo.GetCurrentMethod().Name, "Usuario: " + entity.nombre, "", ""));
+                        InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Insert, 1, this.GetType().FullName, MethodInfo.GetCurrentMethod().Name, "Usuario: " + entity.Nombre, "", ""));
 
                         Notifications.FrmSuccess.SuccessForm(Helps.Language.info["guardadoOK"]);
 
@@ -76,7 +74,7 @@ namespace UI.Usuario
                             Notifications.FrmInformation.InformationForm(Helps.Language.info["errorExiste"]);
                         else
                         {
-                            InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.InsertError, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Usuario: " + entity.nombre, ex.StackTrace, ex.Message));
+                            InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.InsertError, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Usuario: " + entity.Nombre, ex.StackTrace, ex.Message));
                             Notifications.FrmError.ErrorForm(Helps.Language.info["guardadoError"] + "\n" + ex.Message);
                         }
                     }
@@ -87,9 +85,10 @@ namespace UI.Usuario
                     {
                         try
                         {
-                            bll.Update(entity);
+                            entity.Pass = Convert.ToBase64String(new CryptoSeguridad().Encrypt(entity.Pass));
+                            BLL.UFP.Usuario.Update(entity);
 
-                            InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Update, 1, this.GetType().FullName, MethodInfo.GetCurrentMethod().Name, "Usuario: " + entity.nombre, "", ""));
+                            InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Update, 1, this.GetType().FullName, MethodInfo.GetCurrentMethod().Name, "Usuario: " + entity.Nombre, "", ""));
 
                             Notifications.FrmSuccess.SuccessForm(Helps.Language.info["editadoOK"]);
 
@@ -101,7 +100,7 @@ namespace UI.Usuario
                                 Notifications.FrmError.ErrorForm(Helps.Language.info["errorExiste"]);
                             else
                             {
-                                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.UpdateError, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Usuario: " + entity.nombre, ex.StackTrace, ex.Message));
+                                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.UpdateError, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Usuario: " + entity.Nombre, ex.StackTrace, ex.Message));
                                 Notifications.FrmError.ErrorForm(Helps.Language.info["editadoError"] + "\n" + ex.Message);
                             }
                         } 
@@ -110,17 +109,19 @@ namespace UI.Usuario
                     {
                         try
                         {
-                            CargarEntityVerificarUsuario(entity);
 
-                            bool isValid = bll.Login(entity);
-
-                            if (isValid)
+                            var isValid = CargarEntityVerificarUsuario(entity);
+                                                        
+                            if (isValid.Item1)
                             {
-                                CargarEntity(entity);
-                                bll.Update(entity);
+                                if (!String.IsNullOrEmpty(txtPassNueva.Text))
+                                    entity.Pass = txtPassNueva.Text;
 
-                                bll.Login(entity);
-                                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Update, 1, this.GetType().FullName, MethodInfo.GetCurrentMethod().Name, "Usuario: " + entity.nombre, "", ""));
+
+                                entity.Pass = Convert.ToBase64String(new CryptoSeguridad().Encrypt(entity.Pass));
+                                BLL.UFP.Usuario.Update(entity);
+
+                                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Update, 1, this.GetType().FullName, MethodInfo.GetCurrentMethod().Name, "Usuario: " + entity.Nombre, "", ""));
 
                                 Notifications.FrmSuccess.SuccessForm(Helps.Language.info["editadoOK"]);
 
@@ -128,7 +129,7 @@ namespace UI.Usuario
                             }
                             else
                             {
-                                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.UpdateError, 1, this.GetType().FullName, MethodInfo.GetCurrentMethod().Name, "Usuario: " + entity.nombre, "", ""));
+                                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.UpdateError, 1, this.GetType().FullName, MethodInfo.GetCurrentMethod().Name, "Usuario: " + entity.Nombre, "", ""));
                                 Notifications.FrmError.ErrorForm(Language.info["loginError"]);
                             }
 
@@ -139,7 +140,7 @@ namespace UI.Usuario
                                 Notifications.FrmError.ErrorForm(Helps.Language.info["errorExiste"]);
                             else
                             {
-                                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.UpdateError, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Usuario: " + entity.nombre, ex.StackTrace, ex.Message));
+                                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.UpdateError, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Usuario: " + entity.Nombre, ex.StackTrace, ex.Message));
                                 Notifications.FrmError.ErrorForm(Helps.Language.info["editadoError"] + "\n" + ex.Message);
                             }
                         }
@@ -157,26 +158,31 @@ namespace UI.Usuario
 
         private void CargaDatosEnForm()
         {
-            entity = bll.GetById(Convert.ToInt32(id));
-            TxtNombre.Text = entity.nombre;
+            entity = BLL.UFP.Usuario.GetAdapted(id);
+            TxtNombre.Text = entity.Nombre;
         }
-        private Entities.Usuario CargarEntity(Entities.Usuario entity)
+        private Entities.UFP.Usuario CargarEntity(Entities.UFP.Usuario entity)
         {
-            entity.nombre = TxtNombre.Text;
-            entity.passSinEncriptar = txtPassNueva.Text;          
+            entity.Nombre = TxtNombre.Text;
+            entity.Pass = txtPassNueva.Text;          
     
             return entity;
         }
 
-        private Entities.Usuario CargarEntityVerificarUsuario(Entities.Usuario entity)
+        private (bool,string) CargarEntityVerificarUsuario(Entities.UFP.Usuario entity)
         {
-            entity.nombre = TxtNombre.Text;
-            entity.passSinEncriptar = TxtPassAnterior.Text;
-
-            return entity;
+            entity.Nombre = TxtNombre.Text;
+            entity.Pass = TxtPassAnterior.Text;
+            
+            return BLL.UFP.Usuario.Login(entity);
         }
 
 
+        private void ChangeLanguage()
+        {
+            this.Text = Helps.Language.info["usuario"];
+            Helps.Language.controles(this);
+        }
 
 
     }

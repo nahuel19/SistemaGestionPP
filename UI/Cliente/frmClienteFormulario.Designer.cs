@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmClienteFormulario));
             this.TxtNombre = new System.Windows.Forms.TextBox();
             this.pictureBoxNombre = new System.Windows.Forms.PictureBox();
-            this.lblNombre = new System.Windows.Forms.Label();
+            this.lblTxtNombre = new System.Windows.Forms.Label();
             this.TxtApellido = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblApellido = new System.Windows.Forms.Label();
@@ -40,7 +40,7 @@
             this.lblTipoDoc = new System.Windows.Forms.Label();
             this.TxtDocumento = new System.Windows.Forms.TextBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.lblNumDocumento = new System.Windows.Forms.Label();
+            this.lblDocumento = new System.Windows.Forms.Label();
             this.dtpNacimiento = new MetroFramework.Controls.MetroDateTime();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.lblFechaNac = new System.Windows.Forms.Label();
@@ -85,16 +85,16 @@
             this.pictureBoxNombre.TabIndex = 83;
             this.pictureBoxNombre.TabStop = false;
             // 
-            // lblNombre
+            // lblTxtNombre
             // 
-            this.lblNombre.AutoSize = true;
-            this.lblNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombre.ForeColor = System.Drawing.Color.DimGray;
-            this.lblNombre.Location = new System.Drawing.Point(51, 78);
-            this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(65, 20);
-            this.lblNombre.TabIndex = 81;
-            this.lblNombre.Text = "Nombre";
+            this.lblTxtNombre.AutoSize = true;
+            this.lblTxtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTxtNombre.ForeColor = System.Drawing.Color.DimGray;
+            this.lblTxtNombre.Location = new System.Drawing.Point(51, 78);
+            this.lblTxtNombre.Name = "lblTxtNombre";
+            this.lblTxtNombre.Size = new System.Drawing.Size(65, 20);
+            this.lblTxtNombre.TabIndex = 81;
+            this.lblTxtNombre.Text = "Nombre";
             // 
             // TxtApellido
             // 
@@ -183,16 +183,16 @@
             this.pictureBox3.TabIndex = 92;
             this.pictureBox3.TabStop = false;
             // 
-            // lblNumDocumento
+            // lblDocumento
             // 
-            this.lblNumDocumento.AutoSize = true;
-            this.lblNumDocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumDocumento.ForeColor = System.Drawing.Color.DimGray;
-            this.lblNumDocumento.Location = new System.Drawing.Point(227, 149);
-            this.lblNumDocumento.Name = "lblNumDocumento";
-            this.lblNumDocumento.Size = new System.Drawing.Size(125, 20);
-            this.lblNumDocumento.TabIndex = 90;
-            this.lblNumDocumento.Text = "Nro. Documento";
+            this.lblDocumento.AutoSize = true;
+            this.lblDocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDocumento.ForeColor = System.Drawing.Color.DimGray;
+            this.lblDocumento.Location = new System.Drawing.Point(227, 149);
+            this.lblDocumento.Name = "lblDocumento";
+            this.lblDocumento.Size = new System.Drawing.Size(125, 20);
+            this.lblDocumento.TabIndex = 90;
+            this.lblDocumento.Text = "Nro. Documento";
             // 
             // dtpNacimiento
             // 
@@ -358,7 +358,7 @@
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.TxtDocumento);
             this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.lblNumDocumento);
+            this.Controls.Add(this.lblDocumento);
             this.Controls.Add(this.ddlTipoDoc);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.lblTipoDoc);
@@ -367,7 +367,7 @@
             this.Controls.Add(this.lblApellido);
             this.Controls.Add(this.TxtNombre);
             this.Controls.Add(this.pictureBoxNombre);
-            this.Controls.Add(this.lblNombre);
+            this.Controls.Add(this.lblTxtNombre);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmClienteFormulario";
@@ -391,7 +391,7 @@
         #endregion
         private System.Windows.Forms.TextBox TxtNombre;
         private System.Windows.Forms.PictureBox pictureBoxNombre;
-        private System.Windows.Forms.Label lblNombre;
+        private System.Windows.Forms.Label lblTxtNombre;
         private System.Windows.Forms.TextBox TxtApellido;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblApellido;
@@ -400,7 +400,7 @@
         private System.Windows.Forms.Label lblTipoDoc;
         private System.Windows.Forms.TextBox TxtDocumento;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.Label lblNumDocumento;
+        private System.Windows.Forms.Label lblDocumento;
         private MetroFramework.Controls.MetroDateTime dtpNacimiento;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Label lblFechaNac;

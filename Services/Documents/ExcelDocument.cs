@@ -22,7 +22,7 @@ namespace Services.Documents
         /// <param name="path">String</param>
         /// <param name="file">String</param>
         /// <param name="text">String</param>
-        protected override void Create(DataTable dt, string path, string file, string text)
+        protected override void Create(DataTable dt, string path, string file, Dictionary<string, string> dataExtra)
         {
             if (!Directory.Exists(path))
             {

@@ -24,7 +24,7 @@ namespace Services.Documents
         /// <param name="path">String</param>
         /// <param name="file">String</param>
         /// <param name="text">String</param>
-        protected override void Create(System.Data.DataTable dt, string path, string file, string text)
+        protected override void Create(System.Data.DataTable dt, string path, string file, Dictionary<string, string> dataExtra)
         {
             if (!Directory.Exists(path))
             {
@@ -45,8 +45,13 @@ namespace Services.Documents
             iTextSharp.text.Font font8 = iTextSharp.text.FontFactory.GetFont(FontFactory.TIMES_ROMAN, 10);
             document.Add(new ITextEvents().getHeader(ConfigurationManager.AppSettings["NombreEmpresa"]));
             document.Add(Chunk.NEWLINE);
-            document.Add(new Phrase(text));
-            document.Add(Chunk.NEWLINE);
+
+            foreach (var d in dataExtra)
+            {
+                document.Add(new Phrase(d.Key + ": " + d.Value, font6));
+                document.Add(Chunk.NEWLINE);
+            }
+            
 
             Paragraph datos = new Paragraph();
             datos.Alignment = Element.ALIGN_RIGHT;
@@ -70,7 +75,7 @@ namespace Services.Documents
 
             foreach (DataColumn c in dt.Columns)
             {
-                PdfPCell _cell = new PdfPCell(new Phrase(c.ColumnName.ToUpper(), font6));
+                PdfPCell _cell = new PdfPCell(new Phrase(c.ColumnName.ToUpper().Replace('_', ' '), font6));
 
                 _cell.HorizontalAlignment = Element.ALIGN_CENTER;               
                 _cell.BorderWidthRight = 0;

@@ -22,6 +22,7 @@ namespace UI
         public frmCliente()
         {
             InitializeComponent();
+            ChangeLanguage();
         }
 
         #region helpers
@@ -73,6 +74,10 @@ namespace UI
             }
         }
 
+        private void ChangeLanguage()
+        {
+            Helps.Language.controles(this);
+        }
         #endregion
 
         private void frmCliente_Load(object sender, EventArgs e)

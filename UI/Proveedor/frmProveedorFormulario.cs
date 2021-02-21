@@ -24,13 +24,14 @@ namespace UI.Proveedor
         {
             InitializeComponent();
             ListTipoDoc();
+            ChangeLanguage();
 
             this.id = id;
             if (id != null)
                 CargaDatosEnForm();            
         }
 
-      
+       
 
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
@@ -102,6 +103,11 @@ namespace UI.Proveedor
             }
         }
 
+        private void ChangeLanguage()
+        {
+            this.Text = Helps.Language.info["btnProveedores"];
+            Helps.Language.controles(this);
+        }
         private void CargaDatosEnForm()
         {
             entity = bll.GetById(Convert.ToInt32(id));

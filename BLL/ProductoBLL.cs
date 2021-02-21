@@ -142,7 +142,7 @@ namespace BLL
 
 
             DocumentAbstract excelDocument = new ExcelDocument();
-            excelDocument.CreateFileTemplate(dt, ConfigurationManager.AppSettings["FolderExcel"], ConfigurationManager.AppSettings["FileExcelPresupuesto"], "");
+            excelDocument.CreateFileTemplate(dt, ConfigurationManager.AppSettings["FolderExcel"], ConfigurationManager.AppSettings["FileExcelPresupuesto"], new Dictionary<string, string>());
         }
 
         /// <summary>
@@ -168,7 +168,7 @@ namespace BLL
             dt.Rows.Add("", "", "", "", "", "", "",  "Total: $", tot.ToString());
 
             DocumentAbstract pdfDocument = new PdfDocument();
-            pdfDocument.CreateFileTemplate(dt, ConfigurationManager.AppSettings["FolderPDF"], ConfigurationManager.AppSettings["FilePdfPresupuesto"], "Presupuesto");
+            pdfDocument.CreateFileTemplate(dt, ConfigurationManager.AppSettings["FolderPDF"], ConfigurationManager.AppSettings["FilePdfPresupuesto"], new Dictionary<string, string>());
 
         }
 

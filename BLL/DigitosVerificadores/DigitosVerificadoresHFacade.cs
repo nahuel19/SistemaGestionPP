@@ -10,18 +10,27 @@ using System.Threading.Tasks;
 
 namespace BLL.DigitosVerificadores
 {
+    /// <summary>
+    /// Facade para realizar proceso de verificaión y carga de DVH
+    /// </summary>
     public class DigitosVerificadoresHFacade
     {
         DigitosVerificadoresDAL dvDAL;
         DigitosVerificadoresHGenericos metodosDV;
 
+        /// <summary>
+        /// Constructor, inicializa instancias
+        /// </summary>
         public DigitosVerificadoresHFacade()
         {
             dvDAL = new DigitosVerificadoresDAL();
             metodosDV = new DigitosVerificadoresHGenericos();
         }
 
-        //apertura
+        /// <summary>
+        /// Verifica DVH de la tabla de Producto
+        /// </summary>
+        /// <returns>EntityDVHcorrupto</returns>
         private EntityDVHcorrupto VerificarDVHproducto()
         {
             EntityDVHcorrupto resultado = new EntityDVHcorrupto();
@@ -49,7 +58,9 @@ namespace BLL.DigitosVerificadores
             return resultado;      
         }
 
-        //cierre
+        /// <summary>
+        /// Calcula y carga DVH en tabla Producto
+        /// </summary>
         private void CargarDVHproducto()
         {            
             List<Producto> listProdDV = dvDAL.ListProductosDV();
@@ -63,13 +74,17 @@ namespace BLL.DigitosVerificadores
             }            
         }
 
-        //cierre
+        /// <summary>
+        /// Carga los dígitos verificadores horizontales de las tablas que los contengan
+        /// </summary>
         public void CargarDVHalCerrar()
         {
             CargarDVHproducto();
         }
 
-        //apertura
+        /// <summary>
+        /// Verifica los DVH de las tablas que los contengan
+        /// </summary>
         public void VerificarDVH()
         {
             List<EntityDVHcorrupto> entityDVHcorruptos = new List<EntityDVHcorrupto>();

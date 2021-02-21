@@ -26,6 +26,7 @@ namespace UI.Cliente
         {
             InitializeComponent();
             ListTipoDoc();
+            ChangeLanguage();
 
             this.id = id;
             if (id != null)
@@ -137,6 +138,13 @@ namespace UI.Cliente
             ddlTipoDoc.DataSource = new TipoDoc_identidadBLL().List();
             ddlTipoDoc.ValueMember = "id";
             ddlTipoDoc.DisplayMember = "doc_identidad";
+        }
+
+
+        private void ChangeLanguage()
+        {
+            this.Text = Helps.Language.info["btnClientes"];
+            Helps.Language.controles(this);
         }
 
         private void TxtDocumento_KeyPress(object sender, KeyPressEventArgs e)

@@ -28,18 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmFormularioVenta));
             this.btnAgregarProdALista = new System.Windows.Forms.Button();
             this.lblPrecioVenta = new System.Windows.Forms.Label();
             this.txtCantidad = new System.Windows.Forms.TextBox();
             this.metroGrid1 = new MetroFramework.Controls.MetroGrid();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblPrecioVenta2 = new System.Windows.Forms.Label();
+            this.lblCant2 = new System.Windows.Forms.Label();
+            this.lblProducto2 = new System.Windows.Forms.Label();
             this.btnSelecProducto = new System.Windows.Forms.Button();
             this.TxtProducto = new System.Windows.Forms.TextBox();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
@@ -64,7 +64,7 @@
             this.lblNumeroValue = new System.Windows.Forms.Label();
             this.lblSucValue = new System.Windows.Forms.Label();
             this.lblLetraValue = new System.Windows.Forms.Label();
-            this.llblTotal = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
             this.lblTotalValue = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.metroGrid1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
@@ -88,6 +88,7 @@
             this.btnAgregarProdALista.TabIndex = 145;
             this.btnAgregarProdALista.Text = "+";
             this.btnAgregarProdALista.UseVisualStyleBackColor = false;
+            this.btnAgregarProdALista.Click += new System.EventHandler(this.btnAgregarProdALista_Click);
             // 
             // lblPrecioVenta
             // 
@@ -123,25 +124,25 @@
             this.metroGrid1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.metroGrid1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.RaisedHorizontal;
             this.metroGrid1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.DarkSlateGray;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.metroGrid1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle29.BackColor = System.Drawing.Color.DarkSlateGray;
+            dataGridViewCellStyle29.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle29.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.metroGrid1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle29;
             this.metroGrid1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.metroGrid1.ColumnHeadersVisible = false;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle14.Padding = new System.Windows.Forms.Padding(3);
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.DarkMagenta;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.metroGrid1.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle30.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle30.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle30.ForeColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle30.Padding = new System.Windows.Forms.Padding(3);
+            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.DarkMagenta;
+            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.metroGrid1.DefaultCellStyle = dataGridViewCellStyle30;
             this.metroGrid1.EnableHeadersVisualStyles = false;
             this.metroGrid1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.metroGrid1.GridColor = System.Drawing.Color.DimGray;
@@ -150,56 +151,56 @@
             this.metroGrid1.Name = "metroGrid1";
             this.metroGrid1.ReadOnly = true;
             this.metroGrid1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.metroGrid1.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle31.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle31.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle31.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle31.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle31.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.metroGrid1.RowHeadersDefaultCellStyle = dataGridViewCellStyle31;
             this.metroGrid1.RowHeadersVisible = false;
             this.metroGrid1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.DarkMagenta;
-            this.metroGrid1.RowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle32.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle32.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.Color.DarkMagenta;
+            this.metroGrid1.RowsDefaultCellStyle = dataGridViewCellStyle32;
             this.metroGrid1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.metroGrid1.Size = new System.Drawing.Size(539, 183);
             this.metroGrid1.TabIndex = 184;
             // 
-            // label4
+            // lblPrecioVenta2
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.DimGray;
-            this.label4.Location = new System.Drawing.Point(389, 444);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(100, 20);
-            this.label4.TabIndex = 183;
-            this.label4.Text = "Precio Venta";
+            this.lblPrecioVenta2.AutoSize = true;
+            this.lblPrecioVenta2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrecioVenta2.ForeColor = System.Drawing.Color.DimGray;
+            this.lblPrecioVenta2.Location = new System.Drawing.Point(506, 444);
+            this.lblPrecioVenta2.Name = "lblPrecioVenta2";
+            this.lblPrecioVenta2.Size = new System.Drawing.Size(100, 20);
+            this.lblPrecioVenta2.TabIndex = 183;
+            this.lblPrecioVenta2.Text = "Precio Venta";
             // 
-            // label2
+            // lblCant2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.DimGray;
-            this.label2.Location = new System.Drawing.Point(271, 444);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 20);
-            this.label2.TabIndex = 181;
-            this.label2.Text = "Cantidad";
+            this.lblCant2.AutoSize = true;
+            this.lblCant2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCant2.ForeColor = System.Drawing.Color.DimGray;
+            this.lblCant2.Location = new System.Drawing.Point(403, 444);
+            this.lblCant2.Name = "lblCant2";
+            this.lblCant2.Size = new System.Drawing.Size(73, 20);
+            this.lblCant2.TabIndex = 181;
+            this.lblCant2.Text = "Cantidad";
             // 
-            // label1
+            // lblProducto2
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.DimGray;
-            this.label1.Location = new System.Drawing.Point(67, 444);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 20);
-            this.label1.TabIndex = 180;
-            this.label1.Text = "Producto";
+            this.lblProducto2.AutoSize = true;
+            this.lblProducto2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProducto2.ForeColor = System.Drawing.Color.DimGray;
+            this.lblProducto2.Location = new System.Drawing.Point(67, 444);
+            this.lblProducto2.Name = "lblProducto2";
+            this.lblProducto2.Size = new System.Drawing.Size(73, 20);
+            this.lblProducto2.TabIndex = 180;
+            this.lblProducto2.Text = "Producto";
             // 
             // btnSelecProducto
             // 
@@ -320,6 +321,7 @@
             this.BtnGuardar.TabIndex = 165;
             this.BtnGuardar.Text = "GUARDAR";
             this.BtnGuardar.UseVisualStyleBackColor = false;
+            this.BtnGuardar.Click += new System.EventHandler(this.BtnGuardar_Click);
             // 
             // lblLetra
             // 
@@ -342,7 +344,7 @@
             this.ddlTipoDoc.Location = new System.Drawing.Point(76, 119);
             this.ddlTipoDoc.Name = "ddlTipoDoc";
             this.ddlTipoDoc.Size = new System.Drawing.Size(139, 26);
-            this.ddlTipoDoc.TabIndex = 159;            
+            this.ddlTipoDoc.TabIndex = 159;
             this.ddlTipoDoc.SelectionChangeCommitted += new System.EventHandler(this.ddlTipoDoc_SelectionChangeCommitted);
             // 
             // pictureBox2
@@ -420,9 +422,8 @@
             this.lblPrecioValue.ForeColor = System.Drawing.Color.DimGray;
             this.lblPrecioValue.Location = new System.Drawing.Point(63, 115);
             this.lblPrecioValue.Name = "lblPrecioValue";
-            this.lblPrecioValue.Size = new System.Drawing.Size(50, 20);
+            this.lblPrecioValue.Size = new System.Drawing.Size(0, 20);
             this.lblPrecioValue.TabIndex = 152;
-            this.lblPrecioValue.Text = "Value";
             // 
             // btnQuitarProdLista
             // 
@@ -437,6 +438,7 @@
             this.btnQuitarProdLista.TabIndex = 151;
             this.btnQuitarProdLista.Text = "-";
             this.btnQuitarProdLista.UseVisualStyleBackColor = false;
+            this.btnQuitarProdLista.Click += new System.EventHandler(this.btnQuitarProdLista_Click);
             // 
             // groupBox1
             // 
@@ -492,27 +494,26 @@
             this.lblLetraValue.TabIndex = 185;
             this.lblLetraValue.Text = "Value";
             // 
-            // llblTotal
+            // lblTotal
             // 
-            this.llblTotal.AutoSize = true;
-            this.llblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.llblTotal.ForeColor = System.Drawing.Color.DimGray;
-            this.llblTotal.Location = new System.Drawing.Point(57, 672);
-            this.llblTotal.Name = "llblTotal";
-            this.llblTotal.Size = new System.Drawing.Size(61, 20);
-            this.llblTotal.TabIndex = 185;
-            this.llblTotal.Text = "Total: $";
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotal.ForeColor = System.Drawing.Color.DimGray;
+            this.lblTotal.Location = new System.Drawing.Point(58, 672);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(61, 20);
+            this.lblTotal.TabIndex = 185;
+            this.lblTotal.Text = "Total: $";
             // 
             // lblTotalValue
             // 
             this.lblTotalValue.AutoSize = true;
             this.lblTotalValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalValue.ForeColor = System.Drawing.Color.DimGray;
-            this.lblTotalValue.Location = new System.Drawing.Point(117, 672);
+            this.lblTotalValue.Location = new System.Drawing.Point(122, 672);
             this.lblTotalValue.Name = "lblTotalValue";
-            this.lblTotalValue.Size = new System.Drawing.Size(46, 20);
+            this.lblTotalValue.Size = new System.Drawing.Size(0, 20);
             this.lblTotalValue.TabIndex = 186;
-            this.lblTotalValue.Text = "value";
             // 
             // frmFormularioVenta
             // 
@@ -520,11 +521,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(685, 786);
             this.Controls.Add(this.lblTotalValue);
-            this.Controls.Add(this.llblTotal);
+            this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.metroGrid1);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblPrecioVenta2);
+            this.Controls.Add(this.lblCant2);
+            this.Controls.Add(this.lblProducto2);
             this.Controls.Add(this.btnSelecProducto);
             this.Controls.Add(this.TxtProducto);
             this.Controls.Add(this.pictureBox10);
@@ -536,6 +537,8 @@
             this.MinimizeBox = false;
             this.Name = "frmFormularioVenta";
             this.Text = "Venta";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmFormularioVenta_FormClosing);
+            this.Load += new System.EventHandler(this.frmFormularioVenta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.metroGrid1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -556,9 +559,9 @@
         private System.Windows.Forms.Label lblPrecioVenta;
         public System.Windows.Forms.TextBox txtCantidad;
         private MetroFramework.Controls.MetroGrid metroGrid1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblPrecioVenta2;
+        private System.Windows.Forms.Label lblCant2;
+        private System.Windows.Forms.Label lblProducto2;
         private System.Windows.Forms.Button btnSelecProducto;
         public System.Windows.Forms.TextBox TxtProducto;
         private System.Windows.Forms.PictureBox pictureBox10;
@@ -583,7 +586,7 @@
         private System.Windows.Forms.Label lblNumeroValue;
         private System.Windows.Forms.Label lblSucValue;
         private System.Windows.Forms.Label lblLetraValue;
-        private System.Windows.Forms.Label llblTotal;
+        private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.Label lblTotalValue;
     }
 }

@@ -11,9 +11,18 @@ using System.Threading.Tasks;
 
 namespace BLL.DigitosVerificadores
 {
+    /// <summary>
+    /// Contiene métodos genéricos para mandejo de entidades con DVH
+    /// </summary>
     public class DigitosVerificadoresHGenericos
-    {        
-        //cierre
+    {
+       
+        /// <summary>
+        /// Carga una entidad con su DVH
+        /// </summary>
+        /// <typeparam name="T">Entidad que herede de IEntityDV</typeparam>
+        /// <param name="entity">Entidad</param>
+        /// <returns>Entidad</returns>
         public T CargarEntityConDVH<T>(T entity) where T : IEntityDV
         {            
             PropertyInfo[] Props = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
@@ -30,14 +39,23 @@ namespace BLL.DigitosVerificadores
             return entity;
         }
 
-        //cierre
+        /// <summary>
+        /// Llama update de DAL para actualizar una entidad con su DVH 
+        /// </summary>
+        /// <param name="entity">IEntityDV</param>
+        /// <param name="tabla">string</param>
         public void UpdateDVH(IEntityDV entity, string tabla)
         {
             DigitosVerificadoresDAL digitosVerificadoresDAL = new DigitosVerificadoresDAL();
             digitosVerificadoresDAL.Update(entity, tabla);
         }
 
-        //apertura
+        /// <summary>
+        /// Verifica que el DVH guardad de una entidad coincida con el DVH calculado al día con los datos de la entidad
+        /// </summary>
+        /// <typeparam name="T">IEntityDV</typeparam>
+        /// <param name="entity">Entidad</param>
+        /// <returns>int?, devuelve el id de la entidad en caso de que esté corrupta</returns>
         public int? VerificarEntityConDVH<T>(T entity) where T : IEntityDV
         {
             PropertyInfo[] Props = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);

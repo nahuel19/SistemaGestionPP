@@ -20,6 +20,7 @@ namespace UI.Ingresos
         public frmIngreso()
         {
             InitializeComponent();
+            ChangeLanguage();
         }
 
         private void BtnNuevo_Click(object sender, EventArgs e)
@@ -53,7 +54,7 @@ namespace UI.Ingresos
             metroGrid1.Columns["sucursal"].Visible = false;
             metroGrid1.Columns["numero"].Visible = false;
             metroGrid1.Columns["fk_id_usuario"].Visible = false;
-            metroGrid1.Columns["nombre_usuario"].Visible = false;
+            //metroGrid1.Columns["nombre_usuario"].Visible = false;
             
 
 
@@ -61,14 +62,14 @@ namespace UI.Ingresos
             metroGrid1.Columns["factura"].DisplayIndex = 2;
             metroGrid1.Columns["nombre_proveedor"].DisplayIndex = 3;
             metroGrid1.Columns["fecha"].DisplayIndex = 4;
-            //metroGrid1.Columns["cancelada"].DisplayIndex = 5;
+            metroGrid1.Columns["cancelada"].DisplayIndex = 10;
 
 
-            metroGrid1.Columns["tipo_documento"].Width = 80;
-            metroGrid1.Columns["factura"].Width = 80;
-            metroGrid1.Columns["nombre_proveedor"].Width = 190;
+            metroGrid1.Columns["tipo_documento"].Width = 150;
+            metroGrid1.Columns["factura"].Width = 150;
+            metroGrid1.Columns["nombre_proveedor"].Width = 220;
             metroGrid1.Columns["fecha"].Width = 150;
-            //metroGrid1.Columns["cancelada"].Width = 150;
+            metroGrid1.Columns["cancelada"].Width = 100;
 
 
             foreach (DataGridViewRow row in metroGrid1.Rows)
@@ -93,6 +94,11 @@ namespace UI.Ingresos
             {
                 return null;
             }
+        }
+
+        private void ChangeLanguage()
+        {
+            Helps.Language.controles(this);
         }
 
 
@@ -141,7 +147,10 @@ namespace UI.Ingresos
 
         private void btnDetalle_Click(object sender, EventArgs e)
         {
+            Ingresos.frmDetalleIngreso frmDetalle = new Ingresos.frmDetalleIngreso((int)GetId());
+            frmDetalle.ShowDialog();
 
+            RefrescarTabla();
         }
 
         private void metroGrid1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)

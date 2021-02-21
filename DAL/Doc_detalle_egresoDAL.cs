@@ -223,6 +223,42 @@ namespace DAL
             return entity;
         }
 
+        /// <summary>
+        /// Selecciona los detalles de ventas de una cabecera en específico
+        /// </summary>
+        /// <param name="id_cab">int</param>
+        /// <returns>List Doc_detalle_egreso</returns>
+        public List<Doc_detalle_egreso> ListDetallesByCabecera(int id_cab)
+        {
+            List<Doc_detalle_egreso> result = new List<Doc_detalle_egreso>();
+
+            try
+            {
+                using (SqlConnection conn = ConnectionBD.Instance().Conect())
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand("sp_get_detalles_ventas_by_id_cabecera @id_cab", conn))
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        cmd.Parameters.AddWithValue("@id_cab", id_cab);
+                        using (IDataReader dr = cmd.ExecuteReader())
+                        {
+                            while (dr.Read())
+                            {
+                                Doc_detalle_egreso entity = LoadEntity(dr);
+                                result.Add(entity);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return result;
+        }
 
         /// <summary>
         /// Carga una entidad de Doc_detalle_egreso a partir de un DataReader
@@ -237,7 +273,8 @@ namespace DAL
                 fk_id_doc_cabecera_egreso = dr.GetByNameInt("fk_id_doc_cabecera_egreso"),
                 fk_id_producto = dr.GetByNameInt("fk_id_producto"),
                 cantidad = dr.GetByNameInt("cantidad"),
-                precio = dr.GetByNameDouble("precio")
+                precio = dr.GetByNameDouble("precio"),
+                nombre_producto = dr.GetByNameString("nombre_producto")
             };
 
             return entity;

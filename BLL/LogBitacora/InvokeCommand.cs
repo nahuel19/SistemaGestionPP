@@ -16,6 +16,7 @@ namespace BLL.LogBitacora
     {
         private static InsertLogCommand _insertLogCommand;
         private static GetLogsCommand _getLogsCommand;
+        private static GetLogByIdCommand _getLogByIdCommand;
 
         /// <summary>
         /// Retorna instancia de InsertLogCommand
@@ -33,6 +34,15 @@ namespace BLL.LogBitacora
         public static GetLogsCommand GetLogs()
         {
             return _getLogsCommand ?? (_getLogsCommand = new GetLogsCommand(new LogDAL()));
+        }
+
+        /// <summary>
+        /// Retorna instancia de GetLogByIdCommand
+        /// </summary>
+        /// <returns>GetLogsCommand</returns>
+        public static GetLogByIdCommand GetLogById()
+        {
+            return _getLogByIdCommand ?? (_getLogByIdCommand = new GetLogByIdCommand(new LogDAL()));
         }
 
     }

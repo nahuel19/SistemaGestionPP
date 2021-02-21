@@ -198,7 +198,17 @@ namespace UI
 
         void UpdateLanguage()
         {
-            this.btnProductos.Text = Helps.Language.info["btnProductos"];
+            this.btnProductos.Text = Helps.Language.info["btnProductos"]; 
+            this.btnClientes.Text = Helps.Language.info["btnClientes"];
+            this.btnProveedores.Text = Helps.Language.info["btnProveedores"];
+            this.btnCompras.Text = Helps.Language.info["btnCompras"];
+            this.btnVentas.Text = Helps.Language.info["btnVentas"];
+            this.btnAjustes.Text = Helps.Language.info["btnAjustes"];
+            this.btnPresupuesto.Text = Helps.Language.info["btnPresupuesto"];
+            this.lblEditarUsuario.Text = Helps.Language.info["lblEditarUsuario"];
+            this.btnCerrarSesion.Text = Helps.Language.info["btnCerrarSesion"];
+            this.lblIdioma.Text = Helps.Language.info["lblIdioma"];
+            this.btnUsuarios.Text = Helps.Language.info["btnUsuarios"];
             Helps.Language.controles(this);
 
             if(activeForm !=null)
@@ -210,6 +220,7 @@ namespace UI
             LanguageSelected();
             HelpUser();
             loadUserData();
+            CheckPermisos();
 
         }
 
@@ -273,11 +284,7 @@ namespace UI
 
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
-            
-                AbrirCerrarSubmenu();
-
-                OpenChildForm(new Usuario.frmUsuario());
-           
+            OpenChildForm(new Usuario.frmUsuario());           
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -292,8 +299,25 @@ namespace UI
 
         private void label1_Click(object sender, EventArgs e)
         {
-            Usuario.frmUsuarioFormulario frmEditar = new Usuario.frmUsuarioFormulario(LoginCache.idUser,1);
+            Usuario.frmUsuarioFormulario frmEditar = new Usuario.frmUsuarioFormulario(LoginCache.idUser, 1);
             frmEditar.ShowDialog();
+        }
+
+        private void btnBitacora_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new LogForm.frmLogBitacora());
+        }
+
+        private void CheckPermisos()
+        {
+            btnProductos.Enabled = BLL.UFP.Usuario.ValidarPermiso(LoginCache.permisos, Entities.UFP.TipoPermiso.ProductoVer);
+            btnClientes.Enabled = BLL.UFP.Usuario.ValidarPermiso(LoginCache.permisos, Entities.UFP.TipoPermiso.ClienteVer);
+            btnProveedores.Enabled = BLL.UFP.Usuario.ValidarPermiso(LoginCache.permisos, Entities.UFP.TipoPermiso.ProveedorVer);
+            btnCompras.Enabled = BLL.UFP.Usuario.ValidarPermiso(LoginCache.permisos, Entities.UFP.TipoPermiso.ComprasVer);
+            btnVentas.Enabled = BLL.UFP.Usuario.ValidarPermiso(LoginCache.permisos, Entities.UFP.TipoPermiso.VentasVer);
+            btnPresupuesto.Enabled = BLL.UFP.Usuario.ValidarPermiso(LoginCache.permisos, Entities.UFP.TipoPermiso.Presupuesto);
+            btnUsuarios.Enabled = BLL.UFP.Usuario.ValidarPermiso(LoginCache.permisos, Entities.UFP.TipoPermiso.UsuariosVer);
+            btnBitacora.Enabled = BLL.UFP.Usuario.ValidarPermiso(LoginCache.permisos, Entities.UFP.TipoPermiso.Bitácora);            
         }
     }
 }

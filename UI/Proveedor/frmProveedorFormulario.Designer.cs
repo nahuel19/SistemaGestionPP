@@ -41,7 +41,7 @@
             this.lblTel = new System.Windows.Forms.Label();
             this.TxtDocumento = new System.Windows.Forms.TextBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.lblNumDocumento = new System.Windows.Forms.Label();
+            this.lblDocumento = new System.Windows.Forms.Label();
             this.ddlTipoDoc = new System.Windows.Forms.ComboBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lblTipoDoc = new System.Windows.Forms.Label();
@@ -50,7 +50,7 @@
             this.lblUrl = new System.Windows.Forms.Label();
             this.TxtNombre = new System.Windows.Forms.TextBox();
             this.pictureBoxNombre = new System.Windows.Forms.PictureBox();
-            this.lblNombre = new System.Windows.Forms.Label();
+            this.lblTxtNombre = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -194,16 +194,16 @@
             this.pictureBox3.TabIndex = 118;
             this.pictureBox3.TabStop = false;
             // 
-            // lblNumDocumento
+            // lblDocumento
             // 
-            this.lblNumDocumento.AutoSize = true;
-            this.lblNumDocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumDocumento.ForeColor = System.Drawing.Color.DimGray;
-            this.lblNumDocumento.Location = new System.Drawing.Point(222, 141);
-            this.lblNumDocumento.Name = "lblNumDocumento";
-            this.lblNumDocumento.Size = new System.Drawing.Size(125, 20);
-            this.lblNumDocumento.TabIndex = 116;
-            this.lblNumDocumento.Text = "Nro. Documento";
+            this.lblDocumento.AutoSize = true;
+            this.lblDocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDocumento.ForeColor = System.Drawing.Color.DimGray;
+            this.lblDocumento.Location = new System.Drawing.Point(222, 141);
+            this.lblDocumento.Name = "lblDocumento";
+            this.lblDocumento.Size = new System.Drawing.Size(125, 20);
+            this.lblDocumento.TabIndex = 116;
+            this.lblDocumento.Text = "Nro. Documento";
             // 
             // ddlTipoDoc
             // 
@@ -291,16 +291,16 @@
             this.pictureBoxNombre.TabIndex = 109;
             this.pictureBoxNombre.TabStop = false;
             // 
-            // lblNombre
+            // lblTxtNombre
             // 
-            this.lblNombre.AutoSize = true;
-            this.lblNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombre.ForeColor = System.Drawing.Color.DimGray;
-            this.lblNombre.Location = new System.Drawing.Point(46, 70);
-            this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(65, 20);
-            this.lblNombre.TabIndex = 107;
-            this.lblNombre.Text = "Nombre";
+            this.lblTxtNombre.AutoSize = true;
+            this.lblTxtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTxtNombre.ForeColor = System.Drawing.Color.DimGray;
+            this.lblTxtNombre.Location = new System.Drawing.Point(46, 70);
+            this.lblTxtNombre.Name = "lblTxtNombre";
+            this.lblTxtNombre.Size = new System.Drawing.Size(65, 20);
+            this.lblTxtNombre.TabIndex = 107;
+            this.lblTxtNombre.Text = "Nombre";
             // 
             // frmProveedorFormulario
             // 
@@ -319,7 +319,7 @@
             this.Controls.Add(this.lblTel);
             this.Controls.Add(this.TxtDocumento);
             this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.lblNumDocumento);
+            this.Controls.Add(this.lblDocumento);
             this.Controls.Add(this.ddlTipoDoc);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.lblTipoDoc);
@@ -328,7 +328,7 @@
             this.Controls.Add(this.lblUrl);
             this.Controls.Add(this.TxtNombre);
             this.Controls.Add(this.pictureBoxNombre);
-            this.Controls.Add(this.lblNombre);
+            this.Controls.Add(this.lblTxtNombre);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmProveedorFormulario";
@@ -362,7 +362,7 @@
         private System.Windows.Forms.Label lblTel;
         private System.Windows.Forms.TextBox TxtDocumento;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.Label lblNumDocumento;
+        private System.Windows.Forms.Label lblDocumento;
         private System.Windows.Forms.ComboBox ddlTipoDoc;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label lblTipoDoc;
@@ -371,6 +371,6 @@
         private System.Windows.Forms.Label lblUrl;
         private System.Windows.Forms.TextBox TxtNombre;
         private System.Windows.Forms.PictureBox pictureBoxNombre;
-        private System.Windows.Forms.Label lblNombre;
+        private System.Windows.Forms.Label lblTxtNombre;
     }
 }

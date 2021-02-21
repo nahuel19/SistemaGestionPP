@@ -81,18 +81,7 @@ namespace DAL
         /// </summary>
         /// <returns>Lista Logs</returns>
         public List<Log> List()
-        {
-            string SqlString = "SELECT [id] " +
-                                      ",[tipo_log] " +
-                                      ",[usuario] " +
-                                      ",[fecha] " +
-                                      ",[clase] " +
-                                      ",[metodo] " +
-                                      ",[stack_trace] " +
-                                      ",[mensaje] " +
-                                      ",[info_operacion] " +
-                                  "FROM [dbo].[Log] ";
-
+        {           
             List<Log> result = new List<Log>();
 
             try
@@ -100,7 +89,7 @@ namespace DAL
                 using (SqlConnection conn = ConnectionBD.Instance().Conect())
                 {
                     conn.Open();
-                    using (SqlCommand cmd = new SqlCommand(SqlString, conn))
+                    using (SqlCommand cmd = new SqlCommand("sp_get_logs", conn))
                     {
                         using (IDataReader dr = cmd.ExecuteReader())
                         {
@@ -110,10 +99,7 @@ namespace DAL
                                 result.Add(entity);
                             }
                         }
-
-
                     }
-
                 }               
             }
             catch (Exception ex)
@@ -132,25 +118,13 @@ namespace DAL
         /// <returns>Entidad Log</returns>
         public Log GetById(int id)
         {
-            string SqlString = "SELECT [id] " +
-                                      ",[tipo_log] " +
-                                      ",[usuario] " +
-                                      ",[fecha] " +
-                                      ",[clase] " +
-                                      ",[metodo] " +
-                                      ",[stack_trace] " +
-                                      ",[mensaje] " +
-                                      ",[info_operacion] " +
-                                  "FROM [dbo].[Log] " +
-                               "WHERE id = @id";
-
             Log entity = null;
             try
             {
                 using (SqlConnection conn = ConnectionBD.Instance().Conect())
                 {
                     conn.Open();
-                    using (SqlCommand cmd = new SqlCommand(SqlString, conn))
+                    using (SqlCommand cmd = new SqlCommand("sp_get_log_by_id @id", conn))
                     {
                         cmd.CommandType = CommandType.Text;
                         cmd.Parameters.AddWithValue("@id", id);
@@ -161,12 +135,8 @@ namespace DAL
                                 entity = LoadEntity(dr);
                             }
                         }
-
-
                     }
-
-                }
-               
+                }               
             }
             catch (Exception ex)
             {
@@ -195,7 +165,8 @@ namespace DAL
                 metodo = dr.GetByNameString("metodo"),
                 stack_trace = dr.GetByNameString("stack_trace"),
                 mensaje = dr.GetByNameString("mensaje"),
-                info_operacion = dr.GetByNameString("info_operacion")
+                info_operacion = dr.GetByNameString("info_operacion"),
+                tipo_log_nombre = dr.GetByNameString("tipo_log_nombre")
             };
 
             return entity;

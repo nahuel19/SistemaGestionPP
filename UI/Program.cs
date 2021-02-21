@@ -20,6 +20,7 @@ namespace UI
 
             Helps.Language.ChangeFileLanguage(new Settings().lang);
             Application.Run(new Login.frmLogin());
+            //Application.Run(new frmPrincipal());
         }
     }
 }

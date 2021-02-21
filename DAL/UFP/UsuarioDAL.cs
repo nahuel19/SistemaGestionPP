@@ -11,163 +11,163 @@ using System.Threading.Tasks;
 
 namespace DAL.UFP
 {
-    public class UsuarioDAL : IDAL<Entities.Usuario>
+    public class UsuarioDAL 
     {
-        public Entities.Usuario Insert(Entities.Usuario entity)
-        {
-            try
-            {
-                using (SqlConnection conn = ConnectionBD.Instance().Conect())
-                {
-                    using (SqlCommand cmd = new SqlCommand("sp_usuario_insert @nombre, @pass", conn))
-                    {
-                        cmd.CommandType = CommandType.Text;
-                        cmd.Parameters.AddWithValue("@nombre", entity.nombre);
-                        cmd.Parameters.AddWithValue("@pass", entity.pass);
-                        conn.Open();
+        //public Entities.Usuario Insert(Entities.Usuario entity)
+        //{
+        //    try
+        //    {
+        //        using (SqlConnection conn = ConnectionBD.Instance().Conect())
+        //        {
+        //            using (SqlCommand cmd = new SqlCommand("sp_usuario_insert @nombre, @pass", conn))
+        //            {
+        //                cmd.CommandType = CommandType.Text;
+        //                cmd.Parameters.AddWithValue("@nombre", entity.nombre);
+        //                cmd.Parameters.AddWithValue("@pass", entity.pass);
+        //                conn.Open();
 
-                        entity.id = (int)cmd.ExecuteScalar();
-                    }
+        //                entity.id = (int)cmd.ExecuteScalar();
+        //            }
 
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
 
-            return entity;
-        }
+        //    return entity;
+        //}
 
-        public void Update(Entities.Usuario entity)
-        {
-            try
-            {
-                using (SqlConnection conn = ConnectionBD.Instance().Conect())
-                {
-                    using (SqlCommand cmd = new SqlCommand("sp_usuario_update @nombre, @pass, @id", conn))
-                    {
-                        cmd.CommandType = CommandType.Text;
-                        cmd.Parameters.AddWithValue("@nombre", entity.nombre);
-                        cmd.Parameters.AddWithValue("@pass", entity.pass);
-                        cmd.Parameters.AddWithValue("@id", entity.id);
+        //public void Update(Entities.Usuario entity)
+        //{
+        //    try
+        //    {
+        //        using (SqlConnection conn = ConnectionBD.Instance().Conect())
+        //        {
+        //            using (SqlCommand cmd = new SqlCommand("sp_usuario_update @nombre, @pass, @id", conn))
+        //            {
+        //                cmd.CommandType = CommandType.Text;
+        //                cmd.Parameters.AddWithValue("@nombre", entity.nombre);
+        //                cmd.Parameters.AddWithValue("@pass", entity.pass);
+        //                cmd.Parameters.AddWithValue("@id", entity.id);
 
-                        conn.Open();
+        //                conn.Open();
 
-                        cmd.ExecuteNonQuery();
-                    }
+        //                cmd.ExecuteNonQuery();
+        //            }
 
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
-        public void Delete(int id)
-        {
-            try
-            {
-                using (SqlConnection conn = ConnectionBD.Instance().Conect())
-                {
-                    using (SqlCommand cmd = new SqlCommand("sp_usuario_delete @id", conn))
-                    {
-                        cmd.CommandType = CommandType.Text;
-                        cmd.Parameters.AddWithValue("@id", id);
-                        conn.Open();
+        //public void Delete(int id)
+        //{
+        //    try
+        //    {
+        //        using (SqlConnection conn = ConnectionBD.Instance().Conect())
+        //        {
+        //            using (SqlCommand cmd = new SqlCommand("sp_usuario_delete @id", conn))
+        //            {
+        //                cmd.CommandType = CommandType.Text;
+        //                cmd.Parameters.AddWithValue("@id", id);
+        //                conn.Open();
 
-                        cmd.ExecuteNonQuery();
-                    }
+        //                cmd.ExecuteNonQuery();
+        //            }
 
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
-        public Entities.Usuario GetById(int id)
-        {
-            Entities.Usuario usuario = new Entities.Usuario();
+        //public Entities.Usuario GetById(int id)
+        //{
+        //    Entities.Usuario usuario = new Entities.Usuario();
 
-            using (var db = new DBGestion())
-            {
-                var list = (from u in db.Usuario
-                            where u.id == id
-                            select u).ToList();
+        //    using (var db = new DBGestion())
+        //    {
+        //        var list = (from u in db.Usuario
+        //                    where u.id == id
+        //                    select u).ToList();
                 
                 
 
-                list.ForEach(o => usuario = new Entities.Usuario
-                                                {
-                                                    id = o.id,
-                                                    nombre = o.nombre,
-                                                    pass = o.pass
-                                                });
-            }
+        //        list.ForEach(o => usuario = new Entities.Usuario
+        //                                        {
+        //                                            id = o.id,
+        //                                            nombre = o.nombre,
+        //                                            pass = o.pass
+        //                                        });
+        //    }
 
-            return usuario;
-        }
+        //    return usuario;
+        //}
                 
-        public List<Entities.Usuario> List()
-        {
-            List<Entities.Usuario> listUsuarios = new List<Entities.Usuario>();
+        //public List<Entities.Usuario> List()
+        //{
+        //    List<Entities.Usuario> listUsuarios = new List<Entities.Usuario>();
 
-            using (var db = new DBGestion())
-            {
-                var list = (from u in db.Usuario
-                            select u).ToList();
+        //    using (var db = new DBGestion())
+        //    {
+        //        var list = (from u in db.Usuario
+        //                    select u).ToList();
 
-                list.ForEach(o => listUsuarios.Add(
-                    new Entities.Usuario
-                    { 
-                        id = o.id,
-                        nombre = o.nombre
-                    }));
-            }
+        //        list.ForEach(o => listUsuarios.Add(
+        //            new Entities.Usuario
+        //            { 
+        //                id = o.id,
+        //                nombre = o.nombre
+        //            }));
+        //    }
 
-            return listUsuarios;
-        }
+        //    return listUsuarios;
+        //}
 
 
-        public bool Login(Entities.Usuario entity)
-        {
-            try
-            {
-                using (SqlConnection conn = ConnectionBD.Instance().Conect())
-                {
-                    using (SqlCommand cmd = new SqlCommand("sp_login @nombre, @pass", conn))
-                    {
-                        cmd.CommandType = CommandType.Text;
-                        cmd.Parameters.AddWithValue("@nombre",entity.nombre);
-                        cmd.Parameters.AddWithValue("@pass", entity.pass);
-                        conn.Open();
+        //public bool Login(Entities.Usuario entity)
+        //{
+        //    try
+        //    {
+        //        using (SqlConnection conn = ConnectionBD.Instance().Conect())
+        //        {
+        //            using (SqlCommand cmd = new SqlCommand("sp_login @nombre, @pass", conn))
+        //            {
+        //                cmd.CommandType = CommandType.Text;
+        //                cmd.Parameters.AddWithValue("@nombre", entity.nombre);
+        //                cmd.Parameters.AddWithValue("@pass", entity.pass);
+        //                conn.Open();
 
-                        SqlDataReader reader = cmd.ExecuteReader();
+        //                SqlDataReader reader = cmd.ExecuteReader();
 
-                        if (reader.HasRows)
-                        {
-                            while (reader.Read())
-                            {
-                                LoginCache.idUser = reader.GetInt32(0);
-                                LoginCache.nombreUser = reader.GetString(1);
-                            }
+        //                if (reader.HasRows)
+        //                {
+        //                    //while (reader.Read())
+        //                    //{
+        //                    //    LoginCache.idUser = reader.GetInt32(0);
+        //                    //    LoginCache.nombreUser = reader.GetString(1);
+        //                    //}
 
-                            return true;
-                        }                            
-                        else
-                            return false;
-                    }
+        //                    return true;
+        //                }
+        //                else
+        //                    return false;
+        //            }
 
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
     }
 }

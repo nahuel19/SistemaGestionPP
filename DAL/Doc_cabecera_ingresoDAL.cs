@@ -108,7 +108,7 @@ namespace DAL
                             d.id = Convert.ToInt32(cmd.ExecuteScalar());
                         }
 
-                        using (SqlCommand cmd = new SqlCommand("sp_update_stock_mov_prod_ingresos_egresos @id_prod, @cant, @tipo_mov, @extra ;SELECT SCOPE_IDENTITY()", conn, transaction))
+                        using (SqlCommand cmd = new SqlCommand("sp_update_stock_mov_prod_ingresos @id_prod, @cant, @tipo_mov, @extra ;SELECT SCOPE_IDENTITY()", conn, transaction))
                         {
                             cmd.CommandType = CommandType.Text;
                             cmd.Parameters.AddWithValue("@id_prod", d.fk_id_producto);
@@ -139,49 +139,55 @@ namespace DAL
             return entity;
         }
                
+
         /// <summary>
         /// Actualiza registros en la tabla Doc_cabecera_ingreso
         /// </summary>
         /// <param name="entity">Entidad Doc_cabecera_ingreso</param>
         public void Update(Doc_cabecera_ingreso entity)
         {
-            string SqlString = "UPDATE [dbo].[Doc_cabecera_ingreso] " +
-                               "SET [fk_id_tipo_doc] = @fk_id_tipo_doc " +
-                                  ",[fk_id_proveedor] = @fk_id_proveedor " +
-                                  ",[letra] = @letra " +
-                                  ",[sucursal] = @sucursal " +
-                                  ",[numero] = @numero " +
-                                  ",[fecha] = @fecha " +
-                              "WHERE id = @id ";
+            throw new NotImplementedException();
 
-            try
-            {
-                using (SqlConnection conn = ConnectionBD.Instance().Conect())
-                {
-                    using (SqlCommand cmd = new SqlCommand(SqlString, conn))
-                    {
-                        cmd.CommandType = CommandType.Text;
-                        cmd.Parameters.AddWithValue("@id", entity.id);
-                        cmd.Parameters.AddWithValue("@fk_id_tipo_doc", entity.fk_id_tipo_doc);
-                        cmd.Parameters.AddWithValue("@fk_id_proveedor", entity.fk_id_proveedor);
-                        cmd.Parameters.AddWithValue("@letra", entity.letra);
-                        cmd.Parameters.AddWithValue("@sucursal", entity.sucursal);
-                        cmd.Parameters.AddWithValue("@numero", entity.numero);
-                        cmd.Parameters.AddWithValue("@fecha", entity.fecha);
+            #region posible update
+            //string SqlString = "UPDATE [dbo].[Doc_cabecera_ingreso] " +
+            //                   "SET [fk_id_tipo_doc] = @fk_id_tipo_doc " +
+            //                      ",[fk_id_proveedor] = @fk_id_proveedor " +
+            //                      ",[letra] = @letra " +
+            //                      ",[sucursal] = @sucursal " +
+            //                      ",[numero] = @numero " +
+            //                      ",[fecha] = @fecha " +
+            //                  "WHERE id = @id ";
 
-                        conn.Open();
+            //try
+            //{
+            //    using (SqlConnection conn = ConnectionBD.Instance().Conect())
+            //    {
+            //        using (SqlCommand cmd = new SqlCommand(SqlString, conn))
+            //        {
+            //            cmd.CommandType = CommandType.Text;
+            //            cmd.Parameters.AddWithValue("@id", entity.id);
+            //            cmd.Parameters.AddWithValue("@fk_id_tipo_doc", entity.fk_id_tipo_doc);
+            //            cmd.Parameters.AddWithValue("@fk_id_proveedor", entity.fk_id_proveedor);
+            //            cmd.Parameters.AddWithValue("@letra", entity.letra);
+            //            cmd.Parameters.AddWithValue("@sucursal", entity.sucursal);
+            //            cmd.Parameters.AddWithValue("@numero", entity.numero);
+            //            cmd.Parameters.AddWithValue("@fecha", entity.fecha);
 
-                        cmd.ExecuteNonQuery();
-                    }
+            //            conn.Open();
 
-                }
-              
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            //            cmd.ExecuteNonQuery();
+            //        }
+
+            //    }
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //}
+            #endregion
         }
+
 
         /// <summary>
         /// Anula registros de la tabla Doc_cabecera_ingreso
@@ -214,6 +220,7 @@ namespace DAL
                 throw ex;
             }
         }
+
 
         /// <summary>
         /// Selecciona registros de la tabla Doc_cabecera_ingreso
@@ -253,6 +260,7 @@ namespace DAL
             return result;
         }
 
+
         /// <summary>
         /// Selecciona un registro de la tabla Doc_cabecera_ingreso
         /// </summary>
@@ -288,6 +296,7 @@ namespace DAL
         }
 
 
+
         /// <summary>
         /// Carga una entidad de Doc_cabecera_ingreso a partir de un DataReader
         /// </summary>
@@ -306,7 +315,7 @@ namespace DAL
                 fecha = dr.GetByNameDT("fecha"),
                 fk_id_usuario = dr.GetByNameInt("fk_id_usuario"),
                 factura = dr.GetByNameString("factura"),
-                nombre_usuario = dr.GetByNameString("usuario"),
+                //nombre_usuario = dr.GetByNameString("usuario"),
                 nombre_proveedor=dr.GetByNameString("proveedor"),
                 tipo_documento = dr.GetByNameString("tipo_documento"),
                 cancelada = dr.GetByNameBool("cancelada")

@@ -35,10 +35,10 @@
             this.lblPassAnterior = new System.Windows.Forms.Label();
             this.TxtNombre = new System.Windows.Forms.TextBox();
             this.pictureBoxNombre = new System.Windows.Forms.PictureBox();
-            this.lblNombre = new System.Windows.Forms.Label();
+            this.lblTxtNombre = new System.Windows.Forms.Label();
             this.txtPassNueva = new System.Windows.Forms.TextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.lblbPassNueva = new System.Windows.Forms.Label();
+            this.lblPassNueva = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPassAnterior)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxNombre)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -99,6 +99,7 @@
             // 
             this.TxtNombre.BackColor = System.Drawing.Color.White;
             this.TxtNombre.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtNombre.Enabled = false;
             this.TxtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtNombre.ForeColor = System.Drawing.Color.DimGray;
             this.TxtNombre.Location = new System.Drawing.Point(81, 102);
@@ -116,16 +117,16 @@
             this.pictureBoxNombre.TabIndex = 109;
             this.pictureBoxNombre.TabStop = false;
             // 
-            // lblNombre
+            // lblTxtNombre
             // 
-            this.lblNombre.AutoSize = true;
-            this.lblNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombre.ForeColor = System.Drawing.Color.DimGray;
-            this.lblNombre.Location = new System.Drawing.Point(76, 72);
-            this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(65, 20);
-            this.lblNombre.TabIndex = 107;
-            this.lblNombre.Text = "Nombre";
+            this.lblTxtNombre.AutoSize = true;
+            this.lblTxtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTxtNombre.ForeColor = System.Drawing.Color.DimGray;
+            this.lblTxtNombre.Location = new System.Drawing.Point(76, 72);
+            this.lblTxtNombre.Name = "lblTxtNombre";
+            this.lblTxtNombre.Size = new System.Drawing.Size(65, 20);
+            this.lblTxtNombre.TabIndex = 107;
+            this.lblTxtNombre.Text = "Nombre";
             // 
             // txtPassNueva
             // 
@@ -148,16 +149,16 @@
             this.pictureBox2.TabIndex = 116;
             this.pictureBox2.TabStop = false;
             // 
-            // lblbPassNueva
+            // lblPassNueva
             // 
-            this.lblbPassNueva.AutoSize = true;
-            this.lblbPassNueva.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblbPassNueva.ForeColor = System.Drawing.Color.DimGray;
-            this.lblbPassNueva.Location = new System.Drawing.Point(73, 202);
-            this.lblbPassNueva.Name = "lblbPassNueva";
-            this.lblbPassNueva.Size = new System.Drawing.Size(141, 20);
-            this.lblbPassNueva.TabIndex = 114;
-            this.lblbPassNueva.Text = "Contraseña Nueva";
+            this.lblPassNueva.AutoSize = true;
+            this.lblPassNueva.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPassNueva.ForeColor = System.Drawing.Color.DimGray;
+            this.lblPassNueva.Location = new System.Drawing.Point(73, 202);
+            this.lblPassNueva.Name = "lblPassNueva";
+            this.lblPassNueva.Size = new System.Drawing.Size(141, 20);
+            this.lblPassNueva.TabIndex = 114;
+            this.lblPassNueva.Text = "Contraseña Nueva";
             // 
             // frmUsuarioFormulario
             // 
@@ -166,14 +167,14 @@
             this.ClientSize = new System.Drawing.Size(414, 392);
             this.Controls.Add(this.txtPassNueva);
             this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.lblbPassNueva);
+            this.Controls.Add(this.lblPassNueva);
             this.Controls.Add(this.BtnGuardar);
             this.Controls.Add(this.TxtPassAnterior);
             this.Controls.Add(this.pictureBoxPassAnterior);
             this.Controls.Add(this.lblPassAnterior);
             this.Controls.Add(this.TxtNombre);
             this.Controls.Add(this.pictureBoxNombre);
-            this.Controls.Add(this.lblNombre);
+            this.Controls.Add(this.lblTxtNombre);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmUsuarioFormulario";
@@ -194,9 +195,9 @@
         private System.Windows.Forms.Label lblPassAnterior;
         private System.Windows.Forms.TextBox TxtNombre;
         private System.Windows.Forms.PictureBox pictureBoxNombre;
-        private System.Windows.Forms.Label lblNombre;
+        private System.Windows.Forms.Label lblTxtNombre;
         private System.Windows.Forms.TextBox txtPassNueva;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Label lblbPassNueva;
+        private System.Windows.Forms.Label lblPassNueva;
     }
 }

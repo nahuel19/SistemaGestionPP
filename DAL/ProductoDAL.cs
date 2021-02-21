@@ -189,6 +189,39 @@ namespace DAL
             return result;
         }
 
+        public List<Producto> ListByCategoria(int idCat)
+        {
+            List<Producto> result = new List<Producto>();
+
+            try
+            {
+                using (SqlConnection conn = ConnectionBD.Instance().Conect())
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand("sp_get_productos_by_categoria @id", conn))
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        cmd.Parameters.AddWithValue("@id", idCat);
+                        using (IDataReader dr = cmd.ExecuteReader())
+                        {
+                            while (dr.Read())
+                            {
+                                Producto entity = LoadEntity(dr);
+                                result.Add(entity);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+            return result;
+        }
+
         /// <summary>
         /// Selecciona un registro de la tabla Producto
         /// </summary>

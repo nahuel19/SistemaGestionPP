@@ -98,7 +98,7 @@
             this.lblNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNombre.ForeColor = System.Drawing.Color.DimGray;
             this.lblNombre.Location = new System.Drawing.Point(150, 152);
-            this.lblNombre.Name = "lblNombre";
+            this.lblNombre.Name = "lblTxtNombre";
             this.lblNombre.Size = new System.Drawing.Size(65, 20);
             this.lblNombre.TabIndex = 126;
             this.lblNombre.Text = "Nombre";
