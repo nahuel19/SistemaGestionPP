@@ -11,8 +11,15 @@ using System.Threading.Tasks;
 
 namespace BLL.UFP
 {
+	/// <summary>
+	/// bll usuario
+	/// </summary>
     public class Usuario
     {
+		/// <summary>
+		/// retorna lista de usuarios
+		/// </summary>
+		/// <returns>list usuario</returns>
 		public static List<Entities.UFP.Usuario> GetAllAdapted()
 		{
 			try
@@ -26,6 +33,11 @@ namespace BLL.UFP
 			}
 		}
 
+		/// <summary>
+		/// retorna un usuario
+		/// </summary>
+		/// <param name="IdUsuario">string</param>
+		/// <returns>usuario</returns>
 		public static Entities.UFP.Usuario GetAdapted(System.String IdUsuario)
 		{
 			try
@@ -38,6 +50,10 @@ namespace BLL.UFP
 			}
 		}
 
+		/// <summary>
+		/// llama a dal para insertar un usuario
+		/// </summary>
+		/// <param name="_object">usuario</param>
 		public static void Insert(Entities.UFP.Usuario _object)
 		{
 			try
@@ -52,6 +68,10 @@ namespace BLL.UFP
 			}
 		}
 
+		/// <summary>
+		/// llama a dal para actualizar un usuario
+		/// </summary>
+		/// <param name="_object">usuario</param>
 		public static void Update(Entities.UFP.Usuario _object)
 		{
 			try
@@ -65,6 +85,10 @@ namespace BLL.UFP
 			}
 		}
 
+		/// <summary>
+		/// llama a dal para eliminar un usuario
+		/// </summary>
+		/// <param name="_object">usuario</param>
 		public static void Delete(Entities.UFP.Usuario _object)
 		{
 			try
@@ -104,6 +128,10 @@ namespace BLL.UFP
 			}
 		}
 
+		/// <summary>
+		/// elimina familias de un usuario
+		/// </summary>
+		/// <param name="_object">usuario</param>
 		public static void DeleteFamilias(Entities.UFP.Usuario _object)
 		{
 			try
@@ -117,6 +145,10 @@ namespace BLL.UFP
 			}
 		}
 
+		/// <summary>
+		/// eliminar patentes de un usuario
+		/// </summary>
+		/// <param name="_object">usuario</param>
 		public static void DeletePatentes(Entities.UFP.Usuario _object)
 		{
 			try
@@ -131,6 +163,11 @@ namespace BLL.UFP
 		}
 
 		//===================================================================
+		/// <summary>
+		/// chequea la validez de un usuario, para ver si puede iniciar sesión
+		/// </summary>
+		/// <param name="_object">usuario</param>
+		/// <returns>bool, string(idUsuario)</returns>
 		public static (bool,string) Login(Entities.UFP.Usuario _object)
 		{
 			_object.Pass = Convert.ToBase64String(new CryptoSeguridad().Encrypt(_object.Pass));
@@ -147,7 +184,12 @@ namespace BLL.UFP
 			return valid;
 		}
 
-
+		/// <summary>
+		/// Dada una lista de familiaElement y un tipo de permiso, valida si el permiso se encuentra en la lista
+		/// </summary>
+		/// <param name="familia">list familiaElement</param>
+		/// <param name="tipoPermiso">tipoPermiso</param>
+		/// <returns></returns>
 		public static bool ValidarPermiso(List<FamiliaElement> familia, TipoPermiso tipoPermiso)
 		{
 			bool existe = false;
@@ -169,6 +211,12 @@ namespace BLL.UFP
 			return existe;
 		}
 
+		/// <summary>
+		/// Devuelve un string con la estructura de permisos, separados con -
+		/// </summary>
+		/// <param name="familia">lista familiaElement</param>
+		/// <param name="nivel">string</param>
+		/// <returns>string</returns>
         public static string MostrarEstructura(List<FamiliaElement> familia, String nivel = "-")
         {
             String siguienteNivel = String.Format("{0}-", nivel);
@@ -189,38 +237,6 @@ namespace BLL.UFP
 			return estructura;
         }
 
-        //bool isInRole(FamiliaElement c, TipoPermiso permiso, bool existe)
-        //{
-        //	if (c.Permiso.Equals(permiso))
-        //		existe = true;
-        //	else
-        //	{
-        //		foreach (var item in c.)
-        //		{
-        //			existe = isInRole(item, permiso, existe);
-        //			if (existe) return true;
-        //		}
-        //	}
-
-        //	return existe;
-        //}
-
-        //public bool IsInRole(TipoPermiso permiso)
-        //{
-        //	bool existe = false;
-        //	foreach (var item in _usuario.Permisos)
-        //	{
-        //		if (item.Permiso.Equals(permiso))
-        //			return true;
-        //		else
-        //		{
-        //			existe = isInRole(item, permiso, existe);
-        //			if (existe) return true;
-        //		}
-
-        //	}
-
-        //	return existe;
-        //}
+        
     }
 }

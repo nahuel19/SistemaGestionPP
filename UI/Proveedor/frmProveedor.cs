@@ -1,6 +1,7 @@
 ﻿using BLL;
 using BLL.LogBitacora;
 using Services;
+using Services.Cache;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,9 +13,13 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.Helps;
 
 namespace UI.Proveedor
 {
+    /// <summary>
+    /// form gestión de proveedores
+    /// </summary>
     public partial class frmProveedor : Form
     {
         ProveedorBLL bll = new ProveedorBLL();
@@ -28,9 +33,17 @@ namespace UI.Proveedor
         #region helpers
         private void RefrescarTabla()
         {
-            metroGrid1.DataSource = bll.List();
+            try
+            {
+                metroGrid1.DataSource = bll.List();
 
-            CaracteristicasGrid();
+                CaracteristicasGrid();
+            }
+            catch (Exception ex)
+            {
+                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error carga de datos", ex.StackTrace, ex.Message));
+                Notifications.FrmError.ErrorForm(Language.SearchValue("errorBuscarDatos") + "\n" + ex.Message);
+            }
             
             metroGrid1.ClearSelection();
             TxtBuscar.Focus();
@@ -74,6 +87,16 @@ namespace UI.Proveedor
         private void frmProveedor_Load(object sender, EventArgs e)
         {
             RefrescarTabla();
+            CheckPermisos();
+            HelpUser();
+        }
+
+        private void HelpUser()
+        {
+            helpProvider1.HelpNamespace = Application.StartupPath + "/ManualUsuario.chm";
+            helpProvider1.SetHelpString(this, "Proveedores");
+            helpProvider1.SetHelpKeyword(this, "Proveedores");
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.KeywordIndex);
         }
 
         private void BtnNuevo_Click(object sender, EventArgs e)
@@ -97,7 +120,7 @@ namespace UI.Proveedor
 
                 try
                 {
-                    DialogResult confirmation = new Notifications.FrmQuestion(Helps.Language.info["preguntaEliminar"]).ShowDialog();
+                    DialogResult confirmation = new Notifications.FrmQuestion(Helps.Language.SearchValue("preguntaEliminar")).ShowDialog();
 
                     if (confirmation == DialogResult.OK)
                     {
@@ -105,7 +128,7 @@ namespace UI.Proveedor
                         InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Delete, 1, this.GetType().FullName, MethodInfo.GetCurrentMethod().Name, "Proveedor: " + entity.nombre, "", ""));
 
                         RefrescarTabla();
-                        Notifications.FrmSuccess.SuccessForm(Helps.Language.info["eliminadoOK"]);
+                        Notifications.FrmSuccess.SuccessForm(Helps.Language.SearchValue("eliminadoOK"));
 
                     }
                 }
@@ -113,13 +136,13 @@ namespace UI.Proveedor
                 {
                     InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.DeleteError, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Proveedor: " + entity.nombre, ex.StackTrace, ex.Message));
                     RefrescarTabla();
-                    Notifications.FrmError.ErrorForm(Helps.Language.info["eliminadoError"] + "\n" + ex.Message);
+                    Notifications.FrmError.ErrorForm(Helps.Language.SearchValue("eliminadoError") + "\n" + ex.Message);
                 }
                 RefrescarTabla();
             }
             else
             {
-                Notifications.FrmInformation.InformationForm(Helps.Language.info["infoSelecEliminar"]);
+                Notifications.FrmInformation.InformationForm(Helps.Language.SearchValue("infoSelecEliminar"));
             }
         }
 
@@ -135,13 +158,22 @@ namespace UI.Proveedor
             }
             else
             {
-                Notifications.FrmInformation.InformationForm(Helps.Language.info["infoSelecEditar"]);
+                Notifications.FrmInformation.InformationForm(Helps.Language.SearchValue("infoSelecEditar"));
             }
         }
 
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {
-            metroGrid1.DataSource = bll.FindBy(TxtBuscar.Text);
+            try
+            {
+                metroGrid1.DataSource = bll.FindBy(TxtBuscar.Text);
+            }
+            catch (Exception ex)
+            {
+
+                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error carga de datos", ex.StackTrace, ex.Message));
+                Notifications.FrmError.ErrorForm(Language.SearchValue("errorBuscarDatos") + "\n" + ex.Message);
+            }
         }
 
         private void btnDetalle_Click(object sender, EventArgs e)
@@ -156,7 +188,7 @@ namespace UI.Proveedor
             }
             else
             {
-                Notifications.FrmInformation.InformationForm(Helps.Language.info["infoSelecDetalle"]);
+                Notifications.FrmInformation.InformationForm(Helps.Language.SearchValue("infoSelecDetalle"));
             }
         }
 
@@ -164,11 +196,11 @@ namespace UI.Proveedor
         {
             try {
                 bll.ExportProveedoresExcel();
-                Notifications.FrmSuccess.SuccessForm(Helps.Language.info["excelOK"] + "\n" + ConfigurationManager.AppSettings["FolderExcel"]);
+                Notifications.FrmSuccess.SuccessForm(Helps.Language.SearchValue("excelOK") + "\n" + ConfigurationManager.AppSettings["FolderExcel"]);
             }
             catch(Exception ex)
             {
-                Notifications.FrmError.ErrorForm(Helps.Language.info["excelError"] + "\n" + ex.Message);
+                Notifications.FrmError.ErrorForm(Helps.Language.SearchValue("excelError") + "\n" + ex.Message);
             }
             
         }
@@ -178,12 +210,30 @@ namespace UI.Proveedor
             try
             {
                 bll.ExportProveedoresPDF();
-                Notifications.FrmSuccess.SuccessForm(Helps.Language.info["pdfOK"] + "\n" + ConfigurationManager.AppSettings["FolderPDF"]);
+                Notifications.FrmSuccess.SuccessForm(Helps.Language.SearchValue("pdfOK") + "\n" + ConfigurationManager.AppSettings["FolderPDF"]);
             }
             catch (Exception ex)
             {
-                Notifications.FrmError.ErrorForm(Helps.Language.info["pdfError"] + "\n" + ex.Message);
+                Notifications.FrmError.ErrorForm(Helps.Language.SearchValue("pdfError") + "\n" + ex.Message);
             }
+        }
+
+
+        private void CheckPermisos()
+        {
+            try
+            {
+                BtnNuevo.Enabled = BLL.UFP.Usuario.ValidarPermiso(LoginCache.permisos, Entities.UFP.TipoPermiso.ProveedorInsertar);
+                BtnEditar.Enabled = BLL.UFP.Usuario.ValidarPermiso(LoginCache.permisos, Entities.UFP.TipoPermiso.ProveedorEditar);
+                BtnEliminar.Enabled = BLL.UFP.Usuario.ValidarPermiso(LoginCache.permisos, Entities.UFP.TipoPermiso.ProveedorEliminar);
+            }
+            catch (Exception ex)
+            {
+
+                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error validación de permisos", ex.StackTrace, ex.Message));
+                Notifications.FrmError.ErrorForm(Language.SearchValue("errorPermisos") + "\n" + ex.Message);
+            }
+         
         }
     }
 }

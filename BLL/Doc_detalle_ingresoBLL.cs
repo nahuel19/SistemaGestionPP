@@ -23,7 +23,15 @@ namespace BLL
         /// <returns>Doc_detalle_ingreso</returns>
         public Doc_detalle_ingreso GetById(int id)
         {
-            return doc_det_ingrDAL.GetById(id);
+            try
+            {
+                return doc_det_ingrDAL.GetById(id);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -32,7 +40,15 @@ namespace BLL
         /// <returns>List Doc_detalle_ingreso</returns>
         public List<Doc_detalle_ingreso> List()
         {
-            return doc_det_ingrDAL.List();
+            try
+            {
+                return doc_det_ingrDAL.List();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -42,7 +58,15 @@ namespace BLL
         /// <returns>Doc_detalle_ingreso</returns>
         public void Insert(Doc_detalle_ingreso entity)
         {
-            doc_det_ingrDAL.Insert(entity);
+            try
+            {
+                doc_det_ingrDAL.Insert(entity);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
 
         }
 
@@ -52,7 +76,15 @@ namespace BLL
         /// <param name="entity">Doc_detalle_ingreso</param>
         public void Update(Doc_detalle_ingreso entity)
         {
-            doc_det_ingrDAL.Update(entity);
+            try
+            {
+                doc_det_ingrDAL.Update(entity);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -60,7 +92,15 @@ namespace BLL
         /// </summary>
         public void UpdateFKprecio(Doc_detalle_ingreso entity)
         {
-            doc_det_ingrDAL.UpdateFKprecio(entity);
+            try
+            {
+                doc_det_ingrDAL.UpdateFKprecio(entity);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -69,7 +109,15 @@ namespace BLL
         /// <param name="id">int</param>
         public void Delete(int id)
         {
-            doc_det_ingrDAL.Delete(id);
+            try
+            {
+                doc_det_ingrDAL.Delete(id);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
 
@@ -80,7 +128,15 @@ namespace BLL
         /// <returns>Lit Doc_detalle_ingreso</returns>
         public List<Doc_detalle_ingreso> ListDetallesByCabecera(int id_cab)
         {
-            return doc_det_ingrDAL.ListDetallesByCabecera(id_cab);
+            try
+            {
+                return doc_det_ingrDAL.ListDetallesByCabecera(id_cab);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
     }

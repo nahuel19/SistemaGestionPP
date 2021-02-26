@@ -22,7 +22,15 @@ namespace BLL
         /// <returns>Doc_detalle_egreso</returns>
         public Doc_detalle_egreso GetById(int id)
         {
-            return doc_det_egrDAL.GetById(id);
+            try
+            {
+                return doc_det_egrDAL.GetById(id);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -31,7 +39,15 @@ namespace BLL
         /// <returns>List Doc_detalle_egreso</returns>
         public List<Doc_detalle_egreso> List()
         {
-            return doc_det_egrDAL.List();
+            try
+            {
+                return doc_det_egrDAL.List();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -41,7 +57,15 @@ namespace BLL
         /// <returns>Doc_detalle_egreso</returns>
         public void Insert(Doc_detalle_egreso entity)
         {
-            doc_det_egrDAL.Insert(entity);
+            try
+            {
+                doc_det_egrDAL.Insert(entity);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
 
         }
 
@@ -51,7 +75,15 @@ namespace BLL
         /// <param name="entity">Doc_detalle_egreso</param>
         public void Update(Doc_detalle_egreso entity)
         {
-            doc_det_egrDAL.Update(entity);
+            try
+            {
+                doc_det_egrDAL.Update(entity);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -60,7 +92,15 @@ namespace BLL
         /// <param name="id">int</param>
         public void Delete(int id)
         {
-            doc_det_egrDAL.Delete(id);
+            try
+            {
+                doc_det_egrDAL.Delete(id);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -81,7 +121,15 @@ namespace BLL
         /// <returns>Lit Doc_detalle_egreso</returns>
         public List<Doc_detalle_egreso> ListDetallesByCabecera(int id_cab)
         {
-            return doc_det_egrDAL.ListDetallesByCabecera(id_cab);
+            try
+            {
+                return doc_det_egrDAL.ListDetallesByCabecera(id_cab);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
     }

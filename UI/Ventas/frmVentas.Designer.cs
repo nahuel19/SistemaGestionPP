@@ -48,6 +48,7 @@
             this.TxtBuscar = new System.Windows.Forms.TextBox();
             this.pictureBoxBuscar = new System.Windows.Forms.PictureBox();
             this.lblCancelada = new System.Windows.Forms.Label();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             ((System.ComponentModel.ISupportInitialize)(this.metroGrid1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureLupa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBuscar)).BeginInit();
@@ -333,5 +334,6 @@
         private System.Windows.Forms.TextBox TxtBuscar;
         private System.Windows.Forms.PictureBox pictureBoxBuscar;
         private System.Windows.Forms.Label lblCancelada;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

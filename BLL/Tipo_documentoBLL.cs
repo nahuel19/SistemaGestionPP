@@ -22,7 +22,15 @@ namespace BLL
         /// <returns>Tipo_documento</returns>
         public Tipo_documento GetById(int id)
         {
-            return tipo_docDAL.GetById(id);
+            try
+            {
+                return tipo_docDAL.GetById(id);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -31,7 +39,15 @@ namespace BLL
         /// <returns>List Tipo_documento</returns>
         public List<Tipo_documento> List()
         {
-            return tipo_docDAL.List();
+            try
+            {
+                return tipo_docDAL.List();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -41,7 +57,15 @@ namespace BLL
         /// <returns>Tipo_documento</returns>
         public void Insert(Tipo_documento entity)
         {
-            tipo_docDAL.Insert(entity);
+            try
+            {
+                tipo_docDAL.Insert(entity);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
 
         }
 
@@ -51,7 +75,15 @@ namespace BLL
         /// <param name="entity">Tipo_documento</param>
         public void Update(Tipo_documento entity)
         {
-            tipo_docDAL.Update(entity);
+            try
+            {
+                tipo_docDAL.Update(entity);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -60,7 +92,15 @@ namespace BLL
         /// <param name="id">int</param>
         public void Delete(int id)
         {
-            tipo_docDAL.Delete(id);
+            try
+            {
+                tipo_docDAL.Delete(id);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -70,7 +110,15 @@ namespace BLL
         /// <returns>List Tipo_documento</returns>
         public List<Tipo_documento> FindIngresos()
         {
-            return List().FindAll(x => x.venta == false);
+            try
+            {
+                return List().FindAll(x => x.venta == false);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -80,7 +128,15 @@ namespace BLL
         /// <returns>List Tipo_documento</returns>
         public List<Tipo_documento> FindEgresos()
         {
-            return List().FindAll(x => x.venta == true);
+            try
+            {
+                return List().FindAll(x => x.venta == true);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using BLL.LogBitacora;
 using Services;
+using Services.Cache;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,9 +11,13 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.Helps;
 
 namespace UI.Ingresos
 {
+    /// <summary>
+    /// form ingreso
+    /// </summary>
     public partial class frmIngreso : Form
     {
         BLL.Doc_cabecera_ingresoBLL bllCabecera = new BLL.Doc_cabecera_ingresoBLL();
@@ -36,9 +41,18 @@ namespace UI.Ingresos
         #region helpers
         private void RefrescarTabla()
         {
-            metroGrid1.DataSource = bllCabecera.List();
+            try
+            {
+                metroGrid1.DataSource = bllCabecera.List();
 
-            CaracteristicasGrid();
+                CaracteristicasGrid();
+            }
+            catch (Exception ex)
+            {
+
+                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error carga de datos", ex.StackTrace, ex.Message));
+                Notifications.FrmError.ErrorForm(Language.SearchValue("errorBuscarDatos") + "\n" + ex.Message);
+            }
 
             metroGrid1.ClearSelection();
             TxtBuscar.Focus();
@@ -107,6 +121,8 @@ namespace UI.Ingresos
         private void frmIngreso_Load(object sender, EventArgs e)
         {
             RefrescarTabla();
+            CheckPermisos();
+            HelpUser();
         }
 
         private void BtnAnular_Click(object sender, EventArgs e)
@@ -128,20 +144,20 @@ namespace UI.Ingresos
                         InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Delete, 1, this.GetType().FullName, MethodInfo.GetCurrentMethod().Name, "Ingreso anulado: " + entity.factura, "", ""));
 
                         RefrescarTabla();
-                        Notifications.FrmSuccess.SuccessForm(Helps.Language.info["eliminadoOK"]);
+                        Notifications.FrmSuccess.SuccessForm(Helps.Language.SearchValue("eliminadoOK"));
                     }
                 }
                 catch (Exception ex)
                 {
                     InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.DeleteError, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Ingreso anulado: " + entity.factura, ex.StackTrace, ex.Message));
                     RefrescarTabla();
-                    Notifications.FrmError.ErrorForm(Helps.Language.info["eliminadoError"] + "\n" + ex.Message);
+                    Notifications.FrmError.ErrorForm(Helps.Language.SearchValue("eliminadoError") + "\n" + ex.Message);
                 }
                 RefrescarTabla();
             }
             else
             {
-                Notifications.FrmInformation.InformationForm(Helps.Language.info["infoSelecEliminar"]);
+                Notifications.FrmInformation.InformationForm(Helps.Language.SearchValue("infoSelecEliminar"));
             }
         }
 
@@ -174,6 +190,29 @@ namespace UI.Ingresos
             }
         }
 
-       
+
+        private void CheckPermisos()
+        {
+            try
+            {
+                BtnNuevo.Enabled = BLL.UFP.Usuario.ValidarPermiso(LoginCache.permisos, Entities.UFP.TipoPermiso.ComprasInsertar);
+                BtnAnular.Enabled = BLL.UFP.Usuario.ValidarPermiso(LoginCache.permisos, Entities.UFP.TipoPermiso.ComprasAnular);
+            }
+            catch (Exception ex)
+            {
+
+                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error validación de permisos", ex.StackTrace, ex.Message));
+                Notifications.FrmError.ErrorForm(Language.SearchValue("errorPermisos") + "\n" + ex.Message);
+            }
+           
+        }
+
+        private void HelpUser()
+        {
+            helpProvider1.HelpNamespace = Application.StartupPath + "/ManualUsuario.chm";
+            helpProvider1.SetHelpString(this, "Compras");
+            helpProvider1.SetHelpKeyword(this, "Compras");
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.KeywordIndex);
+        }
     }
 }

@@ -7,8 +7,15 @@ using System.Threading.Tasks;
 
 namespace DAL.UFP
 {
+	/// <summary>
+	/// clase facade de familia, utiliza dal de familia, familia adapter y familia collection adapter
+	/// </summary>
 	public class FamiliaFacade
 	{
+		/// <summary>
+		/// obtiene las familias con sus accesos
+		/// </summary>
+		/// <returns>list familia</returns>
 		public static List<Entities.UFP.Familia> GetAllAdapted()
 		{
 			try
@@ -24,6 +31,11 @@ namespace DAL.UFP
 			}
 		}
 
+		/// <summary>
+		/// obtiene una familia con sus accesos 
+		/// </summary>
+		/// <param name="IdFamiliaElement">string</param>
+		/// <returns>familia</returns>
 		public static Entities.UFP.Familia GetAdapted(System.String IdFamiliaElement)
 		{
 			try
@@ -39,6 +51,10 @@ namespace DAL.UFP
 			}
 		}
 
+		/// <summary>
+		/// insert familia
+		/// </summary>
+		/// <param name="_object">familia</param>
 		public static void Insert(Entities.UFP.Familia _object)
 		{
 			try
@@ -50,7 +66,10 @@ namespace DAL.UFP
 				throw ex;
 			}
 		}
-
+		/// <summary>
+		/// update familia
+		/// </summary>
+		/// <param name="_object">familia</param>
 		public static void Update(Entities.UFP.Familia _object)
 		{
 			try
@@ -63,6 +82,10 @@ namespace DAL.UFP
 			}
 		}
 
+		/// <summary>
+		/// delete familia
+		/// </summary>
+		/// <param name="_object">familia</param>
 		public static void Delete(Entities.UFP.Familia _object)
 		{
 			try
@@ -99,6 +122,10 @@ namespace DAL.UFP
 			}
 		}
 
+		/// <summary>
+		/// delete accesos familia
+		/// </summary>
+		/// <param name="_object">familia</param>
 		public static void DeleteAccesos(Entities.UFP.Familia _object)
 		{
 			try

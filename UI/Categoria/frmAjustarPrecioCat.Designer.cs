@@ -39,6 +39,7 @@
             this.lblMotivo = new System.Windows.Forms.Label();
             this.lblNombreValue = new System.Windows.Forms.Label();
             this.lblTxtNombre = new System.Windows.Forms.Label();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -178,6 +179,7 @@
             this.MinimizeBox = false;
             this.Name = "frmAjustarPrecioCat";
             this.Text = "Ajuste Precio Categoría";
+            this.Load += new System.EventHandler(this.frmAjustarPrecioCat_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -196,5 +198,6 @@
         private System.Windows.Forms.Label lblMotivo;
         private System.Windows.Forms.Label lblNombreValue;
         private System.Windows.Forms.Label lblTxtNombre;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

@@ -53,6 +53,7 @@
             this.lblTotValue = new System.Windows.Forms.Label();
             this.lblCod = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metroGrid1)).BeginInit();
@@ -405,5 +406,6 @@
         private System.Windows.Forms.Label lblTotValue;
         private System.Windows.Forms.Label lblCod;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

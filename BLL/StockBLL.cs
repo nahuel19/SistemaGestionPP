@@ -22,7 +22,33 @@ namespace BLL
         /// <returns>Stock</returns>
         public Stock GetById(int id)
         {
-            return stockDAL.GetById(id);
+            try
+            {
+                return stockDAL.GetById(id);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Llama a método GetByIdProducto de DAL para buscar un stock de prod por su id
+        /// </summary>
+        /// <param name="id">id_prod</param>
+        /// <returns>Stock</returns>
+        public Stock GetByIdProducto(int id_prod)
+        {
+            try
+            {
+                return stockDAL.GetByIdProducto(id_prod);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -31,7 +57,15 @@ namespace BLL
         /// <returns>List Stock</returns>
         public List<Stock> List()
         {
-            return stockDAL.List();
+            try
+            {
+                return stockDAL.List();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -41,7 +75,15 @@ namespace BLL
         /// <returns>Stock</returns>
         public void Insert(Stock entity)
         {
-            stockDAL.Insert(entity);
+            try
+            {
+                stockDAL.Insert(entity);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
 
         }
 
@@ -51,7 +93,15 @@ namespace BLL
         /// <param name="entity">Stock</param>
         public void Update(Stock entity)
         {
-            stockDAL.Update(entity);
+            try
+            {
+                stockDAL.Update(entity);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -60,7 +110,15 @@ namespace BLL
         /// <param name="id">int</param>
         public void Delete(int id)
         {
-            stockDAL.Delete(id);
+            try
+            {
+                stockDAL.Delete(id);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

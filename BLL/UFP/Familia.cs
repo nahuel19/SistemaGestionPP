@@ -8,9 +8,16 @@ using System.Threading.Tasks;
 
 namespace BLL.UFP
 {
+	/// <summary>
+	/// BLL familia
+	/// </summary>
 	public class Familia
 	{
 
+		/// <summary>
+		/// Lista todas las familias
+		/// </summary>
+		/// <returns>list familias</returns>
 		public static List<Entities.UFP.Familia> GetAllAdapted()
 		{
 			try
@@ -24,6 +31,11 @@ namespace BLL.UFP
 			}
 		}
 
+		/// <summary>
+		/// Retorna una familia
+		/// </summary>
+		/// <param name="IdFamiliaElement">string</param>
+		/// <returns>familia</returns>
 		public static Entities.UFP.Familia GetAdapted(System.String IdFamiliaElement)
 		{
 			try
@@ -37,6 +49,10 @@ namespace BLL.UFP
 			}
 		}
 
+		/// <summary>
+		/// llama a dal para insertar una familia
+		/// </summary>
+		/// <param name="_object">familia</param>
 		public static void Insert(Entities.UFP.Familia _object)
 		{
 			try
@@ -50,6 +66,10 @@ namespace BLL.UFP
 			}
 		}
 
+		/// <summary>
+		/// llama a dal para actualizar una familia
+		/// </summary>
+		/// <param name="_object">familia</param>
 		public static void Update(Entities.UFP.Familia _object)
 		{
 			try
@@ -63,6 +83,10 @@ namespace BLL.UFP
 			}
 		}
 
+		/// <summary>
+		/// llama a dal para eliminar una familia
+		/// </summary>
+		/// <param name="_object"></param>
 		public static void Delete(Entities.UFP.Familia _object)
 		{
 			try
@@ -102,6 +126,10 @@ namespace BLL.UFP
 			}
 		}
 
+		/// <summary>
+		/// elimina los accesos de una familia
+		/// </summary>
+		/// <param name="_object">familia</param>
 		public static void DeleteAccesos(Entities.UFP.Familia _object)
 		{
 			try

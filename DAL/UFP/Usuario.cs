@@ -9,8 +9,15 @@ using System.Threading.Tasks;
 
 namespace DAL.UFP
 {
+	/// <summary>
+	/// Dal Usuario
+	/// </summary>
 	internal static class Usuario
-	{		
+	{	
+		/// <summary>
+		/// slecciona todos los usuarios
+		/// </summary>
+		/// <returns>dataSet</returns>
 		public static DataSet SelectAll()
 		{
 			try
@@ -41,6 +48,11 @@ namespace DAL.UFP
 			}
 		}
 
+		/// <summary>
+		/// selecciona un usuario
+		/// </summary>
+		/// <param name="IdUsuario">string</param>
+		/// <returns>data set</returns>
 		public static DataSet Select(System.String IdUsuario)
 		{
 			try
@@ -74,6 +86,10 @@ namespace DAL.UFP
 			}
 		}
 
+		/// <summary>
+		/// elimina un usuario
+		/// </summary>
+		/// <param name="_object">usuario</param>
 		public static void Delete(Entities.UFP.Usuario _object)
 		{
 			if (_object.Permisos != null)
@@ -100,6 +116,10 @@ namespace DAL.UFP
 			//myDatabase.ExecuteNonQuery(myCommand);
 		}
 
+		/// <summary>
+		/// actualiza un usuario
+		/// </summary>
+		/// <param name="_object">usuario</param>
 		public static void Update(Entities.UFP.Usuario _object)
 		{
 			using (SqlConnection conn = ConnectionBD.Instance().Conect())
@@ -174,6 +194,10 @@ namespace DAL.UFP
 			}
 		}
 
+		/// <summary>
+		/// inserta un nuevo usuario
+		/// </summary>
+		/// <param name="_object">usuario</param>
 		public static void Insert(Entities.UFP.Usuario _object)
 		{
 			using (SqlConnection conn = ConnectionBD.Instance().Conect())
@@ -246,6 +270,11 @@ namespace DAL.UFP
 		}
 
 		//=================================================================
+		/// <summary>
+		/// devuelve las familias de un usuario
+		/// </summary>
+		/// <param name="IdUsuario">string</param>
+		/// <returns>data table</returns>
 		public static DataTable GetFamilias(System.String IdUsuario)
 		{
 			using (SqlConnection conn = ConnectionBD.Instance().Conect())
@@ -272,6 +301,10 @@ namespace DAL.UFP
 			//return myDatabase.ExecuteDataSet(myCommand).Tables[0];
 		}
 
+		/// <summary>
+		/// elimina las familias de un usuario
+		/// </summary>
+		/// <param name="_object"></param>
 		public static void DeleteFamilias(Entities.UFP.Usuario _object)
 		{
 			using (SqlConnection conn = ConnectionBD.Instance().Conect())
@@ -292,6 +325,11 @@ namespace DAL.UFP
 			//myDatabase.ExecuteNonQuery(myCommand);
 		}
 
+		/// <summary>
+		/// devuelve las patentes de un usuario
+		/// </summary>
+		/// <param name="IdUsuario">string</param>
+		/// <returns>datatable</returns>
 		public static DataTable GetPatentes(System.String IdUsuario)
 		{
 			using (SqlConnection conn = ConnectionBD.Instance().Conect())
@@ -318,6 +356,10 @@ namespace DAL.UFP
 			//return myDatabase.ExecuteDataSet(myCommand).Tables[0];
 		}
 
+		/// <summary>
+		/// elimina las patentes de un usuario
+		/// </summary>
+		/// <param name="_object"></param>
 		public static void DeletePatentes(Entities.UFP.Usuario _object)
 		{
 			using (SqlConnection conn = ConnectionBD.Instance().Conect())
@@ -339,6 +381,11 @@ namespace DAL.UFP
 		}
 
 		//=================================================================
+		/// <summary>
+		/// valida si un usuario puede loggearse
+		/// </summary>
+		/// <param name="entity">usuario</param>
+		/// <returns>bool, string (idusuario)</returns>
 		public static (bool,string) Login(Entities.UFP.Usuario entity)
 		{
 			string idUser = null;

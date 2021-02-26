@@ -26,7 +26,15 @@ namespace BLL
         /// <returns>Proveedor</returns>
         public Proveedor GetById(int id)
         {
-            return proveedorDAL.GetById(id);
+            try
+            {
+                return proveedorDAL.GetById(id);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -35,7 +43,15 @@ namespace BLL
         /// <returns>List Proveedor</returns>
         public List<Proveedor> List()
         {
-            return proveedorDAL.List();
+            try
+            {
+                return proveedorDAL.List();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -95,7 +111,15 @@ namespace BLL
         /// <param name="id">int</param>
         public void Delete(int id)
         {
-            proveedorDAL.Delete(id);
+            try
+            {
+                proveedorDAL.Delete(id);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
         /// <summary>
@@ -105,7 +129,15 @@ namespace BLL
         /// <returns>List Proveedor</returns>
         public List<Proveedor> FindBy(string filter)
         {
-            return List().FindAll(x => x.nombre.StartWithIgnoreMM(filter) || x.num_documento.StartWithIgnoreMM(filter));
+            try
+            {
+                return List().FindAll(x => x.nombre.StartWithIgnoreMM(filter) || x.num_documento.StartWithIgnoreMM(filter));
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -113,15 +145,23 @@ namespace BLL
         /// </summary>
         public void ExportProveedoresExcel()
         {
-            List<Proveedor> list = List();
-            DataTable dt = Methods.ConvertToDataTable(list);
-            dt.Columns.Remove("id");
-            dt.Columns.Remove("fk_id_tipo_doc_identidad");
-            dt.Columns[1].ColumnName = "doc";
-            dt.Columns[2].ColumnName = "número";
+            try
+            {
+                List<Proveedor> list = List();
+                DataTable dt = Methods.ConvertToDataTable(list);
+                dt.Columns.Remove("id");
+                dt.Columns.Remove("fk_id_tipo_doc_identidad");
+                dt.Columns[1].ColumnName = "doc";
+                dt.Columns[2].ColumnName = "número";
 
-            DocumentAbstract excelDocument = new ExcelDocument();
-            excelDocument.CreateFileTemplate(dt, ConfigurationManager.AppSettings["FolderExcel"], ConfigurationManager.AppSettings["FileExcelProveedores"], new Dictionary<string, string>());                        
+                DocumentAbstract excelDocument = new ExcelDocument();
+                excelDocument.CreateFileTemplate(dt, ConfigurationManager.AppSettings["FolderExcel"], ConfigurationManager.AppSettings["FileExcelProveedores"], new Dictionary<string, string>());
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -129,15 +169,23 @@ namespace BLL
         /// </summary>
         public void ExportProveedoresPDF()
         {
-            List<Proveedor> list = List();
-            DataTable dt = Methods.ConvertToDataTable(list);
-            dt.Columns.Remove("id");
-            dt.Columns.Remove("fk_id_tipo_doc_identidad");
-            dt.Columns[1].ColumnName = "doc";
-            dt.Columns[2].ColumnName = "número";
+            try
+            {
+                List<Proveedor> list = List();
+                DataTable dt = Methods.ConvertToDataTable(list);
+                dt.Columns.Remove("id");
+                dt.Columns.Remove("fk_id_tipo_doc_identidad");
+                dt.Columns[1].ColumnName = "doc";
+                dt.Columns[2].ColumnName = "número";
 
-            DocumentAbstract pdfDocument = new PdfDocument();
-            pdfDocument.CreateFileTemplate(dt, ConfigurationManager.AppSettings["FolderPDF"], ConfigurationManager.AppSettings["FilePdfProveedores"], new Dictionary<string, string>());
+                DocumentAbstract pdfDocument = new PdfDocument();
+                pdfDocument.CreateFileTemplate(dt, ConfigurationManager.AppSettings["FolderPDF"], ConfigurationManager.AppSettings["FilePdfProveedores"], new Dictionary<string, string>());
+            }
+            catch ( Exception ex)
+            {
+
+                throw ex;
+            }
 
         }
 

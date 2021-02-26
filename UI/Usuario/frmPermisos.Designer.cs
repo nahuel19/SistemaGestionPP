@@ -49,6 +49,7 @@
             this.metroGrid1 = new MetroFramework.Controls.MetroGrid();
             this.lblFamiliasPatentes = new System.Windows.Forms.Label();
             this.lblDetallePermisos = new System.Windows.Forms.Label();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.metroGrid1)).BeginInit();
@@ -340,5 +341,6 @@
         private MetroFramework.Controls.MetroGrid metroGrid1;
         private System.Windows.Forms.Label lblFamiliasPatentes;
         private System.Windows.Forms.Label lblDetallePermisos;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

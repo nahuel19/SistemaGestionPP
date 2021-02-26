@@ -22,7 +22,15 @@ namespace BLL
         /// <returns>Tipo_movimiento_prod</returns>
         public Tipo_movimiento_prod GetById(int id)
         {
-            return tipo_mov_prodDAL.GetById(id);
+            try
+            {
+                return tipo_mov_prodDAL.GetById(id);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -31,7 +39,15 @@ namespace BLL
         /// <returns>List Tipo_movimiento_prod</returns>
         public List<Tipo_movimiento_prod> List()
         {
-            return tipo_mov_prodDAL.List();
+            try
+            {
+                return tipo_mov_prodDAL.List();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -41,7 +57,15 @@ namespace BLL
         /// <returns>Tipo_movimiento_prod</returns>
         public void Insert(Tipo_movimiento_prod entity)
         {
-            tipo_mov_prodDAL.Insert(entity);
+            try
+            {
+                tipo_mov_prodDAL.Insert(entity);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
 
         }
 
@@ -51,7 +75,15 @@ namespace BLL
         /// <param name="entity">Tipo_movimiento_prod</param>
         public void Update(Tipo_movimiento_prod entity)
         {
-            tipo_mov_prodDAL.Update(entity);
+            try
+            {
+                tipo_mov_prodDAL.Update(entity);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -60,7 +92,15 @@ namespace BLL
         /// <param name="id">int</param>
         public void Delete(int id)
         {
-            tipo_mov_prodDAL.Delete(id);
+            try
+            {
+                tipo_mov_prodDAL.Delete(id);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

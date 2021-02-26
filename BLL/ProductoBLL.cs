@@ -27,7 +27,15 @@ namespace BLL
         /// <returns>Producto</returns>
         public Producto GetById(int id)
         {
-            return prodDAL.GetById(id);
+            try
+            {
+                return prodDAL.GetById(id);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -36,7 +44,15 @@ namespace BLL
         /// <returns>List Producto</returns>
         public List<Producto> List()
         {
-            return prodDAL.List();
+            try
+            {
+                return prodDAL.List();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -122,27 +138,35 @@ namespace BLL
         /// </summary>
         public void ExportPresupuestoExcel(List<Producto> list)
         {
-            DataTable dt = Methods.ConvertToDataTable(list);
-            dt.Columns.Remove("id");
-            dt.Columns.Remove("fk_id_categoria");
-            dt.Columns.Remove("categoria");
-            dt.Columns.Add("subtotal");
-
-            double tot = 0;
-
-            for (int i = 0; i < dt.Rows.Count; i++)
+            try
             {
-                dt.Rows[i]["subtotal"] = Convert.ToDouble(dt.Rows[i]["cantidad"]) * Convert.ToDouble(dt.Rows[i]["precio"]);
-                tot += Convert.ToDouble(dt.Rows[i]["cantidad"]) * Convert.ToDouble(dt.Rows[i]["precio"]);
+                DataTable dt = Methods.ConvertToDataTable(list);
+                dt.Columns.Remove("id");
+                dt.Columns.Remove("fk_id_categoria");
+                dt.Columns.Remove("categoria");
+                dt.Columns.Add("subtotal");
+
+                double tot = 0;
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    dt.Rows[i]["subtotal"] = Convert.ToDouble(dt.Rows[i]["cantidad"]) * Convert.ToDouble(dt.Rows[i]["precio"]);
+                    tot += Convert.ToDouble(dt.Rows[i]["cantidad"]) * Convert.ToDouble(dt.Rows[i]["precio"]);
+                }
+
+                dt.Rows.Add("", "", "", "", "", "", "", "", "Total: $", tot.ToString());
+
+
+
+
+                DocumentAbstract excelDocument = new ExcelDocument();
+                excelDocument.CreateFileTemplate(dt, ConfigurationManager.AppSettings["FolderExcel"], ConfigurationManager.AppSettings["FileExcelPresupuesto"], new Dictionary<string, string>());
             }
+            catch (Exception ex)
+            {
 
-            dt.Rows.Add("", "", "", "", "", "", "","", "Total: $", tot.ToString()); 
-
-
-
-
-            DocumentAbstract excelDocument = new ExcelDocument();
-            excelDocument.CreateFileTemplate(dt, ConfigurationManager.AppSettings["FolderExcel"], ConfigurationManager.AppSettings["FileExcelPresupuesto"], new Dictionary<string, string>());
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -150,25 +174,33 @@ namespace BLL
         /// </summary>
         public void ExportPresupuestoPDF(List<Producto> list)
         {
-            DataTable dt = Methods.ConvertToDataTable(list);
-            dt.Columns.Remove("id");
-            dt.Columns.Remove("fk_id_categoria");
-            dt.Columns.Remove("categoria");
-            dt.Columns.Remove("descripcion");
-            dt.Columns.Add("subtotal");
-
-            double tot = 0;
-
-            for (int i = 0; i < dt.Rows.Count; i++)
+            try
             {
-                dt.Rows[i]["subtotal"] = Convert.ToDouble(dt.Rows[i]["cantidad"]) * Convert.ToDouble(dt.Rows[i]["precio"]);
-                tot += Convert.ToDouble(dt.Rows[i]["cantidad"]) * Convert.ToDouble(dt.Rows[i]["precio"]);
+                DataTable dt = Methods.ConvertToDataTable(list);
+                dt.Columns.Remove("id");
+                dt.Columns.Remove("fk_id_categoria");
+                dt.Columns.Remove("categoria");
+                dt.Columns.Remove("descripcion");
+                dt.Columns.Add("subtotal");
+
+                double tot = 0;
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    dt.Rows[i]["subtotal"] = Convert.ToDouble(dt.Rows[i]["cantidad"]) * Convert.ToDouble(dt.Rows[i]["precio"]);
+                    tot += Convert.ToDouble(dt.Rows[i]["cantidad"]) * Convert.ToDouble(dt.Rows[i]["precio"]);
+                }
+
+                dt.Rows.Add("", "", "", "", "", "", "", "Total: $", tot.ToString());
+
+                DocumentAbstract pdfDocument = new PdfDocument();
+                pdfDocument.CreateFileTemplate(dt, ConfigurationManager.AppSettings["FolderPDF"], ConfigurationManager.AppSettings["FilePdfPresupuesto"], new Dictionary<string, string>());
             }
+            catch (Exception ex)
+            {
 
-            dt.Rows.Add("", "", "", "", "", "", "",  "Total: $", tot.ToString());
-
-            DocumentAbstract pdfDocument = new PdfDocument();
-            pdfDocument.CreateFileTemplate(dt, ConfigurationManager.AppSettings["FolderPDF"], ConfigurationManager.AppSettings["FilePdfPresupuesto"], new Dictionary<string, string>());
+                throw ex;
+            }
 
         }
 

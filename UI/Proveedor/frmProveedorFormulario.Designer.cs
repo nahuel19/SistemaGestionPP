@@ -51,6 +51,7 @@
             this.TxtNombre = new System.Windows.Forms.TextBox();
             this.pictureBoxNombre = new System.Windows.Forms.PictureBox();
             this.lblTxtNombre = new System.Windows.Forms.Label();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -336,6 +337,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Proveedor";
+            this.Load += new System.EventHandler(this.frmProveedorFormulario_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
@@ -372,5 +374,6 @@
         private System.Windows.Forms.TextBox TxtNombre;
         private System.Windows.Forms.PictureBox pictureBoxNombre;
         private System.Windows.Forms.Label lblTxtNombre;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

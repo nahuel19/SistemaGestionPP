@@ -53,6 +53,7 @@
             this.lblProfValue = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnNuevoPrecio = new System.Windows.Forms.Button();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -228,11 +229,11 @@
             this.Controls.Add(this.lblDescripcion);
             this.Controls.Add(this.lblTxtNombre);
             this.Controls.Add(this.panel2);
-  
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmProductoDetalle";
             this.Resizable = false;
+            this.Load += new System.EventHandler(this.frmProductoDetalle_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -266,5 +267,6 @@
         private System.Windows.Forms.Label lblProfValue;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnNuevoPrecio;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

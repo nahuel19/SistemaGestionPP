@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BLL.LogBitacora;
+using Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,9 +9,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.Helps;
 
 namespace UI.Ingresos
 {
+    /// <summary>
+    /// form detalle de ingreso
+    /// </summary>
     public partial class frmDetalleIngreso : MetroFramework.Forms.MetroForm
     {
         Entities.Doc_cabecera_ingreso _Cabecera_egreso = new Entities.Doc_cabecera_ingreso();
@@ -46,7 +52,8 @@ namespace UI.Ingresos
             }
             catch (Exception ex)
             {
-
+                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error carga de datos", ex.StackTrace, ex.Message));
+                Notifications.FrmError.ErrorForm(Language.SearchValue("errorBuscarDatos") + "\n" + ex.Message);
             }
         }
         private void CaracteristicasGrid()
@@ -71,19 +78,35 @@ namespace UI.Ingresos
         private void CargarTotal()
         {
             double tot = 0;
-            _Cabecera_egreso.listDetalle.ForEach(x => tot += x.cantidad * x.costo);
-            lblTotalValue.Text = tot.ToString();
+            try
+            {
+                _Cabecera_egreso.listDetalle.ForEach(x => tot += x.cantidad * x.costo);
+                lblTotalValue.Text = tot.ToString();
+            }
+            catch (Exception ex)
+            {
+                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error carga de datos", ex.StackTrace, ex.Message));
+                Notifications.FrmError.ErrorForm(Language.SearchValue("errorBuscarDatos") + "\n" + ex.Message);
+            }
         }
 
         private void ChangeLanguage()
         {
             Helps.Language.controles(this);
-            this.Text = Helps.Language.info["BtnDetalle"];
+            this.Text = Helps.Language.SearchValue("BtnDetalle");
         }
 
         private void frmDetalleIngreso_Load(object sender, EventArgs e)
         {
+            HelpUser();
+        }
 
+        private void HelpUser()
+        {
+            helpProvider1.HelpNamespace = Application.StartupPath + "/ManualUsuario.chm";
+            helpProvider1.SetHelpString(this, "Detalle compra");
+            helpProvider1.SetHelpKeyword(this, "Detalle compra");
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.KeywordIndex);
         }
     }
 }

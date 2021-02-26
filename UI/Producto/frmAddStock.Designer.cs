@@ -40,6 +40,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblMotivo = new System.Windows.Forms.Label();
             this.BtnGuardar = new System.Windows.Forms.Button();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxNombre)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -191,6 +192,7 @@
             this.Name = "frmAddStock";
             this.Resizable = false;
             this.Text = "Cantidad Producto";
+            this.Load += new System.EventHandler(this.frmAddStock_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxNombre)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -211,5 +213,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblMotivo;
         private System.Windows.Forms.Button BtnGuardar;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

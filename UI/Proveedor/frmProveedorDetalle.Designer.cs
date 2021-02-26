@@ -43,6 +43,7 @@
             this.lblDocumento = new System.Windows.Forms.Label();
             this.lblTipoDoc = new System.Windows.Forms.Label();
             this.lblTxtNombre = new System.Windows.Forms.Label();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.SuspendLayout();
             // 
             // lblMailValue
@@ -219,6 +220,7 @@
             this.Name = "frmProveedorDetalle";
             this.Resizable = false;
             this.Text = "Detalle";
+            this.Load += new System.EventHandler(this.frmProveedorDetalle_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -240,5 +242,6 @@
         private System.Windows.Forms.Label lblDocumento;
         private System.Windows.Forms.Label lblTipoDoc;
         private System.Windows.Forms.Label lblTxtNombre;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

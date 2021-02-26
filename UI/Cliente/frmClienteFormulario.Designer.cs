@@ -54,6 +54,7 @@
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.lblMail = new System.Windows.Forms.Label();
             this.BtnGuardar = new System.Windows.Forms.Button();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxNombre)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -375,6 +376,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Cliente";
+            this.Load += new System.EventHandler(this.frmClienteFormulario_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxNombre)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -414,5 +416,6 @@
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.Label lblMail;
         private System.Windows.Forms.Button BtnGuardar;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

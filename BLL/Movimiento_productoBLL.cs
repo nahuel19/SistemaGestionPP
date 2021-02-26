@@ -23,7 +23,15 @@ namespace BLL
         /// <returns>Movimiento_producto</returns>
         public Movimiento_producto GetById(int id)
         {
-            return movimiento_productoDAL.GetById(id);
+            try
+            {
+                return movimiento_productoDAL.GetById(id);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -32,7 +40,15 @@ namespace BLL
         /// <returns>List Movimiento_producto</returns>
         public List<Movimiento_producto> List()
         {
-            return movimiento_productoDAL.List();
+            try
+            {
+                return movimiento_productoDAL.List();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -42,7 +58,15 @@ namespace BLL
         /// <returns>Movimiento_producto</returns>
         public void Insert(Movimiento_producto entity)
         {
-            movimiento_productoDAL.Insert(entity);
+            try
+            {
+                movimiento_productoDAL.Insert(entity);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
 
         }
 
@@ -52,7 +76,15 @@ namespace BLL
         /// <param name="entity">Movimiento_producto</param>
         public void Update(Movimiento_producto entity)
         {
-            movimiento_productoDAL.Update(entity);
+            try
+            {
+                movimiento_productoDAL.Update(entity);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -61,7 +93,15 @@ namespace BLL
         /// <param name="id">int</param>
         public void Delete(int id)
         {
-            movimiento_productoDAL.Delete(id);
+            try
+            {
+                movimiento_productoDAL.Delete(id);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
     }

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace DAL.UFP.Adapters
 {
+	/// <summary>
+	/// patente adapter
+	/// </summary>
 	internal class PatenteAdapter
 	{
 
@@ -17,6 +20,11 @@ namespace DAL.UFP.Adapters
 			this.row = row;
 		}
 
+
+		/// <summary>
+		/// llena una patente con su nombre y id, a partir de una datarows
+		/// </summary>
+		/// <param name="_object">patente</param>
 		public void Fill(Entities.UFP.Patente _object)
 		{
 			_object.IdFamiliaElement = (System.String)row["IdPatente"];

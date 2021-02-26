@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Entities.UFP
 {
+    /// <summary>
+    /// familia
+    /// </summary>
     public class Familia : FamiliaElement
     {
         private List<FamiliaElement> _accesos = new List<FamiliaElement>();
@@ -16,11 +19,19 @@ namespace Entities.UFP
 
         }
 
+        /// <summary>
+        /// agrega elementos a la lista (patentes o familia)
+        /// </summary>
+        /// <param name="d">FamiliaElement</param>
         public override void Add(FamiliaElement d)
         {
             _accesos.Add(d);
         }
 
+        /// <summary>
+        /// quita elementos (patentes o familias)
+        /// </summary>
+        /// <param name="d">FamiliaElement</param>
         public override void Remove(FamiliaElement d)
         {
             

@@ -15,6 +15,7 @@ using System.Reflection;
 using Services;
 using Services.Encriptación;
 using Entities.UFP;
+using Services.Cache;
 
 namespace UI.Categoria
 {
@@ -35,17 +36,31 @@ namespace UI.Categoria
         private void FrmCategoria_Load(object sender, EventArgs e)
         {
             RefrescarTabla();
+            CheckPermisos();
+            HelpUser();
             //TxtBuscar.Height = 40;
             //TxtNombre.Height = 22;
         }
 
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {
-            metroGrid1.DataSource = bll.FindBy(TxtBuscar.Text);
+            try
+            {
+                metroGrid1.DataSource = bll.FindBy(TxtBuscar.Text);
+            }
+            catch (Exception ex)
+            {
+                Notifications.FrmError.ErrorForm(Language.SearchValue("errorBuscarDatos") + "\n" + ex.Message);
+            }
         }
 
         #region botones
 
+        /// <summary>
+        /// carga los datos de la categoria para editarlos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnEditar_Click(object sender, EventArgs e)
         {
             if (metroGrid1.SelectedRows.Count > 0)
@@ -56,16 +71,25 @@ namespace UI.Categoria
             }
             else
             {
-                Notifications.FrmInformation.InformationForm(Language.info["infoSelecEditar"]);
+                Notifications.FrmInformation.InformationForm(Language.SearchValue("infoSelecEditar"));
             }
         }
 
+        /// <summary>
+        /// limpia los textbox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnLimpiar_Click(object sender, EventArgs e)
         {
             LimpiarTxt();
-            pruebaPermisos();
         }
 
+        /// <summary>
+        /// elimina un registro seleccionado
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
             if (metroGrid1.SelectedRows.Count > 0)
@@ -75,7 +99,7 @@ namespace UI.Categoria
                 
                 try
                 {
-                    DialogResult confirmation = new Notifications.FrmQuestion(Language.info["preguntaEliminar"]).ShowDialog();
+                    DialogResult confirmation = new Notifications.FrmQuestion(Language.SearchValue("preguntaEliminar")).ShowDialog();
            
                     if(confirmation== DialogResult.OK)
                     {
@@ -83,7 +107,7 @@ namespace UI.Categoria
                         InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Delete, 1, this.GetType().FullName, MethodInfo.GetCurrentMethod().Name, "Categoria: " + categoria.categoria, "", ""));
 
                         RefrescarTabla();
-                        Notifications.FrmSuccess.SuccessForm(Language.info["eliminadoOK"]);
+                        Notifications.FrmSuccess.SuccessForm(Language.SearchValue("eliminadoOK"));
                         
                     }                    
                 }
@@ -92,16 +116,21 @@ namespace UI.Categoria
                     InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.DeleteError, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Categoria: " + categoria.categoria, ex.StackTrace, ex.Message));
 
                     RefrescarTabla();
-                    Notifications.FrmError.ErrorForm(Language.info["eliminadoError"] + "\n" + ex.Message);
+                    Notifications.FrmError.ErrorForm(Language.SearchValue("eliminadoError") + "\n" + ex.Message);
                 }
                 
             }
             else
             {
-                Notifications.FrmInformation.InformationForm(Language.info["infoSelecEliminar"]);
+                Notifications.FrmInformation.InformationForm(Language.SearchValue("XinfoSelecEliminar"));
             }
         }
         int erro=0;
+        /// <summary>
+        /// guarda los cambios
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
             Entities.Categoria categoria = new Entities.Categoria();
@@ -120,7 +149,7 @@ namespace UI.Categoria
 
                         InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Insert, 1, this.GetType().FullName, MethodInfo.GetCurrentMethod().Name, "Categoria: " + categoria.categoria, "", ""));
                         
-                        Notifications.FrmSuccess.SuccessForm(Language.info["guardadoOK"]);
+                        Notifications.FrmSuccess.SuccessForm(Language.SearchValue("guardadoOK"));
                         RefrescarTabla();
                         LimpiarTxt();
                     }
@@ -129,7 +158,7 @@ namespace UI.Categoria
                         System.Data.SqlClient.SqlException sqlException = ex as System.Data.SqlClient.SqlException;
                         erro = sqlException.Number;
                         InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.InsertError, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Categoria: " + categoria.categoria, ex.StackTrace, ex.Message));
-                        Notifications.FrmError.ErrorForm(Language.info["guardadoError"] + "\n" + ex.Message);                       
+                        Notifications.FrmError.ErrorForm(Language.SearchValue("guardadoError") + "\n" + ex.Message);                       
 
                     }
                 }
@@ -143,7 +172,7 @@ namespace UI.Categoria
 
                         InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Update, 1, this.GetType().FullName, MethodInfo.GetCurrentMethod().Name, "Categoria: " + categoria.categoria, "", ""));
 
-                        Notifications.FrmSuccess.SuccessForm(Language.info["editadoOK"]);
+                        Notifications.FrmSuccess.SuccessForm(Language.SearchValue("editadoOK"));
                         RefrescarTabla();
                         LimpiarTxt();
                         editarse = false;
@@ -151,7 +180,7 @@ namespace UI.Categoria
                     catch (Exception ex)
                     {
                         InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.UpdateError, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Categoria: " + categoria.categoria, ex.StackTrace, ex.Message));
-                        Notifications.FrmError.ErrorForm(Language.info["editadoError"] + "\n" + ex.Message);
+                        Notifications.FrmError.ErrorForm(Language.SearchValue("editadoError") + "\n" + ex.Message);
                     }
                 }
             }
@@ -177,9 +206,18 @@ namespace UI.Categoria
         /// </summary>
         private void RefrescarTabla()
         {
-            metroGrid1.DataSource = bll.List();
-            metroGrid1.Columns[0].Visible = false;
-            metroGrid1.Columns[1].Width = 220;
+            try
+            {
+                metroGrid1.DataSource = bll.List();
+                metroGrid1.Columns[0].Visible = false;
+                metroGrid1.Columns[1].Width = 220;
+
+            }
+            catch (Exception ex )
+            {
+                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error carga de datos", ex.StackTrace, ex.Message));
+                Notifications.FrmError.ErrorForm(Language.SearchValue("errorBuscarDatos") + "\n" + ex.Message);
+            }
 
             metroGrid1.ClearSelection();
             TxtBuscar.Focus();
@@ -187,6 +225,10 @@ namespace UI.Categoria
 
         }
 
+        /// <summary>
+        /// obtiene el id del registro seleccionado
+        /// </summary>
+        /// <returns></returns>
         private int GetId()
         {
             return int.Parse(metroGrid1.Rows[metroGrid1.CurrentRow.Index].Cells[0].Value.ToString());
@@ -200,15 +242,22 @@ namespace UI.Categoria
             metroGrid1.ClearSelection();
         }
 
+        /// <summary>
+        /// cambia idioma
+        /// </summary>
         private void ChangeLanguage()
         {
-            this.lblTituloCat.Text = Helps.Language.info["lblTituloCat"];
+            this.lblTituloCat.Text = Helps.Language.SearchValue("lblTituloCat");
             Helps.Language.controles(this);            
         }
 
 
         #endregion
-
+        /// <summary>
+        /// abre form de ajuste de precio por categoria
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAjustaPrecioCat_Click(object sender, EventArgs e)
         {
             if (metroGrid1.SelectedRows.Count > 0)
@@ -219,78 +268,37 @@ namespace UI.Categoria
             }
             else
             {
-                Notifications.FrmInformation.InformationForm(Language.info["infoSelecEditar"]);
+                Notifications.FrmInformation.InformationForm(Language.SearchValue("infoSelecEditar"));
             }
         }
 
 
-
-
-        private void pruebaPermisos()
+        private void CheckPermisos()
         {
-            //Patente pat1 = new Patente();
-            //pat1.Nombre = "Bitácora";
-            //BLL.UFP.Patente.Insert(pat1);
+            try
+            {
+                BtnGuardar.Enabled = BLL.UFP.Usuario.ValidarPermiso(LoginCache.permisos, Entities.UFP.TipoPermiso.CategoriaInsertar);
+                BtnEliminar.Enabled = BLL.UFP.Usuario.ValidarPermiso(LoginCache.permisos, Entities.UFP.TipoPermiso.CategoriaEliminar);
+                btnAjustaPrecioCat.Enabled = BLL.UFP.Usuario.ValidarPermiso(LoginCache.permisos, Entities.UFP.TipoPermiso.CategoriaAjustarPrecio);
+            }
+            catch (Exception ex)
+            {
+                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error validación de permisos", ex.StackTrace, ex.Message));
+                Notifications.FrmError.ErrorForm(Language.SearchValue("errorPermisos") + "\n" + ex.Message);
+            }         
+        }
 
-            //Patente pat2 = new Patente();
-            //pat2.Nombre = "Ventas Insertar";
-            //BLL.UFP.Patente.Insert(pat2);
+             
 
-            //Patente pat3 = new Patente();
-            //pat3.Nombre = "Ventas Ver";
-            //BLL.UFP.Patente.Insert(pat3);
-
-            //Patente pat4 = new Patente();
-            //pat4.Nombre = "Ventas Anular";
-            //BLL.UFP.Patente.Insert(pat4);
-
-
-
-            //Familia familiaConsulta = new Familia();
-            //familiaConsulta.Nombre = "Rol de Consulta de Ventas";
-            //familiaConsulta.Add(patenteConsulta);
-            //BLL.UFP.Familia.Insert(familiaConsulta);
-
-            //Patente patenteVentas = new Patente();
-            //patenteVentas.Nombre = "Pantalla de Ventas";
-            //BLL.UFP.Patente.Insert(patenteVentas);
-
-            //Familia familiaVentas = new Familia();
-            //familiaVentas.Nombre = "Rol Ventas";
-            //familiaVentas.Add(patenteVentas);
-            //familiaVentas.Add(familiaConsulta);
-
-            //BLL.UFP.Familia.Insert(familiaVentas);
-
-            //Patente patentePantallaUsuario = new Patente();
-            //patentePantallaUsuario.Nombre = "Pantalla de Administración de Perfil del Usuario";
-            //BLL.UFP.Patente.Insert(patentePantallaUsuario);
-
-            //Entities.UFP.Usuario user = new Entities.UFP.Usuario();
-            //user.Nombre = "Pedro Rodriguez";
-            //user.Permisos.Add(familiaVentas);
-            //user.Permisos.Add(patentePantallaUsuario);
-
-            //BLL.UFP.Usuario.Insert(user);
-
-            //Familia familia = BLL.Familia.GetAdapted(familiaVentas.IdFamiliaElement);
-            //List<Entities.UFP.Patente> patentes = BLL.UFP.Patente.GetAllAdapted();
-            //===============
-
-            //string contraseña = "abc1234";
-            //Entities.UFP.Usuario usuario = BLL.UFP.Usuario.GetAdapted("ae3fdddb-997b-4f1d-b3d1-049e0ac8ed50");
-            //usuario.Pass = Convert.ToBase64String(new CryptoSeguridad().Encrypt(contraseña));
-
-
-            //BLL.UFP.Usuario.Update(usuario);
-
-
-
-           // Entities.UFP.Usuario user = BLL.UFP.Usuario.GetAdapted("ae3fdddb-997b-4f1d-b3d1-049e0ac8ed50");
-            //string contra = new CryptoSeguridad().Decrypt(Convert.FromBase64String(user.Pass));
-
-
-
+        /// <summary>
+        /// carga manual de usuario
+        /// </summary>
+        private void HelpUser()
+        {
+            helpProvider1.HelpNamespace = Application.StartupPath + "/ManualUsuario.chm";
+            helpProvider1.SetHelpString(this, "Categorías");
+            helpProvider1.SetHelpKeyword(this, "Categorías");
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.KeywordIndex);
         }
     }
 }

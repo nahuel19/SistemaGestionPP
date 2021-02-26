@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace DAL.UFP.Adapters
 {
+	/// <summary>
+	/// familia adapter
+	/// </summary>
 	internal class FamiliaAdapter
 	{
 
@@ -17,6 +20,10 @@ namespace DAL.UFP.Adapters
 			this.row = row;
 		}
 
+		/// <summary>
+		/// llena una familia con los componentes que puea tener
+		/// </summary>
+		/// <param name="_object">familia</param>
 		public void Fill(Entities.UFP.Familia _object)
 		{
 			_object.IdFamiliaElement = (System.String)row["IdFamilia"];

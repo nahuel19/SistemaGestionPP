@@ -44,6 +44,7 @@
             this.lblPorcentajeAumento = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblPrecioFuturo = new System.Windows.Forms.Label();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -243,6 +244,7 @@
             this.MinimizeBox = false;
             this.Name = "frmPrecio";
             this.Text = "Precio";
+            this.Load += new System.EventHandler(this.frmPrecio_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
@@ -267,5 +269,6 @@
         private System.Windows.Forms.Label lblPorcentajeAumento;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblPrecioFuturo;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

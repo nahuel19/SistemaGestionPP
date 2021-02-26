@@ -23,7 +23,7 @@ namespace UI.Notifications
         {
             InitializeComponent();
             lblMensaje.Text = message;
-            this.lblMsgFijoSuccess.Text = Helps.Language.info["lblMsgFijoSuccess"];
+            this.lblMsgFijoSuccess.Text = Helps.Language.SearchValue("lblMsgFijoSuccess");
         }
 
         /// <summary>

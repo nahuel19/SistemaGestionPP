@@ -1,4 +1,6 @@
 ﻿using BLL;
+using BLL.LogBitacora;
+using Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,6 +14,9 @@ using UI.Helps;
 
 namespace UI.Proveedor
 {
+    /// <summary>
+    /// form seleccionar proveedor
+    /// </summary>
     public partial class frmSeleccionarProveedor : MetroFramework.Forms.MetroForm
     {
         ProveedorBLL bll = new ProveedorBLL();
@@ -25,9 +30,17 @@ namespace UI.Proveedor
 
         private void RefrescarTabla()
         {
-            metroGrid1.DataSource = bll.List();
+            try
+            {
+                metroGrid1.DataSource = bll.List();
 
-            CaracteristicasGrid();
+                CaracteristicasGrid();
+            }
+            catch (Exception ex)
+            {
+                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error carga de datos", ex.StackTrace, ex.Message));
+                Notifications.FrmError.ErrorForm(Language.SearchValue("errorBuscarDatos") + "\n" + ex.Message);
+            }
 
             metroGrid1.ClearSelection();
             TxtBuscar.Focus();
@@ -60,7 +73,15 @@ namespace UI.Proveedor
 
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {
-            metroGrid1.DataSource = bll.FindBy(TxtBuscar.Text);
+            try
+            {
+                metroGrid1.DataSource = bll.FindBy(TxtBuscar.Text);
+            }
+            catch (Exception ex)
+            {
+                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error carga de datos", ex.StackTrace, ex.Message));
+                Notifications.FrmError.ErrorForm(Language.SearchValue("errorBuscarDatos") + "\n" + ex.Message);
+            }
         }
 
         private void frmSeleccionarProveedor_Load(object sender, EventArgs e)
@@ -70,14 +91,22 @@ namespace UI.Proveedor
 
         private void ChangeLanguage()
         {
-            this.Text = Helps.Language.info["tituloSelectProd"];
+            this.Text = Helps.Language.SearchValue("tituloSelectProd");
             Helps.Language.controles(this);
         }
 
         private void metroGrid1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            Entities.Proveedor prov = bll.GetById(GetId());
-            contrato.Ejecutar(prov);
+            try
+            {
+                Entities.Proveedor prov = bll.GetById(GetId());
+                contrato.Ejecutar(prov);
+            }
+            catch (Exception ex)
+            {
+                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error carga de datos", ex.StackTrace, ex.Message));
+                Notifications.FrmError.ErrorForm(Language.SearchValue("errorBuscarDatos") + "\n" + ex.Message);
+            }
             this.Close();
         }
     }

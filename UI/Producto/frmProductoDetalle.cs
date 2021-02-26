@@ -1,4 +1,7 @@
 ﻿using BLL;
+using BLL.LogBitacora;
+using Services;
+using Services.Cache;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,9 +11,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.Helps;
 
 namespace UI.Producto
 {
+    /// <summary>
+    /// form productos detalle
+    /// </summary>
     public partial class frmProductoDetalle : MetroFramework.Forms.MetroForm
     {
         private Entities.Producto entity = null;
@@ -26,17 +33,26 @@ namespace UI.Producto
 
         private void CargaDatosEnForm(int id)
         {
-            entity = bll.GetById(Convert.ToInt32(id));
-            lblCodValue.Text = entity.codigo;
-            lblNombreValue.Text = entity.nombre;
-            lblDescripcionValue.Text = entity.descripcion;
-            lblCategoriaValue.Text = entity.categoria;
-            lblPesoValue.Text = entity.peso.ToString();
-            lblAltoValue.Text = entity.alto.ToString();
-            lblAnchoValue.Text = entity.ancho.ToString();
-            lblProfValue.Text = entity.profundidad.ToString();
-            lblPrecioValue.Text = entity.precio.ToString();
-            lblCantValue.Text = entity.cantidad.ToString();
+            try
+            {
+                entity = bll.GetById(Convert.ToInt32(id));
+                lblCodValue.Text = entity.codigo;
+                lblNombreValue.Text = entity.nombre;
+                lblDescripcionValue.Text = entity.descripcion;
+                lblCategoriaValue.Text = entity.categoria;
+                lblPesoValue.Text = entity.peso.ToString();
+                lblAltoValue.Text = entity.alto.ToString();
+                lblAnchoValue.Text = entity.ancho.ToString();
+                lblProfValue.Text = entity.profundidad.ToString();
+                lblPrecioValue.Text = entity.precio.ToString();
+                lblCantValue.Text = entity.cantidad.ToString();
+            }
+            catch (Exception ex)
+            {
+
+                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error carga de datos", ex.StackTrace, ex.Message));
+                Notifications.FrmError.ErrorForm(Language.SearchValue("errorBuscarDatos") + "\n" + ex.Message);
+            }
         }
 
         private void BtnStock_Click(object sender, EventArgs e)
@@ -56,8 +72,36 @@ namespace UI.Producto
         private void ChangeLanguage()
         {
             Helps.Language.controles(this);
-            this.Text = Helps.Language.info["producto"];
-            this.btnNuevoPrecio.Text = Helps.Language.info["btnNuevoPrecio"];
+            this.Text = Helps.Language.SearchValue("producto");
+            this.btnNuevoPrecio.Text = Helps.Language.SearchValue("btnNuevoPrecio");
+        }
+
+        private void CheckPermisos()
+        {
+            try
+            {
+                btnNuevoPrecio.Enabled = BLL.UFP.Usuario.ValidarPermiso(LoginCache.permisos, Entities.UFP.TipoPermiso.ProductoAjustarPrecio);
+                BtnStock.Enabled = BLL.UFP.Usuario.ValidarPermiso(LoginCache.permisos, Entities.UFP.TipoPermiso.ProductoAjustarStock);
+            }
+            catch (Exception ex)
+            {
+                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error validación de permisos", ex.StackTrace, ex.Message));
+                Notifications.FrmError.ErrorForm(Language.SearchValue("errorPermisos") + "\n" + ex.Message);
+            }       
+        }
+
+        private void frmProductoDetalle_Load(object sender, EventArgs e)
+        {
+            CheckPermisos();
+            HelpUser();
+        }
+
+        private void HelpUser()
+        {
+            helpProvider1.HelpNamespace = Application.StartupPath + "/ManualUsuario.chm";
+            helpProvider1.SetHelpString(this, "Detalle producto");
+            helpProvider1.SetHelpKeyword(this, "Detalle producto");
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.KeywordIndex);
         }
     }
 }

@@ -51,6 +51,7 @@
             this.lblProfundidad = new System.Windows.Forms.Label();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.BtnGuardar = new System.Windows.Forms.Button();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxNombre)).BeginInit();
@@ -333,6 +334,7 @@
             this.Name = "frmProductoFormulario";
             this.Resizable = false;
             this.Text = "Producto";
+            this.Load += new System.EventHandler(this.frmProductoFormulario_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxNombre)).EndInit();
@@ -369,5 +371,6 @@
         private System.Windows.Forms.Label lblProfundidad;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.Button BtnGuardar;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

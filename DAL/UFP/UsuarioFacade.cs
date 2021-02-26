@@ -7,9 +7,15 @@ using System.Threading.Tasks;
 
 namespace DAL.UFP
 {
+	/// <summary>
+	/// facade de usuario, utiliza dal de usuario, usuario adapter y usuario collection adapter
+	/// </summary>
 	public class UsuarioFacade
 	{
-
+		/// <summary>
+		/// devuelve todos los usuarios con los permisos
+		/// </summary>
+		/// <returns>list usuario</returns>
 		public static List<Entities.UFP.Usuario> GetAllAdapted()
 		{
 			try
@@ -25,6 +31,11 @@ namespace DAL.UFP
 			}
 		}
 
+		/// <summary>
+		/// devuelve un usuario con los permisos
+		/// </summary>
+		/// <param name="IdUsuario">string</param>
+		/// <returns>usuario</returns>
 		public static Entities.UFP.Usuario GetAdapted(System.String IdUsuario)
 		{
 			try
@@ -40,6 +51,10 @@ namespace DAL.UFP
 			}
 		}
 
+		/// <summary>
+		/// inserta un usuario
+		/// </summary>
+		/// <param name="_object">usuario</param>
 		public static void Insert(Entities.UFP.Usuario _object)
 		{
 			try
@@ -51,7 +66,11 @@ namespace DAL.UFP
 				throw ex;
 			}
 		}
-	
+
+		/// <summary>
+		/// actualiza un usuario
+		/// </summary>
+		/// <param name="_object">usuario</param>
 		public static void Update(Entities.UFP.Usuario _object)
 		{
 			try
@@ -64,6 +83,10 @@ namespace DAL.UFP
 			}
 		}
 
+		/// <summary>
+		/// elimina un usuario
+		/// </summary>
+		/// <param name="_object">usuario</param>
 		public static void Delete(Entities.UFP.Usuario _object)
 		{
 			try
@@ -100,6 +123,10 @@ namespace DAL.UFP
 			}
 		}
 
+		/// <summary>
+		/// elimina familias de un usuario
+		/// </summary>
+		/// <param name="_object">usuario</param>
 		public static void DeleteFamilias(Entities.UFP.Usuario _object)
 		{
 			try
@@ -112,6 +139,10 @@ namespace DAL.UFP
 			}
 		}
 
+		/// <summary>
+		/// elimina patentes de un usuario
+		/// </summary>
+		/// <param name="_object">usuario</param>
 		public static void DeletePatentes(Entities.UFP.Usuario _object)
 		{
 			try
@@ -125,6 +156,12 @@ namespace DAL.UFP
 			}
 		}
 
+
+		/// <summary>
+		/// valida ingreso de un usuario
+		/// </summary>
+		/// <param name="_object">usuario</param>
+		/// <returns>bool, string idusuario</returns>
 		public static (bool,string) Login(Entities.UFP.Usuario _object)
         {
 			try

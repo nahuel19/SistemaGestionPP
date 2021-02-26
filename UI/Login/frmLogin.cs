@@ -14,6 +14,9 @@ using UI.Helps;
 
 namespace UI.Login
 {
+    /// <summary>
+    /// Login form
+    /// </summary>
     public partial class frmLogin : Form
     {
         //BLL.UsuarioBLL bll = new BLL.UsuarioBLL();
@@ -21,15 +24,25 @@ namespace UI.Login
         public frmLogin()
         {
             InitializeComponent();
+            UpdateLanguage();
         }
 
 
-
+        /// <summary>
+        /// buttom salir
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
+        /// <summary>
+        /// buttom iniciar seseión, agarra user y pass, los valida y abre el form principal en caso de validación correcta
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnInisiarSesion_Click(object sender, EventArgs e)
         {
             Entities.UFP.Usuario user = new Entities.UFP.Usuario();
@@ -56,14 +69,14 @@ namespace UI.Login
                     else
                     {
                         InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.LoginError, 1, this.GetType().FullName, MethodInfo.GetCurrentMethod().Name, "Inicio seción fallido: " + user.Nombre, "",""));
-                        Notifications.FrmError.ErrorForm(Language.info["loginError"]);
+                        Notifications.FrmError.ErrorForm(Language.SearchValue("loginError"));
                     }
 
                 }
                 catch (Exception ex)
                 {
                     InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.LoginError, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Inicio seción fallido: " + user.Nombre, ex.StackTrace, ex.Message));
-                    Notifications.FrmError.ErrorForm(Language.info["loginError"] + "\n" + ex.Message);
+                    Notifications.FrmError.ErrorForm(Language.SearchValue("loginError") + "\n" + ex.Message);
                 }
             }
             else
@@ -73,6 +86,11 @@ namespace UI.Login
             }
         }
 
+        /// <summary>
+        /// método logout
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Logout(object sender, FormClosedEventArgs e)
         {
             TxtNombre.Clear();
@@ -80,5 +98,29 @@ namespace UI.Login
             this.Show();
         }
 
+        /// <summary>
+        /// cambia el lenguaje
+        /// </summary>
+        void UpdateLanguage()
+        {
+            Helps.Language.controles(this);
+            this.lblLogin.Text = Helps.Language.SearchValue("lblLogin");
+        }
+
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+            HelpUser();
+        }
+
+        /// <summary>
+        /// carga el manual de usuario
+        /// </summary>
+        private void HelpUser()
+        {
+            helpProvider1.HelpNamespace = Application.StartupPath + "/ManualUsuario.chm";
+            helpProvider1.SetHelpString(this, "Inicio de sesión");
+            helpProvider1.SetHelpKeyword(this, "Inicio de sesión");
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.KeywordIndex);
+        }
     }
 }

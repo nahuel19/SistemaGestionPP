@@ -23,7 +23,15 @@ namespace BLL
         /// <returns>Precio</returns>
         public Precio GetById(int id)
         {
-            return precioDAL.GetById(id);
+            try
+            {
+                return precioDAL.GetById(id);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -32,7 +40,15 @@ namespace BLL
         /// <returns>List Precio</returns>
         public List<Precio> List()
         {
-            return precioDAL.List();
+            try
+            {
+                return precioDAL.List();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -42,7 +58,15 @@ namespace BLL
         /// <returns>Precio</returns>
         public void Insert(Precio entity)
         {
-            precioDAL.Insert(entity);
+            try
+            {
+                precioDAL.Insert(entity);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -51,7 +75,15 @@ namespace BLL
         /// <param name="entity">Precio</param>
         public void Update(Precio entity)
         {
-            precioDAL.Update(entity);
+            try
+            {
+                precioDAL.Update(entity);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -60,12 +92,28 @@ namespace BLL
         /// <param name="id">int</param>
         public void Delete(int id)
         {
-            precioDAL.Delete(id);
+            try
+            {
+                precioDAL.Delete(id);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public void UpdatePrecioCategoria(int idCat, double porcentaje, string motivo)
         {
-            precioDAL.UpdateByCategoria(idCat, porcentaje, motivo);
+            try
+            {
+                precioDAL.UpdateByCategoria(idCat, porcentaje, motivo);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
     }

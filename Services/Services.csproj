@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Services.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -77,6 +78,7 @@
     <Compile Include="Encriptacion\ICryptoSeguridad.cs" />
     <Compile Include="ETipoLog.cs" />
     <Compile Include="Excepciones\FacturaAnuladaException.cs" />
+    <Compile Include="Excepciones\SinStockException.cs" />
     <Compile Include="Excepciones\SistemaCorruptoDVHException.cs" />
     <Compile Include="Excepciones\SistemaCorruptoDVVException.cs" />
     <Compile Include="Extensions.cs" />

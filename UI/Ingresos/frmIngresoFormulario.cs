@@ -14,6 +14,9 @@ using UI.Helps;
 
 namespace UI.Ingresos
 {
+    /// <summary>
+    /// formulario para nuevo ingreso
+    /// </summary>
     public partial class frmIngresoFormulario : MetroFramework.Forms.MetroForm, IContractForm<Entities.Producto>, IContractForm<Entities.Proveedor>
     {
         private static frmIngresoFormulario _instance;
@@ -62,17 +65,17 @@ namespace UI.Ingresos
 
         private void ChangeLanguage()
         {
-            this.Text = Helps.Language.info["btnCompras"];
-            this.lblCosto.Text = Helps.Language.info["lblCosto"];
-            this.lblPrecioVenta.Text = Helps.Language.info["lblPrecioVenta"];
-            this.lblCant.Text = Helps.Language.info["lblCant"];
+            this.Text = Helps.Language.SearchValue("btnCompras");
+            this.lblCosto.Text = Helps.Language.SearchValue("lblCosto");
+            this.lblPrecioVenta.Text = Helps.Language.SearchValue("lblPrecioVenta");
+            this.lblCant.Text = Helps.Language.SearchValue("lblCant");
             Helps.Language.controles(this);
         }
 
         private void AgregarTablaDetalle()
         {
             if (String.IsNullOrEmpty(TxtProducto.Text))
-                Notifications.FrmInformation.InformationForm(Helps.Language.info["ingresarAllRegistros"]);
+                Notifications.FrmInformation.InformationForm(Helps.Language.SearchValue("ingresarAllRegistros"));
 
             try
             {
@@ -89,7 +92,7 @@ namespace UI.Ingresos
                 {
                     if (d.fk_id_producto == _Detalle_Ingreso.fk_id_producto)
                     {
-                        Notifications.FrmInformation.InformationForm(Helps.Language.info["existeIngresoDetalle"]);
+                        Notifications.FrmInformation.InformationForm(Helps.Language.SearchValue("existeIngresoDetalle"));
                         return;
                     }
                 }
@@ -100,7 +103,7 @@ namespace UI.Ingresos
             }
             catch
             {
-                Notifications.FrmInformation.InformationForm(Helps.Language.info["ingresarAllRegistros"]);
+                Notifications.FrmInformation.InformationForm(Helps.Language.SearchValue("ingresarAllRegistros"));
             }          
 
         }
@@ -118,7 +121,7 @@ namespace UI.Ingresos
                     listDetalle.Remove(d);
                 }               
             }
-            else{ Notifications.FrmInformation.InformationForm(Helps.Language.info["infoSelecEliminar"]); } 
+            else{ Notifications.FrmInformation.InformationForm(Helps.Language.SearchValue("infoSelecEliminar")); } 
         }
 
         private int GetIdProdEnGridDetalle()
@@ -174,10 +177,16 @@ namespace UI.Ingresos
 
         private void frmIngresoFormulario_Load(object sender, EventArgs e)
         {
-            metroGrid1.DataSource = bingindList;
-            
-
-
+            try
+            {
+                metroGrid1.DataSource = bingindList;
+            }
+            catch (Exception ex)
+            {
+                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error carga de datos", ex.StackTrace, ex.Message));
+                Notifications.FrmError.ErrorForm(Language.SearchValue("errorBuscarDatos") + "\n" + ex.Message);
+            }
+            HelpUser();
         }
 
         private void btnQuitarProdLista_Click(object sender, EventArgs e)
@@ -188,9 +197,17 @@ namespace UI.Ingresos
 
         private void ListDocumento()
         {
-            ddlTipoDoc.DataSource = bllTipoDoc.FindIngresos();
-            ddlTipoDoc.ValueMember = "id";
-            ddlTipoDoc.DisplayMember = "tipo_documento";
+            try
+            {
+                ddlTipoDoc.DataSource = bllTipoDoc.FindIngresos();
+                ddlTipoDoc.ValueMember = "id";
+                ddlTipoDoc.DisplayMember = "tipo_documento";
+            }
+            catch (Exception ex)
+            {
+                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error carga de datos", ex.StackTrace, ex.Message));
+                Notifications.FrmError.ErrorForm(Language.SearchValue("errorBuscarDatos") + "\n" + ex.Message);
+            }
         }
 
         public void Ejecutar(Entities.Producto entity)
@@ -220,18 +237,18 @@ namespace UI.Ingresos
 
                     InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Insert, 1, this.GetType().FullName, MethodInfo.GetCurrentMethod().Name, "Ingreso: " + _Cabecera_Ingreso.letra+ _Cabecera_Ingreso.sucursal.ToString()+ _Cabecera_Ingreso.numero.ToString(), "", ""));
 
-                    Notifications.FrmSuccess.SuccessForm(Helps.Language.info["guardadoOK"]);
+                    Notifications.FrmSuccess.SuccessForm(Helps.Language.SearchValue("guardadoOK"));
 
                     this.Close();
                 }
                 catch (Exception ex)
                 {
                     if (ex.Message == EValidaciones.existe)
-                        Notifications.FrmInformation.InformationForm(Helps.Language.info["errorExiste"]);
+                        Notifications.FrmInformation.InformationForm(Helps.Language.SearchValue("errorExiste"));
                     else
                     {
                         InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.InsertError, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Ingreso: " + _Cabecera_Ingreso.letra + _Cabecera_Ingreso.sucursal.ToString() + _Cabecera_Ingreso.numero.ToString(), ex.StackTrace, ex.Message));
-                        Notifications.FrmError.ErrorForm(Helps.Language.info["guardadoError"] + "\n" + ex.Message);
+                        Notifications.FrmError.ErrorForm(Helps.Language.SearchValue("guardadoError") + "\n" + ex.Message);
                     }
                 }
 
@@ -257,6 +274,12 @@ namespace UI.Ingresos
             _Cabecera_Ingreso.listDetalle = listDetalle;
         }
 
-        
+        private void HelpUser()
+        {
+            helpProvider1.HelpNamespace = Application.StartupPath + "/ManualUsuario.chm";
+            helpProvider1.SetHelpString(this, "Nueva compra");
+            helpProvider1.SetHelpKeyword(this, "Nueva compra");
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.KeywordIndex);
+        }
     }
 }

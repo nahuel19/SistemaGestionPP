@@ -11,9 +11,13 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.Helps;
 
 namespace UI.Usuario
 {
+    /// <summary>
+    /// formulario para manejar familias
+    /// </summary>
     public partial class frmFormularioFamilias : MetroFramework.Forms.MetroForm
     {
         Entities.UFP.Familia familia = new Entities.UFP.Familia();
@@ -33,23 +37,47 @@ namespace UI.Usuario
 
         private void ListPatentes()
         {
-            ddlPatentes.DataSource = BLL.UFP.Patente.GetAllAdapted();
-            ddlPatentes.ValueMember = "IdFamiliaElement";
-            ddlPatentes.DisplayMember = "Nombre";
+            try
+            {
+                ddlPatentes.DataSource = BLL.UFP.Patente.GetAllAdapted();
+                ddlPatentes.ValueMember = "IdFamiliaElement";
+                ddlPatentes.DisplayMember = "Nombre";
+            }
+            catch (Exception ex)
+            {
+                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error carga de datos", ex.StackTrace, ex.Message));
+                Notifications.FrmError.ErrorForm(Language.SearchValue("errorBuscarDatos") + "\n" + ex.Message);
+            }
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            Patente patente = BLL.UFP.Patente.GetAdapted(ddlPatentes.SelectedValue.ToString());
-            familia.Add(patente);
-            bind.Add(patente);
+            try
+            {
+                Patente patente = BLL.UFP.Patente.GetAdapted(ddlPatentes.SelectedValue.ToString());
+                familia.Add(patente);
+                bind.Add(patente);
+            }
+            catch (Exception ex)
+            {
+                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error carga de datos", ex.StackTrace, ex.Message));
+                Notifications.FrmError.ErrorForm(Language.SearchValue("errorBuscarDatos") + "\n" + ex.Message);
+            }
         }
 
         private void Tabla()
         {
-            metroGrid1.DataSource = bind;
-            metroGrid1.Columns[0].Visible = false;
-            metroGrid1.Columns[2].Visible = false;
+            try
+            {
+                metroGrid1.DataSource = bind;
+                metroGrid1.Columns[0].Visible = false;
+                metroGrid1.Columns[2].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error carga de datos", ex.StackTrace, ex.Message));
+                Notifications.FrmError.ErrorForm(Language.SearchValue("errorBuscarDatos") + "\n" + ex.Message);
+            }
         }
 
        
@@ -63,20 +91,28 @@ namespace UI.Usuario
         {
             if (metroGrid1.SelectedRows.Count > 0)
             {
-                Patente patente = BLL.UFP.Patente.GetAdapted(GetId());                
-                familia.Remove(patente);
-
-                IReadOnlyList<FamiliaElement> ToRemove = bind.Where(x => (x.IdFamiliaElement == patente.IdFamiliaElement)).ToList();
-
-                foreach (var d in ToRemove)
+                try
                 {
-                    bind.Remove(d);
+                    Patente patente = BLL.UFP.Patente.GetAdapted(GetId());
+                    familia.Remove(patente);
+
+                    IReadOnlyList<FamiliaElement> ToRemove = bind.Where(x => (x.IdFamiliaElement == patente.IdFamiliaElement)).ToList();
+
+                    foreach (var d in ToRemove)
+                    {
+                        bind.Remove(d);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error carga de datos", ex.StackTrace, ex.Message));
+                    Notifications.FrmError.ErrorForm(Language.SearchValue("errorBuscarDatos") + "\n" + ex.Message);
                 }
 
             }
             else
             {
-                Notifications.FrmInformation.InformationForm(Helps.Language.info["infoSelecEditar"]);
+                Notifications.FrmInformation.InformationForm(Helps.Language.SearchValue("infoSelecEditar"));
             }
             
         }
@@ -117,18 +153,18 @@ namespace UI.Usuario
 
                         InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Insert, 1, this.GetType().FullName, MethodInfo.GetCurrentMethod().Name, "Familia: " + familia.Nombre, "", ""));
 
-                        Notifications.FrmSuccess.SuccessForm(Helps.Language.info["guardadoOK"]);
+                        Notifications.FrmSuccess.SuccessForm(Helps.Language.SearchValue("guardadoOK"));
 
                         this.Close();
                     }
                     catch (Exception ex)
                     {
                         if (ex.Message == EValidaciones.existe)
-                            Notifications.FrmInformation.InformationForm(Helps.Language.info["errorExiste"]);
+                            Notifications.FrmInformation.InformationForm(Helps.Language.SearchValue("errorExiste"));
                         else
                         {
                             InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.InsertError, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Familia: " + familia.Nombre, ex.StackTrace, ex.Message));
-                            Notifications.FrmError.ErrorForm(Helps.Language.info["guardadoError"] + "\n" + ex.Message);
+                            Notifications.FrmError.ErrorForm(Helps.Language.SearchValue("guardadoError") + "\n" + ex.Message);
                         }
                     }
                 }
@@ -140,25 +176,25 @@ namespace UI.Usuario
 
                         InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Update, 1, this.GetType().FullName, MethodInfo.GetCurrentMethod().Name, "Familia: " + familia.Nombre, "", ""));
 
-                        Notifications.FrmSuccess.SuccessForm(Helps.Language.info["editadoOK"]);
+                        Notifications.FrmSuccess.SuccessForm(Helps.Language.SearchValue("editadoOK"));
 
                         this.Close();
                     }
                     catch (Exception ex)
                     {
                         if (ex.Message == EValidaciones.existe)
-                            Notifications.FrmError.ErrorForm(Helps.Language.info["errorExiste"]);
+                            Notifications.FrmError.ErrorForm(Helps.Language.SearchValue("errorExiste"));
                         else
                         {
                             InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.UpdateError, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Familia: " + familia.Nombre, ex.StackTrace, ex.Message));
-                            Notifications.FrmError.ErrorForm(Helps.Language.info["editadoError"] + "\n" + ex.Message);
+                            Notifications.FrmError.ErrorForm(Helps.Language.SearchValue("editadoError") + "\n" + ex.Message);
                         }
                     }
                 }
             }
             else
             {
-                Notifications.FrmInformation.InformationForm(Helps.Language.info["ingresarAllRegistros"]);
+                Notifications.FrmInformation.InformationForm(Helps.Language.SearchValue("ingresarAllRegistros"));
             }
             //}
             //else
@@ -170,20 +206,28 @@ namespace UI.Usuario
 
         private void ChangeLanguage()
         {
-            //this.lblTituloUsuarios.Text = Helps.Language.info["lblTituloUsuarios"];
+            this.Text = Helps.Language.SearchValue("lblFamilia");
             Helps.Language.controles(this);
         }
 
         private void CargarDatos()
         {
-            familia = BLL.UFP.Familia.GetAdapted(id);
-            
-            foreach(var p in familia.Accesos)
+            try
             {
-                bind.Add(p);
-            }
+                familia = BLL.UFP.Familia.GetAdapted(id);
 
-            txtNuevaFamilis.Text = familia.Nombre;
+                foreach (var p in familia.Accesos)
+                {
+                    bind.Add(p);
+                }
+
+                txtNuevaFamilis.Text = familia.Nombre;
+            }
+            catch (Exception ex)
+            {
+                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error carga de datos", ex.StackTrace, ex.Message));
+                Notifications.FrmError.ErrorForm(Language.SearchValue("errorBuscarDatos") + "\n" + ex.Message);
+            }
 
         }
     }

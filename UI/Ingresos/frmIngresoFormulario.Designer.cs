@@ -63,18 +63,19 @@
             this.btnAgregarProdALista = new System.Windows.Forms.Button();
             this.txtPrecioVenta = new System.Windows.Forms.TextBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.lblCant = new System.Windows.Forms.Label();
             this.lblPrecioVenta = new System.Windows.Forms.Label();
             this.txtPrecioCompra = new System.Windows.Forms.TextBox();
+            this.lblCosto = new System.Windows.Forms.Label();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.txtCantidad = new System.Windows.Forms.TextBox();
-            this.lblCosto = new System.Windows.Forms.Label();
-            this.lblCant = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblProducto2 = new System.Windows.Forms.Label();
             this.lblCant2 = new System.Windows.Forms.Label();
             this.lblCosto2 = new System.Windows.Forms.Label();
             this.lblPrecioVenta2 = new System.Windows.Forms.Label();
             this.metroGrid1 = new MetroFramework.Controls.MetroGrid();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -438,6 +439,17 @@
             this.pictureBox6.TabIndex = 150;
             this.pictureBox6.TabStop = false;
             // 
+            // lblCant
+            // 
+            this.lblCant.AutoSize = true;
+            this.lblCant.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCant.ForeColor = System.Drawing.Color.DimGray;
+            this.lblCant.Location = new System.Drawing.Point(412, 13);
+            this.lblCant.Name = "lblCant";
+            this.lblCant.Size = new System.Drawing.Size(73, 20);
+            this.lblCant.TabIndex = 145;
+            this.lblCant.Text = "Cantidad";
+            // 
             // lblPrecioVenta
             // 
             this.lblPrecioVenta.AutoSize = true;
@@ -460,6 +472,17 @@
             this.txtPrecioCompra.Size = new System.Drawing.Size(121, 19);
             this.txtPrecioCompra.TabIndex = 146;
             // 
+            // lblCosto
+            // 
+            this.lblCosto.AutoSize = true;
+            this.lblCosto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCosto.ForeColor = System.Drawing.Color.DimGray;
+            this.lblCosto.Location = new System.Drawing.Point(27, 86);
+            this.lblCosto.Name = "lblCosto";
+            this.lblCosto.Size = new System.Drawing.Size(113, 20);
+            this.lblCosto.TabIndex = 145;
+            this.lblCosto.Text = "Precio Compra";
+            // 
             // pictureBox5
             // 
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
@@ -480,28 +503,6 @@
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Size = new System.Drawing.Size(63, 19);
             this.txtCantidad.TabIndex = 146;
-            // 
-            // lblCosto
-            // 
-            this.lblCosto.AutoSize = true;
-            this.lblCosto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCosto.ForeColor = System.Drawing.Color.DimGray;
-            this.lblCosto.Location = new System.Drawing.Point(27, 86);
-            this.lblCosto.Name = "lblCosto";
-            this.lblCosto.Size = new System.Drawing.Size(113, 20);
-            this.lblCosto.TabIndex = 145;
-            this.lblCosto.Text = "Precio Compra";
-            // 
-            // lblCant
-            // 
-            this.lblCant.AutoSize = true;
-            this.lblCant.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCant.ForeColor = System.Drawing.Color.DimGray;
-            this.lblCant.Location = new System.Drawing.Point(412, 13);
-            this.lblCant.Name = "lblCant";
-            this.lblCant.Size = new System.Drawing.Size(73, 20);
-            this.lblCant.TabIndex = 145;
-            this.lblCant.Text = "Cantidad";
             // 
             // pictureBox1
             // 
@@ -718,5 +719,6 @@
         public System.Windows.Forms.TextBox txtPrecioVenta;
         public System.Windows.Forms.TextBox txtPrecioCompra;
         public System.Windows.Forms.TextBox txtCantidad;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

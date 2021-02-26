@@ -8,9 +8,15 @@ using System.Threading.Tasks;
 
 namespace DAL.UFP
 {
+	/// <summary>
+	/// dal familia_patente
+	/// </summary>
 	internal static class Familia_Patente
 	{
-		
+		/// <summary>
+		/// selecciona todo de la tabla familia_patente
+		/// </summary>
+		/// <returns>dataset</returns>
 		public static DataSet SelectAll()
 		{
 			try
@@ -41,7 +47,11 @@ namespace DAL.UFP
 			}
 		}
 
-		
+		/// <summary>
+		/// selecciona las familia_patente por id de familia
+		/// </summary>
+		/// <param name="IdFamiliaElement">string</param>
+		/// <returns>dataset</returns>
 		public static DataSet Select(System.String IdFamiliaElement)
 		{
 			try
@@ -75,7 +85,10 @@ namespace DAL.UFP
 			}
 		}
 
-		
+		/// <summary>
+		/// elimina familia_patente por id de familia
+		/// </summary>
+		/// <param name="_object">familia element</param>
 		public static void Delete(Entities.UFP.FamiliaElement _object)
 		{
 			using (SqlConnection conn = ConnectionBD.Instance().Conect())
@@ -97,7 +110,10 @@ namespace DAL.UFP
 			//myDatabase.ExecuteNonQuery(myCommand);
 		}
 
-		
+		/// <summary>
+		/// actualiza familia_patente por id de familia
+		/// </summary>
+		/// <param name="_object">familia element</param>
 		public static void Update(Entities.UFP.FamiliaElement _object)
 		{
 			using (SqlConnection conn = ConnectionBD.Instance().Conect())
@@ -119,7 +135,10 @@ namespace DAL.UFP
 			//myDatabase.ExecuteNonQuery(myCommand);
 		}
 
-		
+		/// <summary>
+		/// inserta familia_patente
+		/// </summary>
+		/// <param name="_object"></param>
 		public static void Insert(Entities.UFP.FamiliaElement _object)
 		{
 			using (SqlConnection conn = ConnectionBD.Instance().Conect())
@@ -141,6 +160,11 @@ namespace DAL.UFP
 			//myDatabase.ExecuteNonQuery(myCommand);
 		}
 
+		/// <summary>
+		/// obtiene los accesos
+		/// </summary>
+		/// <param name="IdFamiliaElement">string</param>
+		/// <returns></returns>
 		public static DataTable GetAccesos(System.String IdFamiliaElement)
 		{
 			try
@@ -174,6 +198,10 @@ namespace DAL.UFP
 			}
 		}
 
+		/// <summary>
+		/// elimina los accesos
+		/// </summary>
+		/// <param name="_object"></param>
 		public static void DeleteAccesos(Entities.UFP.Familia _object)
 		{
 			using (SqlConnection conn = ConnectionBD.Instance().Conect())

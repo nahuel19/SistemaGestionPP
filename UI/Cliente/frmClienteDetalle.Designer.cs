@@ -46,6 +46,7 @@
             this.lblMailValue = new System.Windows.Forms.Label();
             this.lblEdadValue = new System.Windows.Forms.Label();
             this.lblEdad = new System.Windows.Forms.Label();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.SuspendLayout();
             // 
             // lblMail
@@ -256,6 +257,7 @@
             this.Name = "frmClienteDetalle";
             this.Resizable = false;
             this.Text = "Detalle ";
+            this.Load += new System.EventHandler(this.frmClienteDetalle_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -281,5 +283,6 @@
         private System.Windows.Forms.Label lblMailValue;
         private System.Windows.Forms.Label lblEdadValue;
         private System.Windows.Forms.Label lblEdad;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

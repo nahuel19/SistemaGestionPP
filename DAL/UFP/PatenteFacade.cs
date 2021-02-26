@@ -7,9 +7,15 @@ using System.Threading.Tasks;
 
 namespace DAL.UFP
 {
+	/// <summary>
+	/// clase fachada de patente, utiliza dal de patente, patente adapter y patenete collection adapter
+	/// </summary>
 	public class PatenteFacade
 	{
-
+		/// <summary>
+		/// retorna las patentes
+		/// </summary>
+		/// <returns>list patente</returns>
 		public static List<Entities.UFP.Patente> GetAllAdapted()
 		{
 			try
@@ -25,6 +31,11 @@ namespace DAL.UFP
 			}
 		}
 
+		/// <summary>
+		/// retorna uns patente
+		/// </summary>
+		/// <param name="IdFamiliaElement"></param>
+		/// <returns>patente</returns>
 		public static Entities.UFP.Patente GetAdapted(System.String IdFamiliaElement)
 		{
 			try
@@ -46,6 +57,10 @@ namespace DAL.UFP
 			}
 		}
 
+		/// <summary>
+		/// inserta una patente
+		/// </summary>
+		/// <param name="_object">patente</param>
 		public static void Insert(Entities.UFP.Patente _object)
 		{
 			try
@@ -58,6 +73,10 @@ namespace DAL.UFP
 			}
 		}
 
+		/// <summary>
+		/// actualiza una patente
+		/// </summary>
+		/// <param name="_object">patente</param>
 		public static void Update(Entities.UFP.Patente _object)
 		{
 			try
@@ -70,6 +89,10 @@ namespace DAL.UFP
 			}
 		}
 
+		/// <summary>
+		/// elimina una patente
+		/// </summary>
+		/// <param name="_object">patente</param>
 		public static void Delete(Entities.UFP.Patente _object)
 		{
 			try

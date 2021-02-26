@@ -33,12 +33,14 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.metroGrid1 = new MetroFramework.Controls.MetroGrid();
-            this.lblFamilias = new System.Windows.Forms.Label();
+            this.lblFamilia = new System.Windows.Forms.Label();
             this.BtnDetalle = new System.Windows.Forms.Button();
             this.BtnEliminar = new System.Windows.Forms.Button();
             this.BtnEditar = new System.Windows.Forms.Button();
             this.BtnNuevo = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.lblDetallePermisos = new System.Windows.Forms.Label();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             ((System.ComponentModel.ISupportInitialize)(this.metroGrid1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -99,16 +101,16 @@
             this.metroGrid1.Size = new System.Drawing.Size(238, 234);
             this.metroGrid1.TabIndex = 163;
             // 
-            // lblFamilias
+            // lblFamilia
             // 
-            this.lblFamilias.AutoSize = true;
-            this.lblFamilias.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFamilias.ForeColor = System.Drawing.Color.DimGray;
-            this.lblFamilias.Location = new System.Drawing.Point(59, 89);
-            this.lblFamilias.Name = "lblFamilias";
-            this.lblFamilias.Size = new System.Drawing.Size(67, 20);
-            this.lblFamilias.TabIndex = 162;
-            this.lblFamilias.Text = "Familias";
+            this.lblFamilia.AutoSize = true;
+            this.lblFamilia.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFamilia.ForeColor = System.Drawing.Color.DimGray;
+            this.lblFamilia.Location = new System.Drawing.Point(59, 89);
+            this.lblFamilia.Name = "lblFamilia";
+            this.lblFamilia.Size = new System.Drawing.Size(67, 20);
+            this.lblFamilia.TabIndex = 162;
+            this.lblFamilia.Text = "Familias";
             // 
             // BtnDetalle
             // 
@@ -183,18 +185,30 @@
             this.richTextBox1.TabIndex = 168;
             this.richTextBox1.Text = "";
             // 
+            // lblDetallePermisos
+            // 
+            this.lblDetallePermisos.AutoSize = true;
+            this.lblDetallePermisos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDetallePermisos.ForeColor = System.Drawing.Color.DimGray;
+            this.lblDetallePermisos.Location = new System.Drawing.Point(511, 102);
+            this.lblDetallePermisos.Name = "lblDetallePermisos";
+            this.lblDetallePermisos.Size = new System.Drawing.Size(128, 20);
+            this.lblDetallePermisos.TabIndex = 186;
+            this.lblDetallePermisos.Text = "Detalle Permisos";
+            // 
             // frmFamilias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 485);
+            this.Controls.Add(this.lblDetallePermisos);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.BtnDetalle);
             this.Controls.Add(this.BtnEliminar);
             this.Controls.Add(this.BtnEditar);
             this.Controls.Add(this.BtnNuevo);
             this.Controls.Add(this.metroGrid1);
-            this.Controls.Add(this.lblFamilias);
+            this.Controls.Add(this.lblFamilia);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmFamilias";
@@ -209,11 +223,13 @@
         #endregion
 
         private MetroFramework.Controls.MetroGrid metroGrid1;
-        private System.Windows.Forms.Label lblFamilias;
+        private System.Windows.Forms.Label lblFamilia;
         private System.Windows.Forms.Button BtnDetalle;
         private System.Windows.Forms.Button BtnEliminar;
         private System.Windows.Forms.Button BtnEditar;
         private System.Windows.Forms.Button BtnNuevo;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Label lblDetallePermisos;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

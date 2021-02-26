@@ -1,6 +1,7 @@
 ﻿using BLL;
 using BLL.LogBitacora;
 using Services;
+using Services.Cache;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,9 +12,13 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.Helps;
 
 namespace UI
 {
+    /// <summary>
+    /// form para gestión de productos
+    /// </summary>
     public partial class frmProducto : Form
     {
         ProductoBLL bll = new ProductoBLL();
@@ -28,9 +33,17 @@ namespace UI
         #region helpers
         private void RefrescarTabla()
         {
-            metroGrid1.DataSource = bll.List();
+            try
+            {
+                metroGrid1.DataSource = bll.List();
 
-            CaracteristicasGrid();
+                CaracteristicasGrid();
+            }
+            catch (Exception ex)
+            {
+                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error carga de datos", ex.StackTrace, ex.Message));
+                Notifications.FrmError.ErrorForm(Language.SearchValue("errorBuscarDatos") + "\n" + ex.Message);
+            }
 
             metroGrid1.ClearSelection();
             TxtBuscar.Focus();
@@ -84,6 +97,16 @@ namespace UI
         private void frmProducto_Load(object sender, EventArgs e)
         {
             RefrescarTabla();
+            CheckPermisos();
+            HelpUser();
+        }
+
+        private void HelpUser()
+        {
+            helpProvider1.HelpNamespace = Application.StartupPath + "/ManualUsuario.chm";
+            helpProvider1.SetHelpString(this, "Productos");
+            helpProvider1.SetHelpKeyword(this, "Producto");
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.KeywordIndex);
         }
 
         private void BtnNuevo_Click(object sender, EventArgs e)
@@ -106,7 +129,7 @@ namespace UI
             }
             else
             {
-                Notifications.FrmInformation.InformationForm(Helps.Language.info["infoSelecEditar"]);
+                Notifications.FrmInformation.InformationForm(Helps.Language.SearchValue("infoSelecEditar"));
             }
         }
 
@@ -120,7 +143,7 @@ namespace UI
 
                 try
                 {
-                    DialogResult confirmation = new Notifications.FrmQuestion(Helps.Language.info["preguntaEliminar"]).ShowDialog();
+                    DialogResult confirmation = new Notifications.FrmQuestion(Helps.Language.SearchValue("preguntaEliminar")).ShowDialog();
 
                     if (confirmation == DialogResult.OK)
                     {
@@ -128,7 +151,7 @@ namespace UI
                         InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Delete, 1, this.GetType().FullName, MethodInfo.GetCurrentMethod().Name, "Producto: " + entity.codigo, "", ""));
 
                         RefrescarTabla();
-                        Notifications.FrmSuccess.SuccessForm(Helps.Language.info["eliminadoOK"]);
+                        Notifications.FrmSuccess.SuccessForm(Helps.Language.SearchValue("eliminadoOK"));
 
                     }
                 }
@@ -136,13 +159,13 @@ namespace UI
                 {
                     InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.DeleteError, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Producto: " + entity.codigo, ex.StackTrace, ex.Message));
                     RefrescarTabla();
-                    Notifications.FrmError.ErrorForm(Helps.Language.info["eliminadoError"] + "\n" + ex.Message);
+                    Notifications.FrmError.ErrorForm(Helps.Language.SearchValue("eliminadoError") + "\n" + ex.Message);
                 }
                 RefrescarTabla();
             }
             else
             {
-                Notifications.FrmInformation.InformationForm(Helps.Language.info["infoSelecEliminar"]);
+                Notifications.FrmInformation.InformationForm(Helps.Language.SearchValue("infoSelecEliminar"));
             }
         }
 
@@ -154,7 +177,15 @@ namespace UI
 
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {
-            metroGrid1.DataSource = bll.FindBy(TxtBuscar.Text);
+            try
+            {
+                metroGrid1.DataSource = bll.FindBy(TxtBuscar.Text);
+            }
+            catch (Exception ex)
+            {
+                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error carga de datos", ex.StackTrace, ex.Message));
+                Notifications.FrmError.ErrorForm(Language.SearchValue("errorBuscarDatos") + "\n" + ex.Message);
+            }
         }
 
         private void btnDetalle_Click(object sender, EventArgs e)
@@ -169,10 +200,25 @@ namespace UI
             }
             else
             {
-                Notifications.FrmInformation.InformationForm(Helps.Language.info["infoSelecDetalle"]);
+                Notifications.FrmInformation.InformationForm(Helps.Language.SearchValue("infoSelecDetalle"));
             }
         }
 
-        
+        private void CheckPermisos()
+        {
+            try
+            {
+                BtnNuevo.Enabled = BLL.UFP.Usuario.ValidarPermiso(LoginCache.permisos, Entities.UFP.TipoPermiso.ProductoInsertar);
+                BtnEditar.Enabled = BLL.UFP.Usuario.ValidarPermiso(LoginCache.permisos, Entities.UFP.TipoPermiso.ProductoEditar);
+                BtnEliminar.Enabled = BLL.UFP.Usuario.ValidarPermiso(LoginCache.permisos, Entities.UFP.TipoPermiso.ProductoEliminar);
+                btnCategoria.Enabled = BLL.UFP.Usuario.ValidarPermiso(LoginCache.permisos, Entities.UFP.TipoPermiso.CategoriaVer);
+            }
+            catch (Exception ex)
+            {
+                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error validación de permisos", ex.StackTrace, ex.Message));
+                Notifications.FrmError.ErrorForm(Language.SearchValue("errorPermisos") + "\n" + ex.Message);
+            }
+            
+        }
     }
 }

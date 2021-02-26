@@ -22,7 +22,15 @@ namespace BLL
         /// <returns>TipoDoc_identidad</returns>
         public TipoDoc_identidad GetById(int id)
         {
-            return tipoDoc_identDAL.GetById(id);
+            try
+            {
+                return tipoDoc_identDAL.GetById(id);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -31,7 +39,15 @@ namespace BLL
         /// <returns>List TipoDoc_identidad</returns>
         public List<TipoDoc_identidad> List()
         {
-            return tipoDoc_identDAL.List();
+            try
+            {
+                return tipoDoc_identDAL.List();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -41,7 +57,15 @@ namespace BLL
         /// <returns>TipoDoc_identidad</returns>
         public void Insert(TipoDoc_identidad entity)
         {
-            tipoDoc_identDAL.Insert(entity);
+            try
+            {
+                tipoDoc_identDAL.Insert(entity);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
 
         }
 
@@ -51,7 +75,15 @@ namespace BLL
         /// <param name="entity">TipoDoc_identidad</param>
         public void Update(TipoDoc_identidad entity)
         {
-            tipoDoc_identDAL.Update(entity);
+            try
+            {
+                tipoDoc_identDAL.Update(entity);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -60,7 +92,15 @@ namespace BLL
         /// <param name="id">int</param>
         public void Delete(int id)
         {
-            tipoDoc_identDAL.Delete(id);
+            try
+            {
+                tipoDoc_identDAL.Delete(id);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

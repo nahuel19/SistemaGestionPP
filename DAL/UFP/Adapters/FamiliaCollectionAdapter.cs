@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace DAL.UFP.Adapters
 {
+	/// <summary>
+	/// familia collection adapter
+	/// </summary>
 	internal class FamiliaCollectionAdapter
 	{
 
@@ -17,6 +20,10 @@ namespace DAL.UFP.Adapters
 			this.datosDT = datosDT;
 		}
 
+		/// <summary>
+		/// llena las familias de una lista de familias, con los componentes que le correspondan
+		/// </summary>
+		/// <param name="collection"></param>
 		public void Fill(List<Entities.UFP.Familia> collection)
 		{
 			foreach (DataRow row in datosDT.Rows)

@@ -1,8 +1,11 @@
-﻿using System;
+﻿using BLL.LogBitacora;
+using Services;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -67,8 +70,20 @@ namespace UI.Helps
                     //    }
                     //}
                 }
-                catch{}
+                catch(Exception ex){
+                    //InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, "Language", MethodInfo.GetCurrentMethod().Name, "Error idioma: " + e.Name, ex.StackTrace, ex.Message));
+                }
             }
+        }
+
+        public static string SearchValue(string key)
+        {
+            try {
+                return info[key];
+            }
+            catch { 
+                return key; 
+            }            
         }
 
     }

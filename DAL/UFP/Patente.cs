@@ -8,8 +8,15 @@ using System.Threading.Tasks;
 
 namespace DAL.UFP
 {
+	/// <summary>
+	/// dal patente
+	/// </summary>
 	internal static class Patente
 	{
+		/// <summary>
+		/// selecciona todas las patentes
+		/// </summary>
+		/// <returns>data set</returns>
 		public static DataSet SelectAll()
 		{
 			try
@@ -40,6 +47,11 @@ namespace DAL.UFP
 			}
 		}
 
+		/// <summary>
+		/// selecciona una patente
+		/// </summary>
+		/// <param name="IdFamiliaElement">id</param>
+		/// <returns>data set</returns>
 		public static DataSet Select(System.String IdFamiliaElement)
 		{
 			try
@@ -73,6 +85,10 @@ namespace DAL.UFP
 			}
 		}
 
+		/// <summary>
+		/// elimina una patente
+		/// </summary>
+		/// <param name="_object">patente</param>
 		public static void Delete(Entities.UFP.Patente _object)
 		{
 			using (SqlConnection conn = ConnectionBD.Instance().Conect())
@@ -93,6 +109,10 @@ namespace DAL.UFP
 			//myDatabase.ExecuteNonQuery(myCommand);
 		}
 
+		/// <summary>
+		/// actualiza una patente
+		/// </summary>
+		/// <param name="_object">patente</param>
 		public static void Update(Entities.UFP.Patente _object)
 		{
 			using (SqlConnection conn = ConnectionBD.Instance().Conect())
@@ -114,6 +134,10 @@ namespace DAL.UFP
 			//myDatabase.ExecuteNonQuery(myCommand);
 		}
 
+		/// <summary>
+		/// inserta una patente
+		/// </summary>
+		/// <param name="_object">patente</param>
 		public static void Insert(Entities.UFP.Patente _object)
 		{
 			using (SqlConnection conn = ConnectionBD.Instance().Conect())

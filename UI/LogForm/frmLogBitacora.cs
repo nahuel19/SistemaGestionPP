@@ -1,4 +1,5 @@
 ﻿using BLL.LogBitacora;
+using Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,9 +9,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.Helps;
 
 namespace UI.LogForm
 {
+    /// <summary>
+    /// form bitácora
+    /// </summary>
     public partial class frmLogBitacora : Form
     {
 
@@ -24,9 +29,17 @@ namespace UI.LogForm
 
         private void RefrescarTabla()
         {
-            metroGrid1.DataSource = InvokeCommand.GetLogs().Execute();
+            try
+            {
+                metroGrid1.DataSource = InvokeCommand.GetLogs().Execute();
 
-            CaracteristicasGrid();
+                CaracteristicasGrid();
+            }
+            catch (Exception ex)
+            {
+                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error carga de datos", ex.StackTrace, ex.Message));
+                Notifications.FrmError.ErrorForm(Language.SearchValue("errorBuscarDatos") + "\n" + ex.Message);
+            }
 
             metroGrid1.ClearSelection();
             TxtBuscar.Focus();

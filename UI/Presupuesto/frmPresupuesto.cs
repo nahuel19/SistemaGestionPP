@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BLL.LogBitacora;
+using Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -12,6 +14,9 @@ using UI.Helps;
 
 namespace UI.Presupuesto
 {
+    /// <summary>
+    /// form de generación de presupuestos
+    /// </summary>
     public partial class frmPresupuesto : Form, IContractForm<Entities.Producto>
     {
         private static frmPresupuesto _instance;
@@ -85,7 +90,7 @@ namespace UI.Presupuesto
         private void AgregarTablaDetalle()
         {
             if (String.IsNullOrEmpty(TxtProducto.Text))
-                Notifications.FrmInformation.InformationForm(Helps.Language.info["ingresarAllRegistros"]);
+                Notifications.FrmInformation.InformationForm(Helps.Language.SearchValue("ingresarAllRegistros"));
 
             try
             {
@@ -95,7 +100,7 @@ namespace UI.Presupuesto
                 {
                     if (d.id == producto.id)
                     {
-                        Notifications.FrmInformation.InformationForm(Helps.Language.info["existeIngresoDetalle"]);
+                        Notifications.FrmInformation.InformationForm(Helps.Language.SearchValue("existeIngresoDetalle"));
                         return;
                     }
                 }
@@ -106,7 +111,7 @@ namespace UI.Presupuesto
             }
             catch
             {
-                Notifications.FrmInformation.InformationForm(Helps.Language.info["ingresarAllRegistros"]);
+                Notifications.FrmInformation.InformationForm(Helps.Language.SearchValue("ingresarAllRegistros"));
             }
 
         }
@@ -115,19 +120,28 @@ namespace UI.Presupuesto
         {
             if (metroGrid1.SelectedRows.Count > 0)
             {
-                int id_prod = GetIdProdEnGridDetalle();
-                IReadOnlyList<Entities.Producto> detalleToRemove = bingindList.Where(x => (x.id == id_prod)).ToList();
-
-                foreach (var d in detalleToRemove)
+                try
                 {
-                    total -= d.precio * d.cantidad;
-                    bingindList.Remove(d);
-                    listProd.Remove(d);                                        
+                    int id_prod = GetIdProdEnGridDetalle();
+                    IReadOnlyList<Entities.Producto> detalleToRemove = bingindList.Where(x => (x.id == id_prod)).ToList();
+
+                    foreach (var d in detalleToRemove)
+                    {
+                        total -= d.precio * d.cantidad;
+                        bingindList.Remove(d);
+                        listProd.Remove(d);
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error carga de datos", ex.StackTrace, ex.Message));
+                    Notifications.FrmError.ErrorForm(Language.SearchValue("errorBuscarDatos") + "\n" + ex.Message);
                 }
             }
             else
             {
-                Notifications.FrmInformation.InformationForm(Helps.Language.info["infoSelecEliminar"]);
+                Notifications.FrmInformation.InformationForm(Helps.Language.SearchValue("infoSelecEliminar"));
             }
 
 
@@ -154,8 +168,25 @@ namespace UI.Presupuesto
 
         private void frmPresupuesto_Load(object sender, EventArgs e)
         {
-            metroGrid1.DataSource = bingindList;
-            lblTotValue.Text = total.ToString() ;
+            try
+            {
+                metroGrid1.DataSource = bingindList;
+                lblTotValue.Text = total.ToString();
+            }
+            catch (Exception ex)
+            {
+                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error carga de datos", ex.StackTrace, ex.Message));
+                Notifications.FrmError.ErrorForm(Language.SearchValue("errorBuscarDatos") + "\n" + ex.Message);
+            }
+            HelpUser();
+        }
+
+        private void HelpUser()
+        {
+            helpProvider1.HelpNamespace = Application.StartupPath + "/ManualUsuario.chm";
+            helpProvider1.SetHelpString(this, "Presupuesto");
+            helpProvider1.SetHelpKeyword(this, "Presupuesto");
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.KeywordIndex);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -163,12 +194,12 @@ namespace UI.Presupuesto
             try
             {
                 bll.ExportPresupuestoExcel(listProd);
-                Notifications.FrmSuccess.SuccessForm(Helps.Language.info["excelOK"] + "\n" + ConfigurationManager.AppSettings["FolderExcel"]);
+                Notifications.FrmSuccess.SuccessForm(Helps.Language.SearchValue("excelOK") + "\n" + ConfigurationManager.AppSettings["FolderExcel"]);
                 LimpiarDetalle();
             }
             catch (Exception ex)
             {
-                Notifications.FrmError.ErrorForm(Helps.Language.info["excelError"] + "\n" + ex.Message);
+                Notifications.FrmError.ErrorForm(Helps.Language.SearchValue("excelError") + "\n" + ex.Message);
             }
             LimpiarDetalle();
             bingindList = new BindingList<Entities.Producto>();
@@ -181,12 +212,12 @@ namespace UI.Presupuesto
             try
             {
                 bll.ExportPresupuestoPDF(listProd);
-                Notifications.FrmSuccess.SuccessForm(Helps.Language.info["pdfOK"] + "\n" + ConfigurationManager.AppSettings["FolderPDF"]);
+                Notifications.FrmSuccess.SuccessForm(Helps.Language.SearchValue("pdfOK") + "\n" + ConfigurationManager.AppSettings["FolderPDF"]);
                 LimpiarDetalle();
             }
             catch (Exception ex)
             {
-                Notifications.FrmError.ErrorForm(Helps.Language.info["pdfError"] + "\n" + ex.Message);
+                Notifications.FrmError.ErrorForm(Helps.Language.SearchValue("pdfError") + "\n" + ex.Message);
             }
             LimpiarDetalle();
             bingindList = new BindingList<Entities.Producto>();
@@ -196,7 +227,7 @@ namespace UI.Presupuesto
 
         private void ChangeLanguage()
         {            
-            this.lblTituloPresupuesto.Text = Helps.Language.info["lblTituloPresupuesto"];
+            this.lblTituloPresupuesto.Text = Helps.Language.SearchValue("lblTituloPresupuesto");
             Helps.Language.controles(this);
         }
     }

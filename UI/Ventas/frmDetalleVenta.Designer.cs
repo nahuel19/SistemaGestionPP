@@ -44,6 +44,7 @@
             this.lblTipoDocValue = new System.Windows.Forms.Label();
             this.lblFacturaValue = new System.Windows.Forms.Label();
             this.lblClienteValue = new System.Windows.Forms.Label();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             ((System.ComponentModel.ISupportInitialize)(this.metroGrid1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -242,6 +243,7 @@
             this.MinimizeBox = false;
             this.Name = "frmDetalleVenta";
             this.Text = "Detalle Venta";
+            this.Load += new System.EventHandler(this.frmDetalleVenta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.metroGrid1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -262,5 +264,6 @@
         private System.Windows.Forms.Label lblTipoDocValue;
         private System.Windows.Forms.Label lblFacturaValue;
         private System.Windows.Forms.Label lblClienteValue;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

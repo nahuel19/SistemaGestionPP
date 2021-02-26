@@ -16,6 +16,9 @@ using UI.Helps;
 
 namespace UI.Usuario
 {
+    /// <summary>
+    /// formulario para nuevo usuario o editar
+    /// </summary>
     public partial class frmUsuarioFormulario : MetroFramework.Forms.MetroForm
     {
         private string id;
@@ -64,18 +67,18 @@ namespace UI.Usuario
 
                         InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Insert, 1, this.GetType().FullName, MethodInfo.GetCurrentMethod().Name, "Usuario: " + entity.Nombre, "", ""));
 
-                        Notifications.FrmSuccess.SuccessForm(Helps.Language.info["guardadoOK"]);
+                        Notifications.FrmSuccess.SuccessForm(Helps.Language.SearchValue("guardadoOK"));
 
                         this.Close();
                     }
                     catch (Exception ex)
                     {
                         if (ex.Message == EValidaciones.existe)
-                            Notifications.FrmInformation.InformationForm(Helps.Language.info["errorExiste"]);
+                            Notifications.FrmInformation.InformationForm(Helps.Language.SearchValue("errorExiste"));
                         else
                         {
                             InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.InsertError, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Usuario: " + entity.Nombre, ex.StackTrace, ex.Message));
-                            Notifications.FrmError.ErrorForm(Helps.Language.info["guardadoError"] + "\n" + ex.Message);
+                            Notifications.FrmError.ErrorForm(Helps.Language.SearchValue("guardadoError") + "\n" + ex.Message);
                         }
                     }
                 }               
@@ -90,18 +93,18 @@ namespace UI.Usuario
 
                             InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Update, 1, this.GetType().FullName, MethodInfo.GetCurrentMethod().Name, "Usuario: " + entity.Nombre, "", ""));
 
-                            Notifications.FrmSuccess.SuccessForm(Helps.Language.info["editadoOK"]);
+                            Notifications.FrmSuccess.SuccessForm(Helps.Language.SearchValue("editadoOK"));
 
                             this.Close();
                         }
                         catch (Exception ex)
                         {
                             if (ex.Message == EValidaciones.existe)
-                                Notifications.FrmError.ErrorForm(Helps.Language.info["errorExiste"]);
+                                Notifications.FrmError.ErrorForm(Helps.Language.SearchValue("errorExiste"));
                             else
                             {
                                 InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.UpdateError, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Usuario: " + entity.Nombre, ex.StackTrace, ex.Message));
-                                Notifications.FrmError.ErrorForm(Helps.Language.info["editadoError"] + "\n" + ex.Message);
+                                Notifications.FrmError.ErrorForm(Helps.Language.SearchValue("editadoError") + "\n" + ex.Message);
                             }
                         } 
                     }
@@ -123,25 +126,25 @@ namespace UI.Usuario
 
                                 InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Update, 1, this.GetType().FullName, MethodInfo.GetCurrentMethod().Name, "Usuario: " + entity.Nombre, "", ""));
 
-                                Notifications.FrmSuccess.SuccessForm(Helps.Language.info["editadoOK"]);
+                                Notifications.FrmSuccess.SuccessForm(Helps.Language.SearchValue("editadoOK"));
 
                                 this.Close();
                             }
                             else
                             {
                                 InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.UpdateError, 1, this.GetType().FullName, MethodInfo.GetCurrentMethod().Name, "Usuario: " + entity.Nombre, "", ""));
-                                Notifications.FrmError.ErrorForm(Language.info["loginError"]);
+                                Notifications.FrmError.ErrorForm(Language.SearchValue("loginError"));
                             }
 
                         }
                         catch (Exception ex)
                         {
                             if (ex.Message == EValidaciones.existe)
-                                Notifications.FrmError.ErrorForm(Helps.Language.info["errorExiste"]);
+                                Notifications.FrmError.ErrorForm(Helps.Language.SearchValue("errorExiste"));
                             else
                             {
                                 InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.UpdateError, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Usuario: " + entity.Nombre, ex.StackTrace, ex.Message));
-                                Notifications.FrmError.ErrorForm(Helps.Language.info["editadoError"] + "\n" + ex.Message);
+                                Notifications.FrmError.ErrorForm(Helps.Language.SearchValue("editadoError") + "\n" + ex.Message);
                             }
                         }
                     }
@@ -158,8 +161,16 @@ namespace UI.Usuario
 
         private void CargaDatosEnForm()
         {
-            entity = BLL.UFP.Usuario.GetAdapted(id);
-            TxtNombre.Text = entity.Nombre;
+            try
+            {
+                entity = BLL.UFP.Usuario.GetAdapted(id);
+                TxtNombre.Text = entity.Nombre;
+            }
+            catch (Exception ex)
+            {
+                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error carga de datos", ex.StackTrace, ex.Message));
+                Notifications.FrmError.ErrorForm(Language.SearchValue("errorBuscarDatos") + "\n" + ex.Message);
+            }
         }
         private Entities.UFP.Usuario CargarEntity(Entities.UFP.Usuario entity)
         {
@@ -171,19 +182,40 @@ namespace UI.Usuario
 
         private (bool,string) CargarEntityVerificarUsuario(Entities.UFP.Usuario entity)
         {
-            entity.Nombre = TxtNombre.Text;
-            entity.Pass = TxtPassAnterior.Text;
-            
-            return BLL.UFP.Usuario.Login(entity);
+            try
+            {
+                entity.Nombre = TxtNombre.Text;
+                entity.Pass = TxtPassAnterior.Text;
+
+                return BLL.UFP.Usuario.Login(entity);
+            }
+            catch (Exception ex)
+            {
+                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error carga de datos", ex.StackTrace, ex.Message));
+                Notifications.FrmError.ErrorForm(Language.SearchValue("errorBuscarDatos") + "\n" + ex.Message);
+            }
+
+            return (false, "");
         }
 
 
         private void ChangeLanguage()
         {
-            this.Text = Helps.Language.info["usuario"];
+            this.Text = Helps.Language.SearchValue("usuario");
             Helps.Language.controles(this);
         }
 
+        private void frmUsuarioFormulario_Load(object sender, EventArgs e)
+        {
+            HelpUser();
+        }
 
+        private void HelpUser()
+        {
+            helpProvider1.HelpNamespace = Application.StartupPath + "/ManualUsuario.chm";
+            helpProvider1.SetHelpString(this, "Nuevo usuario");
+            helpProvider1.SetHelpKeyword(this, "Nuevo usuario");
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.KeywordIndex);
+        }
     }
 }

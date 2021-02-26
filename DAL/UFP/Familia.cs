@@ -8,8 +8,15 @@ using System.Threading.Tasks;
 
 namespace DAL.UFP
 {
+    /// <summary>
+    /// dal familia
+    /// </summary>
     internal static class Familia
     {
+        /// <summary>
+        /// selecciona las faimilias
+        /// </summary>
+        /// <returns>data set</returns>
         public static DataSet SelectAll()
         {
             try
@@ -40,6 +47,11 @@ namespace DAL.UFP
             }
         }
 
+        /// <summary>
+        /// selecciona una familia
+        /// </summary>
+        /// <param name="IdFamiliaElement">string</param>
+        /// <returns>data set</returns>
         public static DataSet Select(System.String IdFamiliaElement)
         {
             try
@@ -74,6 +86,10 @@ namespace DAL.UFP
             }
         }
 
+        /// <summary>
+        /// elimina una familia
+        /// </summary>
+        /// <param name="_object">familia</param>
         public static void Delete(Entities.UFP.Familia _object)
         {
             if (_object.Accesos != null)
@@ -98,6 +114,10 @@ namespace DAL.UFP
             //myDatabase.ExecuteNonQuery(myCommand);
         }
 
+        /// <summary>
+        /// actualiza una familia
+        /// </summary>
+        /// <param name="_object">familia</param>
         public static void Update(Entities.UFP.Familia _object)
         {
             using (SqlConnection conn = ConnectionBD.Instance().Conect())
@@ -168,6 +188,10 @@ namespace DAL.UFP
             }
         }
 
+        /// <summary>
+        /// inserta una familia
+        /// </summary>
+        /// <param name="_object">familia</param>
         public static void Insert(Entities.UFP.Familia _object)
         {
             using (SqlConnection conn = ConnectionBD.Instance().Conect())
@@ -237,6 +261,11 @@ namespace DAL.UFP
             }
         }
 
+        /// <summary>
+        /// selecciona los accesos de una familia
+        /// </summary>
+        /// <param name="IdFamiliaElement">strin</param>
+        /// <returns>datatable</returns>
         public static DataTable GetAccesos(System.String IdFamiliaElement)
         {
             using (SqlConnection conn = ConnectionBD.Instance().Conect())
@@ -263,6 +292,10 @@ namespace DAL.UFP
             //return myDatabase.ExecuteDataSet(myCommand).Tables[0];
         }
 
+        /// <summary>
+        /// elimina los accesos
+        /// </summary>
+        /// <param name="_object">familia</param>
         public static void DeleteAccesos(Entities.UFP.Familia _object)
         {
             using (SqlConnection conn = ConnectionBD.Instance().Conect())

@@ -8,9 +8,15 @@ using System.Threading.Tasks;
 
 namespace BLL.UFP
 {
+	/// <summary>
+	/// bll patente
+	/// </summary>
 	public class Patente
 	{
-
+		/// <summary>
+		/// retorna lista de todas las patentes
+		/// </summary>
+		/// <returns>List patente</returns>
 		public static List<Entities.UFP.Patente> GetAllAdapted()
 		{
 			try
@@ -24,6 +30,11 @@ namespace BLL.UFP
 			}
 		}
 
+		/// <summary>
+		/// retorna una entidad de patente
+		/// </summary>
+		/// <param name="IdFamiliaElement">string</param>
+		/// <returns>Patente</returns>
 		public static Entities.UFP.Patente GetAdapted(System.String IdFamiliaElement)
 		{
 			try
@@ -37,6 +48,10 @@ namespace BLL.UFP
 			}
 		}
 
+		/// <summary>
+		/// llama a dal para insertar una patentes
+		/// </summary>
+		/// <param name="_object">patente</param>
 		public static void Insert(Entities.UFP.Patente _object)
 		{
 			try
@@ -50,6 +65,10 @@ namespace BLL.UFP
 			}
 		}
 
+		/// <summary>
+		/// llama a dal par acturalizar una patente
+		/// </summary>
+		/// <param name="_object">patente</param>
 		public static void Update(Entities.UFP.Patente _object)
 		{
 			try
@@ -63,6 +82,10 @@ namespace BLL.UFP
 			}
 		}
 
+		/// <summary>
+		/// llama a dal para eliminar una patente
+		/// </summary>
+		/// <param name="_object">patente</param>
 		public static void Delete(Entities.UFP.Patente _object)
 		{
 			try

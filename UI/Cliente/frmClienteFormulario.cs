@@ -12,9 +12,13 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.Helps;
 
 namespace UI.Cliente
 {
+    /// <summary>
+    /// form cliente formulario
+    /// </summary>
     public partial class frmClienteFormulario : MetroFramework.Forms.MetroForm
     {
 
@@ -54,20 +58,20 @@ namespace UI.Cliente
 
                         InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Insert, 1, this.GetType().FullName, MethodInfo.GetCurrentMethod().Name, "Cliente: " + entity.num_documento, "", ""));
 
-                        Notifications.FrmSuccess.SuccessForm(Helps.Language.info["guardadoOK"]);
+                        Notifications.FrmSuccess.SuccessForm(Helps.Language.SearchValue("guardadoOK"));
 
                         this.Close();
                     }
                     catch (Exception ex)
                     {
                         if (ex.Message == EValidaciones.existe)
-                            Notifications.FrmInformation.InformationForm(Helps.Language.info["errorExiste"]);
+                            Notifications.FrmInformation.InformationForm(Helps.Language.SearchValue("errorExiste"));
                         else if (ex.Message == EValidaciones.menor)
-                            Notifications.FrmInformation.InformationForm(Helps.Language.info["errorMenor"]);
+                            Notifications.FrmInformation.InformationForm(Helps.Language.SearchValue("errorMenor"));
                         else
                         {
                             InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.InsertError, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Cliente: " + entity.num_documento, ex.StackTrace, ex.Message));
-                            Notifications.FrmError.ErrorForm(Helps.Language.info["guardadoError"] + "\n" + ex.Message);
+                            Notifications.FrmError.ErrorForm(Helps.Language.SearchValue("guardadoError") + "\n" + ex.Message);
                         }
                     }
                 }
@@ -79,20 +83,20 @@ namespace UI.Cliente
 
                         InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Update, 1, this.GetType().FullName, MethodInfo.GetCurrentMethod().Name, "Cliente: " + entity.num_documento, "", ""));
 
-                        Notifications.FrmSuccess.SuccessForm(Helps.Language.info["editadoOK"]);
+                        Notifications.FrmSuccess.SuccessForm(Helps.Language.SearchValue("editadoOK"));
 
                         this.Close();
                     }
                     catch (Exception ex)
                     {
                         if (ex.Message == EValidaciones.existe)
-                            Notifications.FrmError.ErrorForm(Helps.Language.info["errorExiste"]);
+                            Notifications.FrmError.ErrorForm(Helps.Language.SearchValue("errorExiste"));
                         if (ex.Message == EValidaciones.menor)
-                            Notifications.FrmInformation.InformationForm(Helps.Language.info["errorMenor"]);
+                            Notifications.FrmInformation.InformationForm(Helps.Language.SearchValue("errorMenor"));
                         else
                         {
                             InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.UpdateError, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Cliente: " + entity.num_documento, ex.StackTrace, ex.Message));
-                            Notifications.FrmError.ErrorForm(Helps.Language.info["editadoError"] + "\n" + ex.Message);
+                            Notifications.FrmError.ErrorForm(Helps.Language.SearchValue("editadoError") + "\n" + ex.Message);
                         }
                     }
                 } 
@@ -110,15 +114,23 @@ namespace UI.Cliente
 
         private void CargaDatosEnForm()
         {
-            entity = bll.GetById(Convert.ToInt32(id));
-            TxtNombre.Text = entity.nombre;
-            TxtApellido.Text = entity.apellido;
-            ddlTipoDoc.SelectedValue = entity.fk_id_tipo_doc_identidad;
-            TxtDocumento.Text = entity.num_documento;
-            dtpNacimiento.Text = entity.fecha_nacimiento.ToString();
-            txtDireccion.Text = entity.direccion;
-            txtTel.Text = entity.telefono;
-            txtMail.Text = entity.mail;
+            try
+            {
+                entity = bll.GetById(Convert.ToInt32(id));
+                TxtNombre.Text = entity.nombre;
+                TxtApellido.Text = entity.apellido;
+                ddlTipoDoc.SelectedValue = entity.fk_id_tipo_doc_identidad;
+                TxtDocumento.Text = entity.num_documento;
+                dtpNacimiento.Text = entity.fecha_nacimiento.ToString();
+                txtDireccion.Text = entity.direccion;
+                txtTel.Text = entity.telefono;
+                txtMail.Text = entity.mail;
+            }
+            catch (Exception ex)
+            {
+                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error carga de datos", ex.StackTrace, ex.Message));
+                Notifications.FrmError.ErrorForm(Language.SearchValue("errorBuscarDatos") + "\n" + ex.Message);
+            }
         }
         private Entities.Cliente CargarEntity(Entities.Cliente entity)
         {
@@ -135,9 +147,17 @@ namespace UI.Cliente
         }
         private void ListTipoDoc()
         {
-            ddlTipoDoc.DataSource = new TipoDoc_identidadBLL().List();
-            ddlTipoDoc.ValueMember = "id";
-            ddlTipoDoc.DisplayMember = "doc_identidad";
+            try
+            {
+                ddlTipoDoc.DataSource = new TipoDoc_identidadBLL().List();
+                ddlTipoDoc.ValueMember = "id";
+                ddlTipoDoc.DisplayMember = "doc_identidad";
+            }
+            catch (Exception ex)
+            {
+                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error carga de datos", ex.StackTrace, ex.Message));
+                Notifications.FrmError.ErrorForm(Language.SearchValue("errorBuscarDatos") + "\n" + ex.Message);
+            }
         }
 
 
@@ -162,6 +182,18 @@ namespace UI.Cliente
             //{
             //    e.Handled = true;
             //}
+        }
+
+        private void frmClienteFormulario_Load(object sender, EventArgs e)
+        {
+            HelpUser();
+        }
+        private void HelpUser()
+        {
+            helpProvider1.HelpNamespace = Application.StartupPath + "/ManualUsuario.chm";
+            helpProvider1.SetHelpString(this, "Nuevo/editar cliente");
+            helpProvider1.SetHelpKeyword(this, "Nuevo/editar cliente");
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.KeywordIndex);
         }
     }
 }

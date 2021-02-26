@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace DAL.UFP.Adapters
 {
+	/// <summary>
+	/// usuario collection adapter
+	/// </summary>
 	internal class UsuarioCollectionAdapter
 	{
 
@@ -17,6 +20,10 @@ namespace DAL.UFP.Adapters
 			this.datosDT = datosDT;
 		}
 
+		/// <summary>
+		/// llena una lista de usuarios con sus datos y familias y patentes que tenga cada uno
+		/// </summary>
+		/// <param name="collection"></param>
 		public void Fill(List<Entities.UFP.Usuario> collection)
 		{
 			foreach (DataRow row in datosDT.Rows)

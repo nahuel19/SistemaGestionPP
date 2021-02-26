@@ -24,8 +24,8 @@ namespace UI.Notifications
             InitializeComponent();
 
             lblMensaje.Text = message;
-            this.lblMsgFijoPregunta.Text  = Helps.Language.info["lblMsgFijoPregunta"];
-            this.BtnCancelar.Text = Helps.Language.info["BtnCancelar"];
+            this.lblMsgFijoPregunta.Text  = Helps.Language.SearchValue("lblMsgFijoPregunta");
+            this.BtnCancelar.Text = Helps.Language.SearchValue("BtnCancelar");
         }
 
         /// <summary>

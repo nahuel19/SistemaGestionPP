@@ -10,29 +10,51 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.Helps;
 
 namespace UI.Usuario
 {
+    /// <summary>
+    /// forma familias
+    /// </summary>
     public partial class frmFamilias : MetroFramework.Forms.MetroForm
     {
         public frmFamilias()
         {
             InitializeComponent();
-
+            ChangeLanguage();
         }
 
 
         private void RefrescarTabla()
         {
-            metroGrid1.DataSource = BLL.UFP.Familia.GetAllAdapted();
+            try
+            {
+                metroGrid1.DataSource = BLL.UFP.Familia.GetAllAdapted();
 
-            metroGrid1.Columns[0].Visible = false;
-            metroGrid1.Columns[2].Visible = false;
+                metroGrid1.Columns[0].Visible = false;
+                metroGrid1.Columns[2].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error carga de datos", ex.StackTrace, ex.Message));
+                Notifications.FrmError.ErrorForm(Language.SearchValue("errorBuscarDatos") + "\n" + ex.Message);
+            }
         }
 
         private void frmFamilias_Load(object sender, EventArgs e)
         {
             RefrescarTabla();
+            HelpUser();
+
+        }
+
+        private void HelpUser()
+        {
+            helpProvider1.HelpNamespace = Application.StartupPath + "/ManualUsuario.chm";
+            helpProvider1.SetHelpString(this, "Perfiles");
+            helpProvider1.SetHelpKeyword(this, "Perfiles");
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.KeywordIndex);
         }
 
         private void BtnNuevo_Click(object sender, EventArgs e)
@@ -54,7 +76,7 @@ namespace UI.Usuario
             }
             else
             {
-                Notifications.FrmInformation.InformationForm(Helps.Language.info["infoSelecDetalle"]);
+                Notifications.FrmInformation.InformationForm(Helps.Language.SearchValue("infoSelecDetalle"));
             }
         }
 
@@ -78,7 +100,7 @@ namespace UI.Usuario
                 Entities.UFP.Familia familia = BLL.UFP.Familia.GetAdapted(GetId());
                 try
                 {
-                    DialogResult confirmation = new Notifications.FrmQuestion(Helps.Language.info["preguntaEliminar"]).ShowDialog();
+                    DialogResult confirmation = new Notifications.FrmQuestion(Helps.Language.SearchValue("preguntaEliminar")).ShowDialog();
 
                     if (confirmation == DialogResult.OK)
                     {
@@ -87,7 +109,7 @@ namespace UI.Usuario
                         InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Delete, 1, this.GetType().FullName, MethodInfo.GetCurrentMethod().Name, "Familia: " + familia.Nombre, "", ""));
 
                         RefrescarTabla();
-                        Notifications.FrmSuccess.SuccessForm(Helps.Language.info["eliminadoOK"]);
+                        Notifications.FrmSuccess.SuccessForm(Helps.Language.SearchValue("eliminadoOK"));
 
                     }
                 }
@@ -95,13 +117,13 @@ namespace UI.Usuario
                 {
                     InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.DeleteError, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Familia: " + familia.Nombre, ex.StackTrace, ex.Message));
                     RefrescarTabla();
-                    Notifications.FrmError.ErrorForm(Helps.Language.info["eliminadoError"] + "\n" + ex.Message);
+                    Notifications.FrmError.ErrorForm(Helps.Language.SearchValue("eliminadoError") + "\n" + ex.Message);
                 }
                 RefrescarTabla();
             }
             else
             {
-                Notifications.FrmInformation.InformationForm(Helps.Language.info["infoSelecEliminar"]);
+                Notifications.FrmInformation.InformationForm(Helps.Language.SearchValue("infoSelecEliminar"));
             }
 
             
@@ -118,10 +140,16 @@ namespace UI.Usuario
             }
             else
             {
-                Notifications.FrmInformation.InformationForm(Helps.Language.info["infoSelecEditar"]);
+                Notifications.FrmInformation.InformationForm(Helps.Language.SearchValue("infoSelecEditar"));
             }
 
             
+        }
+
+        private void ChangeLanguage()
+        {
+            Helps.Language.controles(this);
+            this.Text = Helps.Language.SearchValue("lblFamilia");
         }
     }
 }

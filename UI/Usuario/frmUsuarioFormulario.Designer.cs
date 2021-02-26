@@ -39,6 +39,7 @@
             this.txtPassNueva = new System.Windows.Forms.TextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lblPassNueva = new System.Windows.Forms.Label();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPassAnterior)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxNombre)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -179,6 +180,7 @@
             this.MinimizeBox = false;
             this.Name = "frmUsuarioFormulario";
             this.Text = "Usuario";
+            this.Load += new System.EventHandler(this.frmUsuarioFormulario_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPassAnterior)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxNombre)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -199,5 +201,6 @@
         private System.Windows.Forms.TextBox txtPassNueva;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label lblPassNueva;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

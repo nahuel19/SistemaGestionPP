@@ -31,14 +31,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
             this.TxtPass = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lblApellido = new System.Windows.Forms.Label();
+            this.lblPass = new System.Windows.Forms.Label();
             this.TxtNombre = new System.Windows.Forms.TextBox();
             this.pictureBoxNombre = new System.Windows.Forms.PictureBox();
-            this.lblNombre = new System.Windows.Forms.Label();
-            this.BtnInisiarSesion = new System.Windows.Forms.Button();
+            this.lblTxtNombre = new System.Windows.Forms.Label();
+            this.BtnIniciarSesion = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblLogin = new System.Windows.Forms.Label();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxNombre)).BeginInit();
             this.panel1.SuspendLayout();
@@ -65,16 +66,16 @@
             this.pictureBox1.TabIndex = 92;
             this.pictureBox1.TabStop = false;
             // 
-            // lblApellido
+            // lblPass
             // 
-            this.lblApellido.AutoSize = true;
-            this.lblApellido.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblApellido.ForeColor = System.Drawing.Color.DimGray;
-            this.lblApellido.Location = new System.Drawing.Point(101, 173);
-            this.lblApellido.Name = "lblApellido";
-            this.lblApellido.Size = new System.Drawing.Size(92, 20);
-            this.lblApellido.TabIndex = 90;
-            this.lblApellido.Text = "Contraseña";
+            this.lblPass.AutoSize = true;
+            this.lblPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPass.ForeColor = System.Drawing.Color.DimGray;
+            this.lblPass.Location = new System.Drawing.Point(101, 173);
+            this.lblPass.Name = "lblPass";
+            this.lblPass.Size = new System.Drawing.Size(92, 20);
+            this.lblPass.TabIndex = 90;
+            this.lblPass.Text = "Contraseña";
             // 
             // TxtNombre
             // 
@@ -97,32 +98,32 @@
             this.pictureBoxNombre.TabIndex = 89;
             this.pictureBoxNombre.TabStop = false;
             // 
-            // lblNombre
+            // lblTxtNombre
             // 
-            this.lblNombre.AutoSize = true;
-            this.lblNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombre.ForeColor = System.Drawing.Color.DimGray;
-            this.lblNombre.Location = new System.Drawing.Point(100, 99);
-            this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(65, 20);
-            this.lblNombre.TabIndex = 87;
-            this.lblNombre.Text = "Nombre";
+            this.lblTxtNombre.AutoSize = true;
+            this.lblTxtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTxtNombre.ForeColor = System.Drawing.Color.DimGray;
+            this.lblTxtNombre.Location = new System.Drawing.Point(100, 99);
+            this.lblTxtNombre.Name = "lblTxtNombre";
+            this.lblTxtNombre.Size = new System.Drawing.Size(65, 20);
+            this.lblTxtNombre.TabIndex = 87;
+            this.lblTxtNombre.Text = "Nombre";
             // 
-            // BtnInisiarSesion
+            // BtnIniciarSesion
             // 
-            this.BtnInisiarSesion.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnInisiarSesion.BackColor = System.Drawing.Color.SeaGreen;
-            this.BtnInisiarSesion.FlatAppearance.BorderSize = 0;
-            this.BtnInisiarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnInisiarSesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnInisiarSesion.ForeColor = System.Drawing.Color.White;
-            this.BtnInisiarSesion.Location = new System.Drawing.Point(90, 276);
-            this.BtnInisiarSesion.Name = "BtnInisiarSesion";
-            this.BtnInisiarSesion.Size = new System.Drawing.Size(275, 41);
-            this.BtnInisiarSesion.TabIndex = 107;
-            this.BtnInisiarSesion.Text = "INISIAR SESIÓN";
-            this.BtnInisiarSesion.UseVisualStyleBackColor = false;
-            this.BtnInisiarSesion.Click += new System.EventHandler(this.BtnInisiarSesion_Click);
+            this.BtnIniciarSesion.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.BtnIniciarSesion.BackColor = System.Drawing.Color.SeaGreen;
+            this.BtnIniciarSesion.FlatAppearance.BorderSize = 0;
+            this.BtnIniciarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnIniciarSesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnIniciarSesion.ForeColor = System.Drawing.Color.White;
+            this.BtnIniciarSesion.Location = new System.Drawing.Point(90, 276);
+            this.BtnIniciarSesion.Name = "BtnIniciarSesion";
+            this.BtnIniciarSesion.Size = new System.Drawing.Size(275, 41);
+            this.BtnIniciarSesion.TabIndex = 107;
+            this.BtnIniciarSesion.Text = "INICIAR SESIÓN";
+            this.BtnIniciarSesion.UseVisualStyleBackColor = false;
+            this.BtnIniciarSesion.Click += new System.EventHandler(this.BtnInisiarSesion_Click);
             // 
             // btnSalir
             // 
@@ -169,17 +170,18 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(468, 373);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.BtnInisiarSesion);
+            this.Controls.Add(this.BtnIniciarSesion);
             this.Controls.Add(this.TxtPass);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.lblApellido);
+            this.Controls.Add(this.lblPass);
             this.Controls.Add(this.TxtNombre);
             this.Controls.Add(this.pictureBoxNombre);
-            this.Controls.Add(this.lblNombre);
+            this.Controls.Add(this.lblTxtNombre);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MinimizeBox = false;
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.frmLogin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxNombre)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -193,13 +195,14 @@
 
         private System.Windows.Forms.TextBox TxtPass;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label lblApellido;
+        private System.Windows.Forms.Label lblPass;
         private System.Windows.Forms.TextBox TxtNombre;
         private System.Windows.Forms.PictureBox pictureBoxNombre;
-        private System.Windows.Forms.Label lblNombre;
-        private System.Windows.Forms.Button BtnInisiarSesion;
+        private System.Windows.Forms.Label lblTxtNombre;
+        private System.Windows.Forms.Button BtnIniciarSesion;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblLogin;
+        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

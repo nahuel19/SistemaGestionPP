@@ -26,12 +26,19 @@ namespace BLL
         /// <returns>Cliente</returns>
         public Cliente GetById(int id)
         {
-            Cliente entity = cliDAL.GetById(id);
+            try
+            {
+                Cliente entity = cliDAL.GetById(id);
 
-            entity.nombreCompleto = entity.apellido + " " + entity.nombre;
-            entity.edad = Methods.CalculateAge(entity.fecha_nacimiento);
+                entity.nombreCompleto = entity.apellido + " " + entity.nombre;
+                entity.edad = Methods.CalculateAge(entity.fecha_nacimiento);
 
-            return entity;
+                return entity;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -40,16 +47,24 @@ namespace BLL
         /// <returns>List Cliente</returns>
         public List<Cliente> List()
         {
-            List<Cliente> list = cliDAL.List();
-
-            foreach(var entity in list)
+            try
             {
-                entity.nombreCompleto = entity.apellido +" "+ entity.nombre;
-                entity.edad = Methods.CalculateAge(entity.fecha_nacimiento);                
+                List<Cliente> list = cliDAL.List();
+
+                foreach (var entity in list)
+                {
+                    entity.nombreCompleto = entity.apellido + " " + entity.nombre;
+                    entity.edad = Methods.CalculateAge(entity.fecha_nacimiento);
+                }
+
+
+                return list;
             }
+            catch (Exception ex)
+            {
 
-
-            return list;
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -120,7 +135,15 @@ namespace BLL
         /// <param name="id">int</param>
         public void Delete(int id)
         {
-            cliDAL.Delete(id);
+            try
+            {
+                cliDAL.Delete(id);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -130,7 +153,15 @@ namespace BLL
         /// <returns>List Cliente</returns>
         public List<Cliente> FindBy(string filter)
         {
-            return List().FindAll(x => x.nombreCompleto.StartWithIgnoreMM(filter) || x.num_documento.StartWithIgnoreMM(filter));
+            try
+            {
+                return List().FindAll(x => x.nombreCompleto.StartWithIgnoreMM(filter) || x.num_documento.StartWithIgnoreMM(filter));
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
 
@@ -139,19 +170,27 @@ namespace BLL
         /// </summary>
         public void ExportProductosExcel()
         {
-            List<Cliente> list = List();
-            DataTable dt = Methods.ConvertToDataTable(list);
-            dt.Columns.Remove("id");
-            dt.Columns.Remove("fk_id_tipo_doc_identidad");
-            dt.Columns.Remove("nombre");
-            dt.Columns.Remove("apellido");
-            dt.Columns[0].ColumnName = "nombre";
-            dt.Columns[1].ColumnName = "doc";
-            dt.Columns[2].ColumnName = "número";
+            try
+            {
+                List<Cliente> list = List();
+                DataTable dt = Methods.ConvertToDataTable(list);
+                dt.Columns.Remove("id");
+                dt.Columns.Remove("fk_id_tipo_doc_identidad");
+                dt.Columns.Remove("nombre");
+                dt.Columns.Remove("apellido");
+                dt.Columns[0].ColumnName = "nombre";
+                dt.Columns[1].ColumnName = "doc";
+                dt.Columns[2].ColumnName = "número";
 
 
-            DocumentAbstract excelDocument = new ExcelDocument();
-            excelDocument.CreateFileTemplate(dt, ConfigurationManager.AppSettings["FileExcelClientes"],ConfigurationManager.AppSettings["FileExcelClientes"], new Dictionary<string, string>());
+                DocumentAbstract excelDocument = new ExcelDocument();
+                excelDocument.CreateFileTemplate(dt, ConfigurationManager.AppSettings["FileExcelClientes"], ConfigurationManager.AppSettings["FileExcelClientes"], new Dictionary<string, string>());
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -159,18 +198,26 @@ namespace BLL
         /// </summary>
         public void ExportProductosPDF()
         {
-            List<Cliente> list = List();
-            DataTable dt = Methods.ConvertToDataTable(list);
-            dt.Columns.Remove("id");
-            dt.Columns.Remove("fk_id_tipo_doc_identidad");
-            dt.Columns.Remove("nombre");
-            dt.Columns.Remove("apellido");
-            dt.Columns[0].ColumnName = "nombre";
-            dt.Columns[1].ColumnName = "doc";
-            dt.Columns[2].ColumnName = "número";
+            try
+            {
+                List<Cliente> list = List();
+                DataTable dt = Methods.ConvertToDataTable(list);
+                dt.Columns.Remove("id");
+                dt.Columns.Remove("fk_id_tipo_doc_identidad");
+                dt.Columns.Remove("nombre");
+                dt.Columns.Remove("apellido");
+                dt.Columns[0].ColumnName = "nombre";
+                dt.Columns[1].ColumnName = "doc";
+                dt.Columns[2].ColumnName = "número";
 
-            DocumentAbstract pdfDocument = new PdfDocument();
-            pdfDocument.CreateFileTemplate(dt, ConfigurationManager.AppSettings["FolderPDF"], ConfigurationManager.AppSettings["FilePdfClientes"], new Dictionary<string, string>());
+                DocumentAbstract pdfDocument = new PdfDocument();
+                pdfDocument.CreateFileTemplate(dt, ConfigurationManager.AppSettings["FolderPDF"], ConfigurationManager.AppSettings["FilePdfClientes"], new Dictionary<string, string>());
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
 
         }
 

@@ -1,4 +1,6 @@
 ﻿using BLL.DigitosVerificadores;
+using BLL.LogBitacora;
+using Entities.UFP;
 using Services;
 using Services.Cache;
 using Services.Excepciones;
@@ -12,6 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using UI.Helps;
 using UI.Proveedor;
 
 namespace UI
@@ -256,17 +259,13 @@ namespace UI
 
         private void HelpUser()
         {
-            helpProvider1.HelpNamespace = Application.StartupPath + "/pruebaHelp.chm";
-            //Help.ShowHelp(this, "pruebaHelp.chm");
-            helpProvider1.SetHelpString(this, "Producto");
+            helpProvider1.HelpNamespace = Application.StartupPath + "/ManualUsuario.chm";            
+            helpProvider1.SetHelpString(this, "Productos");
             helpProvider1.SetHelpKeyword(this, "Producto");
             helpProvider1.SetHelpNavigator(this, HelpNavigator.KeywordIndex);
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            HelpUser();
-        }
+        
 
         private void frmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -294,7 +293,15 @@ namespace UI
 
         private void loadUserData()
         {
-            lblNombreUser.Text = LoginCache.nombreUser;
+            try
+            {
+                lblNombreUser.Text = LoginCache.nombreUser;
+            }
+            catch (Exception ex)
+            {
+                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error carga de datos", ex.StackTrace, ex.Message));
+                Notifications.FrmError.ErrorForm(Language.SearchValue("errorBuscarDatos") + "\n" + ex.Message);
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -310,14 +317,22 @@ namespace UI
 
         private void CheckPermisos()
         {
-            btnProductos.Enabled = BLL.UFP.Usuario.ValidarPermiso(LoginCache.permisos, Entities.UFP.TipoPermiso.ProductoVer);
-            btnClientes.Enabled = BLL.UFP.Usuario.ValidarPermiso(LoginCache.permisos, Entities.UFP.TipoPermiso.ClienteVer);
-            btnProveedores.Enabled = BLL.UFP.Usuario.ValidarPermiso(LoginCache.permisos, Entities.UFP.TipoPermiso.ProveedorVer);
-            btnCompras.Enabled = BLL.UFP.Usuario.ValidarPermiso(LoginCache.permisos, Entities.UFP.TipoPermiso.ComprasVer);
-            btnVentas.Enabled = BLL.UFP.Usuario.ValidarPermiso(LoginCache.permisos, Entities.UFP.TipoPermiso.VentasVer);
-            btnPresupuesto.Enabled = BLL.UFP.Usuario.ValidarPermiso(LoginCache.permisos, Entities.UFP.TipoPermiso.Presupuesto);
-            btnUsuarios.Enabled = BLL.UFP.Usuario.ValidarPermiso(LoginCache.permisos, Entities.UFP.TipoPermiso.UsuariosVer);
-            btnBitacora.Enabled = BLL.UFP.Usuario.ValidarPermiso(LoginCache.permisos, Entities.UFP.TipoPermiso.Bitácora);            
+            try
+            {
+                btnProductos.Enabled = BLL.UFP.Usuario.ValidarPermiso(LoginCache.permisos, Entities.UFP.TipoPermiso.ProductoVer);
+                btnClientes.Enabled = BLL.UFP.Usuario.ValidarPermiso(LoginCache.permisos, Entities.UFP.TipoPermiso.ClienteVer);
+                btnProveedores.Enabled = BLL.UFP.Usuario.ValidarPermiso(LoginCache.permisos, Entities.UFP.TipoPermiso.ProveedorVer);
+                btnCompras.Enabled = BLL.UFP.Usuario.ValidarPermiso(LoginCache.permisos, Entities.UFP.TipoPermiso.ComprasVer);
+                btnVentas.Enabled = BLL.UFP.Usuario.ValidarPermiso(LoginCache.permisos, Entities.UFP.TipoPermiso.VentasVer);
+                btnPresupuesto.Enabled = BLL.UFP.Usuario.ValidarPermiso(LoginCache.permisos, Entities.UFP.TipoPermiso.Presupuesto);
+                btnUsuarios.Enabled = BLL.UFP.Usuario.ValidarPermiso(LoginCache.permisos, Entities.UFP.TipoPermiso.UsuariosVer);
+                btnBitacora.Enabled = BLL.UFP.Usuario.ValidarPermiso(LoginCache.permisos, Entities.UFP.TipoPermiso.Bitácora);
+            }
+            catch (Exception ex)
+            {
+                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error validación de permisos", ex.StackTrace, ex.Message));
+                Notifications.FrmError.ErrorForm(Language.SearchValue("errorPermisos") + "\n" + ex.Message);
+            }         
         }
     }
 }

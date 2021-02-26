@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace DAL.UFP.Adapters
 {
+	/// <summary>
+	/// patente collection adapter
+	/// </summary>
 	internal class PatenteCollectionAdapter
 	{
 
@@ -17,6 +20,10 @@ namespace DAL.UFP.Adapters
 			this.datosDT = datosDT;
 		}
 
+		/// <summary>
+		/// llena una lista de patentes, con sus datos, a partir de una datatable
+		/// </summary>
+		/// <param name="collection">lis patentes</param>
 		public void Fill(List<Entities.UFP.Patente> collection)
 		{
 			foreach (DataRow row in datosDT.Rows)

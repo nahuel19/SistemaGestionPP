@@ -24,7 +24,14 @@ namespace BLL
         /// <returns>Categoria</returns>
         public Categoria GetById(int id)
         {
-            return catDAL.GetById(id);
+            try
+            {
+                return catDAL.GetById(id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -33,7 +40,14 @@ namespace BLL
         /// <returns>List Categoria</returns>
         public List<Categoria> List()
         {
-            return catDAL.List();
+            try
+            {
+                return catDAL.List();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -92,7 +106,15 @@ namespace BLL
         /// <param name="id">int</param>
         public void Delete(int id)
         {
-            catDAL.Delete(id);   
+            try
+            {
+                catDAL.Delete(id);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }  
         }
 
         /// <summary>
@@ -102,7 +124,15 @@ namespace BLL
         /// <returns>List Categoria </returns>
         public List<Categoria> FindBy(string filter)
         {
-            return List().FindAll(x => x.categoria.StartWithIgnoreMM(filter));
+            try
+            {
+                return List().FindAll(x => x.categoria.StartWithIgnoreMM(filter));
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

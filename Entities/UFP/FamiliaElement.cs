@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Entities.UFP
 {
+    /// <summary>
+    /// Clase abstracta familia element (comopnene del composite de patente familia)
+    /// </summary>
     public abstract class FamiliaElement
     {
         public FamiliaElement()

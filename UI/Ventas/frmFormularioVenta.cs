@@ -1,5 +1,6 @@
 ﻿using BLL.LogBitacora;
 using Services;
+using Services.Excepciones;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +15,9 @@ using UI.Helps;
 
 namespace UI.Ventas
 {
+    /// <summary>
+    /// formulario para nueva venta
+    /// </summary>
     public partial class frmFormularioVenta : MetroFramework.Forms.MetroForm, IContractForm<Entities.Cliente>, IContractForm<Entities.Producto>
     {
 
@@ -46,17 +50,33 @@ namespace UI.Ventas
 
         private void ListDocumento()
         {
-            ddlTipoDoc.DataSource = Tipo_DocumentoBLL.FindEgresos();
-            ddlTipoDoc.ValueMember = "id";
-            ddlTipoDoc.DisplayMember = "tipo_documento";
+            try
+            {
+                ddlTipoDoc.DataSource = Tipo_DocumentoBLL.FindEgresos();
+                ddlTipoDoc.ValueMember = "id";
+                ddlTipoDoc.DisplayMember = "tipo_documento";
+            }
+            catch (Exception ex)
+            {
+                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error carga de datos", ex.StackTrace, ex.Message));
+                Notifications.FrmError.ErrorForm(Language.SearchValue("errorBuscarDatos") + "\n" + ex.Message);
+            }
         }
         public void CargarNumeroFactura()
         {
-            int _iddoc = (int)ddlTipoDoc.SelectedValue;
-            tipo_documento = Tipo_DocumentoBLL.GetById(_iddoc);
-            lblLetraValue.Text = tipo_documento.letra;
-            lblSucValue.Text = tipo_documento.sucursal.ToString();
-            lblNumeroValue.Text = (tipo_documento.numero + 1).ToString();
+            try
+            {
+                int _iddoc = (int)ddlTipoDoc.SelectedValue;
+                tipo_documento = Tipo_DocumentoBLL.GetById(_iddoc);
+                lblLetraValue.Text = tipo_documento.letra;
+                lblSucValue.Text = tipo_documento.sucursal.ToString();
+                lblNumeroValue.Text = (tipo_documento.numero + 1).ToString();
+            }
+            catch (Exception ex)
+            {
+                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error carga de datos", ex.StackTrace, ex.Message));
+                Notifications.FrmError.ErrorForm(Language.SearchValue("errorBuscarDatos") + "\n" + ex.Message);
+            }
         }
 
         public void Ejecutar(Entities.Cliente entity)
@@ -95,15 +115,15 @@ namespace UI.Ventas
 
         private void ChangeLanguage()
         {
-            this.Text = Helps.Language.info["btnVentas"];
-            this.lblTipoDoc.Text = Helps.Language.info["lblTipoDoc"];
-            this.lblPrecioVenta.Text = Helps.Language.info["lblPrecioVenta"];
-            this.lblCant.Text = Helps.Language.info["lblCant"];
-            this.lblLetra.Text = Helps.Language.info["lblLetra"];
-            this.lblSucursal.Text = Helps.Language.info["lblSucursal"];
-            this.lblNumero.Text = Helps.Language.info["lblNumero"];
-            this.lblCliente.Text = Helps.Language.info["lblCliente"];
-            this.lblTotal.Text = Helps.Language.info["lblTotal"];
+            this.Text = Helps.Language.SearchValue("btnVentas");
+            this.lblTipoDoc.Text = Helps.Language.SearchValue("lblTipoDoc");
+            this.lblPrecioVenta.Text = Helps.Language.SearchValue("lblPrecioVenta");
+            this.lblCant.Text = Helps.Language.SearchValue("lblCant");
+            this.lblLetra.Text = Helps.Language.SearchValue("lblLetra");
+            this.lblSucursal.Text = Helps.Language.SearchValue("lblSucursal");
+            this.lblNumero.Text = Helps.Language.SearchValue("lblNumero");
+            this.lblCliente.Text = Helps.Language.SearchValue("lblCliente");
+            this.lblTotal.Text = Helps.Language.SearchValue("lblTotal");
             Helps.Language.controles(this);
         }
 
@@ -122,18 +142,22 @@ namespace UI.Ventas
 
                     InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Insert, 1, this.GetType().FullName, MethodInfo.GetCurrentMethod().Name, "Egreso: " + _Cabecera_egreso.letra + _Cabecera_egreso.sucursal.ToString() + _Cabecera_egreso.numero.ToString(), "", ""));
 
-                    Notifications.FrmSuccess.SuccessForm(Helps.Language.info["guardadoOK"]);
+                    Notifications.FrmSuccess.SuccessForm(Helps.Language.SearchValue("guardadoOK"));
 
                     this.Close();
+                }
+                catch (SinStockException ex)
+                {
+                    Notifications.FrmInformation.InformationForm(Helps.Language.SearchValue("prodSinStock") + "\n" +ex.PrepararParaMostrar(ex.productos));
                 }
                 catch (Exception ex)
                 {
                     if (ex.Message == EValidaciones.existe)
-                        Notifications.FrmInformation.InformationForm(Helps.Language.info["errorExiste"]);
+                        Notifications.FrmInformation.InformationForm(Helps.Language.SearchValue("errorExiste"));
                     else
                     {
                         InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.InsertError, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Egreso: " + _Cabecera_egreso.letra + _Cabecera_egreso.sucursal.ToString() + _Cabecera_egreso.numero.ToString(), ex.StackTrace, ex.Message));
-                        Notifications.FrmError.ErrorForm(Helps.Language.info["guardadoError"] + "\n" + ex.Message);
+                        Notifications.FrmError.ErrorForm(Helps.Language.SearchValue("guardadoError") + "\n" + ex.Message);
                     }
                 }
 
@@ -154,7 +178,7 @@ namespace UI.Ventas
         private void AgregarTablaDetalle()
         {
             if (String.IsNullOrEmpty(TxtProducto.Text))
-                Notifications.FrmInformation.InformationForm(Helps.Language.info["ingresarAllRegistros"]);
+                Notifications.FrmInformation.InformationForm(Helps.Language.SearchValue("ingresarAllRegistros"));
 
             try
             {
@@ -170,7 +194,7 @@ namespace UI.Ventas
                 {
                     if (d.fk_id_producto == _Detalle_egreso.fk_id_producto)
                     {
-                        Notifications.FrmInformation.InformationForm(Helps.Language.info["existeIngresoDetalle"]);
+                        Notifications.FrmInformation.InformationForm(Helps.Language.SearchValue("existeIngresoDetalle"));
                         return;
                     }
                 }
@@ -181,7 +205,7 @@ namespace UI.Ventas
             }
             catch
             {
-                Notifications.FrmInformation.InformationForm(Helps.Language.info["ingresarAllRegistros"]);
+                Notifications.FrmInformation.InformationForm(Helps.Language.SearchValue("ingresarAllRegistros"));
             }
 
         }
@@ -190,16 +214,24 @@ namespace UI.Ventas
         {
             if (metroGrid1.SelectedRows.Count > 0)
             {
-                int id_prod = GetIdProdEnGridDetalle();
-                IReadOnlyList<Entities.Doc_detalle_egreso> detalleToRemove = bingindList.Where(x => (x.fk_id_producto == id_prod)).ToList();
-
-                foreach (var d in detalleToRemove)
+                try
                 {
-                    bingindList.Remove(d);
-                    listDetalle.Remove(d);
+                    int id_prod = GetIdProdEnGridDetalle();
+                    IReadOnlyList<Entities.Doc_detalle_egreso> detalleToRemove = bingindList.Where(x => (x.fk_id_producto == id_prod)).ToList();
+
+                    foreach (var d in detalleToRemove)
+                    {
+                        bingindList.Remove(d);
+                        listDetalle.Remove(d);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error carga de datos", ex.StackTrace, ex.Message));
+                    Notifications.FrmError.ErrorForm(Language.SearchValue("errorBuscarDatos") + "\n" + ex.Message);
                 }
             }
-            else { Notifications.FrmInformation.InformationForm(Helps.Language.info["infoSelecEliminar"]); }
+            else { Notifications.FrmInformation.InformationForm(Helps.Language.SearchValue("infoSelecEliminar")); }
         }
 
         private int GetIdProdEnGridDetalle()
@@ -231,18 +263,35 @@ namespace UI.Ventas
 
         private void CargarEntity()
         {
-            _Cabecera_egreso.fk_id_usuario = 0;
-            _Cabecera_egreso.fk_id_cliente = cliente.id;
-            _Cabecera_egreso.fk_id_tipo_doc = (int)ddlTipoDoc.SelectedValue;           
-            _Cabecera_egreso.listDetalle = listDetalle;
-            _Cabecera_egreso.letra = lblLetraValue.Text;
-            _Cabecera_egreso.sucursal = Convert.ToInt32(lblSucValue.Text);
-            _Cabecera_egreso.numero = Convert.ToInt32(lblNumeroValue.Text);
+            try
+            {
+                _Cabecera_egreso.fk_id_usuario = 0;
+                _Cabecera_egreso.fk_id_cliente = cliente.id;
+                _Cabecera_egreso.fk_id_tipo_doc = (int)ddlTipoDoc.SelectedValue;
+                _Cabecera_egreso.listDetalle = listDetalle;
+                _Cabecera_egreso.letra = lblLetraValue.Text;
+                _Cabecera_egreso.sucursal = Convert.ToInt32(lblSucValue.Text);
+                _Cabecera_egreso.numero = Convert.ToInt32(lblNumeroValue.Text);
+            }
+            catch (Exception ex)
+            {
+                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error carga de datos", ex.StackTrace, ex.Message));
+                Notifications.FrmError.ErrorForm(Language.SearchValue("errorBuscarDatos") + "\n" + ex.Message);
+            }
         }
 
         private void frmFormularioVenta_Load(object sender, EventArgs e)
         {
             metroGrid1.DataSource = bingindList;
+            HelpUser();
+        }
+
+        private void HelpUser()
+        {
+            helpProvider1.HelpNamespace = Application.StartupPath + "/ManualUsuario.chm";
+            helpProvider1.SetHelpString(this, "Nueva venta");
+            helpProvider1.SetHelpKeyword(this, "Nueva venta");
+            helpProvider1.SetHelpNavigator(this, HelpNavigator.KeywordIndex);
         }
 
         private void btnAgregarProdALista_Click(object sender, EventArgs e)
@@ -264,9 +313,17 @@ namespace UI.Ventas
 
         private void CargarTotal()
         {
-            double tot = 0;
-            listDetalle.ForEach(x => tot += x.precio * x.cantidad);
-            lblTotalValue.Text = tot.ToString();           
+            try
+            {
+                double tot = 0;
+                listDetalle.ForEach(x => tot += x.precio * x.cantidad);
+                lblTotalValue.Text = tot.ToString();
+            }
+            catch (Exception ex)
+            {
+                InvokeCommand.InsertLog().Execute(CreateLog.Clog(ETipoLog.Error, 1, ex.TargetSite.DeclaringType.FullName, ex.TargetSite.Name, "Error carga de datos", ex.StackTrace, ex.Message));
+                Notifications.FrmError.ErrorForm(Language.SearchValue("errorBuscarDatos") + "\n" + ex.Message);
+            }       
         }
     }
 }

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace DAL.UFP.Adapters
 {
+	/// <summary>
+	/// usuario adapter
+	/// </summary>
 	internal class UsuarioAdapter
 	{
 
@@ -17,6 +20,10 @@ namespace DAL.UFP.Adapters
 			this.row = row;
 		}
 
+		/// <summary>
+		/// llena un usuario con sus datos y familias y patentes que tenga
+		/// </summary>
+		/// <param name="_object"></param>
 		public void Fill(Entities.UFP.Usuario _object)
 		{
 			_object.IdUsuario = String.IsNullOrEmpty(row["IdUsuario"].ToString()) ? null : row["IdUsuario"].ToString();

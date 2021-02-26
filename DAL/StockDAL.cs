@@ -203,6 +203,52 @@ namespace DAL
         }
 
         /// <summary>
+        /// Selecciona un registro de la tabla Stock por el id de producto
+        /// </summary>
+        /// <param name="id_prod">int del registro a seleccionar</param>
+        /// <returns>Stock</returns>
+        public Stock GetByIdProducto(int id_prod)
+        {
+            string SqlString = "SELECT [id] " +
+                                     ",[fk_id_producto] " +
+                                     ",[cantidad] " +
+                                 "FROM [dbo].[Stock] " +
+                                "WHERE fk_id_producto = @id_prod";
+
+            Stock entity = null;
+
+            try
+            {
+                using (SqlConnection conn = ConnectionBD.Instance().Conect())
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(SqlString, conn))
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        cmd.Parameters.AddWithValue("@id_prod", id_prod);
+                        using (IDataReader dr = cmd.ExecuteReader())
+                        {
+                            if (dr.Read())
+                            {
+                                entity = LoadEntity(dr);
+                            }
+                        }
+
+
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+            return entity;
+        }
+
+        /// <summary>
         /// Selecciona un registro de la tabla Stock buscandolo por id de producto
         /// </summary>
         /// <param name="id">int del registro a seleccionar</param>
